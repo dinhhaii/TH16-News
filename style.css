@@ -18,7 +18,11 @@ body {
   font-size: 14px;
   background-color: #222627;
   color: #a6a6a6; }
-
+  body, input, textarea
+  {
+  	color: #333333;
+  	font-family: Arial, Helvetica, sans-serif;
+  }
 h1,
 h2,
 h3,

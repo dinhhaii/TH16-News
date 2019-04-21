@@ -11,7 +11,7 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Writer &mdash; Post</title>
 	<script src="../../ckeditor.js"></script>
-	<link href="sample.css" rel="stylesheet">
+
 	<!-- Stylesheet -->
 	<link rel="stylesheet" href="../../../style.css">
 
@@ -25,7 +25,7 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 // its initialization.
 CKEDITOR.on( 'instanceReady', function( ev ) {
 	// Show the editor name and description in the browser status bar.
-	document.getElementById( 'eMessage' ).innerHTML = 'Instance <code>' + ev.editor.name + '<\/code> loaded.';
+	// document.getElementById( 'eMessage' ).innerHTML = 'Instance <code>' + ev.editor.name + '<\/code> loaded.';
 
 	// Show this sample buttons.
 	document.getElementById( 'eButtons' ).style.display = 'block';
@@ -120,11 +120,11 @@ function Focus() {
 }
 
 function onFocus() {
-	document.getElementById( 'eMessage' ).innerHTML = '<b>' + this.name + ' is focused </b>';
+	//document.getElementById( 'eMessage' ).innerHTML = '<b>' + this.name + ' is focused </b>';
 }
 
 function onBlur() {
-	document.getElementById( 'eMessage' ).innerHTML = this.name + ' lost focus';
+//	document.getElementById( 'eMessage' ).innerHTML = this.name + ' lost focus';
 }
 
 	</script>
@@ -175,13 +175,13 @@ function onBlur() {
 													</div>
 													<!-- Top Search Area -->
 													<div class="top-search-area">
-															<form action="index.html" method="post">
+															<form action="../../../index.html" method="post">
 																	<input type="search" name="top-search" id="topSearch" placeholder="Search...">
 																	<button type="submit" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>
 															</form>
 													</div>
 													<!-- Login -->
-													<a href="login.html" class="login-btn"><i class="fa fa-user" aria-hidden="true"></i></a>
+													<a href="../../../login.html" class="login-btn"><i class="fa fa-user" aria-hidden="true"></i></a>
 											</div>
 									</div>
 							</div>
@@ -197,7 +197,7 @@ function onBlur() {
 									<nav class="classy-navbar justify-content-between " id="vizewNav">
 
 											<!-- Nav brand -->
-											<a href="index.html" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
+											<a href="../../../index.html" class="nav-brand"><img src="../../../img/core-img/logo.png" alt=""></a>
 
 											<!-- Navbar Toggler -->
 											<div class="classy-navbar-toggler">
@@ -215,10 +215,10 @@ function onBlur() {
 													<div class="classynav">
 															<ul>
 
-																<li><a href="thethao-list.html">Thể thao</a>
+																<li><a href="../../../thethao-list.html">Thể thao</a>
 																		<ul class="dropdown">
-																				<li><a href="thethao-list.html">- Bóng đá</a></li>
-																				<li><a href="thethao-list.html">- Bóng rổ</a></li>
+																				<li><a href="../../../thethao-list.html">- Bóng đá</a></li>
+																				<li><a href="../../../thethao-list.html">- Bóng rổ</a></li>
 
 
 																		</ul>
@@ -226,15 +226,15 @@ function onBlur() {
 																	<li><a href="#">Sức khỏe</a>
 																			<ul class="dropdown">
 
-																					<li><a href="thethao-list.html">- Bệnh ung thư</a></li>
-																					<li><a href="thethao-list.html">- Sinh lý</a></li>
+																					<li><a href="../../../thethao-list.html">- Bệnh ung thư</a></li>
+																					<li><a href="../../../thethao-list.html">- Sinh lý</a></li>
 
 																			</ul>
 																	</li>
 																	<li><a href="#">Tội phạm</a>
 																			<ul class="dropdown">
-																					<li><a href="thethao-list.html">- Trong nước</a></li>
-																					<li><a href="thethao-list.html">- Ngoài nước</a></li>
+																					<li><a href="../../../thethao-list.html">- Trong nước</a></li>
+																					<li><a href="../../../thethao-list.html">- Ngoài nước</a></li>
 
 
 																			</ul>
@@ -242,8 +242,8 @@ function onBlur() {
 
 																	<li><a href="#">Kinh doanh</a>
 																			<ul class="dropdown">
-																					<li><a href="thethao-list.html">- Nông sản</a></li>
-																					<li><a href="thethao-list.html">- hải sản</a></li>
+																					<li><a href="../../../thethao-list.html">- Nông sản</a></li>
+																					<li><a href="../../../thethao-list.html">- hải sản</a></li>
 
 
 																			</ul>
@@ -251,8 +251,8 @@ function onBlur() {
 
 																	<li><a href="#">Thị trường</a>
 																			<ul class="dropdown">
-																					<li><a href="thethao-list.html">- Giá vàng</a></li>
-																					<li><a href="thethao-list.html">- Giá cà phê</a></li>
+																					<li><a href="../../../thethao-list.html">- Giá vàng</a></li>
+																					<li><a href="../../../thethao-list.html">- Giá cà phê</a></li>
 
 
 																			</ul>
@@ -275,6 +275,16 @@ function onBlur() {
 
 	<!-- This <div> holds alert messages to be display in the sample page. -->
 	<div id="alerts">
+		<div class="container">
+			<div class="row">
+					<div class="col-12">
+							<!-- Top 10 trending -->
+							<div class="section-heading">
+									<h4>Phần đăng bài</h4>
+									<div class="line"></div>
+							</div>
+					</div>
+			</div>
 		<noscript>
 			<p>
 				<strong>CKEditor requires JavaScript to run</strong>. In a browser with no JavaScript
@@ -284,7 +294,7 @@ function onBlur() {
 		</noscript>
 	</div>
 	<form action="#" method="post">
-		<textarea cols="100" id="editor1" name="editor1" rows="10">&lt;p&gt;This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="https://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.&lt;/p&gt;</textarea>
+		<textarea cols="100" id="editor1" name="editor1" rows="10"></textarea>
 
 		<script>
 			// Replace the <textarea id="editor1"> with an CKEditor instance.
@@ -305,28 +315,159 @@ function onBlur() {
 			});
 		</script>
 
-		<p id="eMessage">
+		<p id="eMessage" style="text-align:center">
 		</p>
 
-		<div id="eButtons" style="display: none">
-			<input id="exec-bold" onclick="ExecuteCommand('bold');" type="button" value="Execute &quot;bold&quot; Command">
-			<input id="exec-link" onclick="ExecuteCommand('link');" type="button" value="Execute &quot;link&quot; Command">
-			<input onclick="Focus();" type="button" value="Focus">
+		<div id="eButtons"  style="display: none;text-align:center;">
+			<input class="post-cata cata-sm cata-success" id="exec-bold" onclick="ExecuteCommand('bold');" type="button" value="Execute &quot;bold&quot; Command">
+			<input class="post-cata cata-sm cata-success" id="exec-link" onclick="ExecuteCommand('link');" type="button" value="Execute &quot;link&quot; Command">
+			<input class="post-cata cata-sm cata-success" onclick="Focus();" type="button" value="Focus">
 			<br><br>
 
 
 		</div>
 	</form>
-	<div id="footer">
-		<hr>
-		<p>
-			CKEditor - The text editor for the Internet - <a class="samples" href="https://ckeditor.com/">https://ckeditor.com</a>
-		</p>
-		<p id="copy">
-			Copyright &copy; 2003-2019, <a class="samples" href="https://cksource.com/">CKSource</a> - Frederico
-			Knabben. All rights reserved.
-		</p>
-	</div>
+	<!-- ##### Footer Area Start ##### -->
+	<footer class="footer-area">
+			<div class="container">
+					<div class="row">
+							<!-- Footer Widget Area -->
+							<div class="col-12 col-sm-6 col-xl-3">
+									<div class="footer-widget mb-70">
+											<!-- Logo -->
+											<a href="index.html" class="foo-logo d-block mb-4"><img src="../../../img/core-img/logo2.png" alt=""></a>
+											<p>Báo xuất bản, tin tức được cập nhật mỗi ngày tại HauHaiDuy</p>
+											<!-- Footer Newsletter Area -->
+											<div class="footer-nl-area">
+													<form action="#" method="post">
+															<input type="email" name="nl-email" class="form-control" id="nlEmail" placeholder="Your email">
+															<button type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+													</form>
+											</div>
+									</div>
+							</div>
+
+							<!-- Footer Widget Area -->
+							<div class="col-12 col-sm-6 col-xl-3">
+									<div class="footer-widget mb-70">
+											<h6 class="widget-title">Facebook:</h6>
+											<!-- Twitter Slides -->
+											<div class="twitter-slides owl-carousel">
+
+													<!-- Single faceBook Slide -->
+													<div class="single--twitter-slide">
+															<!-- Single Facebook -->
+															<div class="single-twit">
+																	<p><i class="fa fa-facebook"></i> <span>@Tuong Duy</span> bao hay qua. thich qua ahihi</p>
+															</div>
+
+															<div class="single-twit">
+																	<p><i class="fa fa-facebook"></i> <span>@Dinh Hai</span> Toan nhung thong tin bo ich, Thich qua di</p>
+															</div>
+													</div>
+
+
+													<div class="single--twitter-slide">
+
+															<div class="single-twit">
+																	<p><i class="fa fa-twitter"></i> <span>@Duy Hau</span>Toàn những thông tin bổ ích ^_^</p>
+															</div>
+
+															<div class="single-twit">
+																	<p><i class="fa fa-twitter"></i> <span>@Duy Hau</span>Mong báo cập nhật nhiều tin tức hơn</p>
+															</div>
+													</div>
+
+											</div>
+									</div>
+							</div>
+
+							<!-- Footer Widget Area -->
+							<div class="col-12 col-sm-6 col-xl-3">
+									<div class="footer-widget mb-70">
+											<h6 class="widget-title">Thể thao</h6>
+
+											<!-- Single Blog Post -->
+											<div class="single-blog-post d-flex">
+													<div class="post-thumbnail">
+															<img src="img/bg-img/7.jpg" alt="">
+													</div>
+													<div class="post-content">
+															<a href="#" class="post-title">Tường Duy: MU sẽ nhuộm đỏ trời Âu</a>
+															<div class="post-meta d-flex justify-content-between">
+																	<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 14</a>
+																	<a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 34</a>
+																	<a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 84</a>
+															</div>
+													</div>
+											</div>
+
+											<!-- Single Blog Post -->
+											<div class="single-blog-post d-flex">
+													<div class="post-thumbnail">
+															<img src="img/bg-img/7.jpg" alt="">
+													</div>
+													<div class="post-content">
+															<a href="#" class="post-title">Song Heung Min sẽ đoạt QBV?</a>
+															<div class="post-meta d-flex justify-content-between">
+																	<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 14</a>
+																	<a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 34</a>
+																	<a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 84</a>
+															</div>
+													</div>
+											</div>
+
+									</div>
+							</div>
+
+							<!-- Footer Widget Area -->
+							<div class="col-12 col-sm-6 col-xl-3">
+									<div class="footer-widget mb-70">
+											<h6 class="widget-title">Our Address</h6>
+											<!-- Contact Address -->
+											<div class="contact-address">
+													<p>HCMUS 227 Nguyen Van Cu, <br>IN HCMC, Viet Nam</p>
+													<p>Phone: 1111111111</p>
+													<p>Email: duyhau9898@gmail.com</p>
+											</div>
+											<!-- Footer Social Area -->
+											<div class="footer-social-area">
+													<a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+													<a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+													<a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+													<a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+													<a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+											</div>
+									</div>
+							</div>
+					</div>
+			</div>
+
+			<!-- Copywrite Area -->
+			<div class="copywrite-area">
+					<div class="container">
+							<div class="row align-items-center">
+									<!-- Copywrite Text -->
+									<div class="col-12 col-sm-6">
+											<p class="copywrite-text"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+									</div>
+									<div class="col-12 col-sm-6">
+											<nav class="footer-nav">
+													<ul>
+															<li><a href="#">Advertise</a></li>
+															<li><a href="#">About</a></li>
+															<li><a href="#">Contact</a></li>
+															<li><a href="#">Disclaimer</a></li>
+															<li><a href="#">Privacy</a></li>
+													</ul>
+											</nav>
+									</div>
+							</div>
+					</div>
+			</div>
+	</footer>
 	<script src="../../../js/jquery/jquery-2.2.4.min.js"></script>
 	<!-- Popper js -->
 	<script src="../../../js/bootstrap/popper.min.js"></script>
