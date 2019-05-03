@@ -165,7 +165,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Trang chủ</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Đăng nhập</li>
+                            <li class="breadcrumb-item active" aria-current="page">Đăng kí</li>
                         </ol>
                     </nav>
                 </div>
@@ -182,28 +182,40 @@
                     <div class="login-content">
                         <!-- Section Title -->
                         <div class="section-heading">
-                            <h4>Đăng nhập</h4>
+                            <h4>Đăng kí thành viên</h4>
                             <div class="line"></div>
                         </div>
 
                         <form action="index.html" method="post">
                             <div class="form-group">
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Tên tài khoản hoặc Email">
+                                <p><b>Họ và tên</b></p>
+                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nguyễn Văn A">
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Mật khẩu">
+                                <p><b>Giới tính</b></p>                        
+                                <input type="radio" name="gender" value="Nam" id="radiobtnNam"></input>
+                                <label for="radiobtnNam" style="color:gray">Nam </label>
+                                <input type="radio" name="gender" value="Nữ" id="radiobtnNu"></input>
+                                <label for="radiobtnNu" style="color:gray">Nữ </label>
                             </div>
                             <div class="form-group">
-                                <div class="custom-control custom-checkbox mr-sm-2">
-                                    <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
-                                    <label class="custom-control-label" for="customControlAutosizing" style="color:gray">Nhớ tài khoản</label>
-                                </div>
+                                <p><b>Ngày sinh</b></p>
+                                <input type="date" class="form-control">
                             </div>
-                            <button type="submit" class="btn vizew-btn w-100 mt-30">Đăng nhập</button>
+                            <div class="form-group">
+                                <p><b>Email</b></p>
+                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="nvana@vizew.com">
+                            </div>
 
-                            <div align="center">
-                                <br><span style="color:gray">Bạn chưa có tài khoản? </span><a href="signup.html">Đăng kí</a>
+                            <div class="form-group">
+                                <p><b>Mật khẩu</b></p>
+                                <input type="password" class="form-control" id="exampleInputPassword1">
                             </div>
+                            <div class="form-group">
+                                <p><b>Nhập lại mật khẩu</b></p>
+                                <input type="password" class="form-control" id="exampleInputPassword1">
+                            </div>
+                            <button type="submit" class="btn vizew-btn w-100 mt-30">Đăng kí</button>
                             
                         </form>
                     </div>
