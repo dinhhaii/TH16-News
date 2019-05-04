@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+-->
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Administrator </title>
+	<script src="ckeditor/ckeditor.js"></script>
+
+	<!-- Stylesheet -->
+	<link rel="stylesheet" href="style.css">
+
+	<!-- Stylesheet -->
+	<!-- Favicon -->
+	<link rel="icon" href="img/core-img/favicon.ico">
+
+	<script>
+
+		// The instanceReady event is fired, when an instance of CKEditor has finished
+		// its initialization.
+		CKEDITOR.on('instanceReady', function (ev) {
+			// Show the editor name and description in the browser status bar.
+			// document.getElementById( 'eMessage' ).innerHTML = 'Instance <code>' + ev.editor.name + '<\/code> loaded.';
+
+			// Show this sample buttons.
+			document.getElementById('eButtons').style.display = 'block';
+		});
+
+		function InsertHTML() {
+			// Get the editor instance that we want to interact with.
+			var editor = CKEDITOR.instances.editor1;
+			var value = document.getElementById('htmlArea').value;
+
+			// Check the active editing mode.
+			if (editor.mode == 'wysiwyg') {
+				// Insert HTML code.
+				// https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_editor.html#method-insertHtml
+				editor.insertHtml(value);
+			}
+			else
+				alert('You must be in WYSIWYG mode!');
+		}
+
+		function InsertText() {
+			// Get the editor instance that we want to interact with.
+			var editor = CKEDITOR.instances.editor1;
+			var value = document.getElementById('txtArea').value;
+
+			// Check the active editing mode.
+			if (editor.mode == 'wysiwyg') {
+				// Insert as plain text.
+				// https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_editor.html#method-insertText
+				editor.insertText(value);
+			}
+			else
+				alert('You must be in WYSIWYG mode!');
+		}
+
+		function SetContents() {
+			// Get the editor instance that we want to interact with.
+			var editor = CKEDITOR.instances.editor1;
+			var value = document.getElementById('htmlArea').value;
+
+			// Set editor contents (replace current contents).
+			// https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_editor.html#method-setData
+			editor.setData(value);
+		}
+
+		function GetContents() {
+			// Get the editor instance that you want to interact with.
+			var editor = CKEDITOR.instances.editor1;
+
+			// Get editor contents
+			// https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_editor.html#method-getData
+			alert(editor.getData());
+		}
+
+		function ExecuteCommand(commandName) {
+			// Get the editor instance that we want to interact with.
+			var editor = CKEDITOR.instances.editor1;
+
+			// Check the active editing mode.
+			if (editor.mode == 'wysiwyg') {
+				// Execute the command.
+				// https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_editor.html#method-execCommand
+				editor.execCommand(commandName);
+			}
+			else
+				alert('You must be in WYSIWYG mode!');
+		}
+
+		function CheckDirty() {
+			// Get the editor instance that we want to interact with.
+			var editor = CKEDITOR.instances.editor1;
+			// Checks whether the current editor contents present changes when compared
+			// to the contents loaded into the editor at startup
+			// https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_editor.html#method-checkDirty
+			alert(editor.checkDirty());
+		}
+
+		function ResetDirty() {
+			// Get the editor instance that we want to interact with.
+			var editor = CKEDITOR.instances.editor1;
+			// Resets the "dirty state" of the editor (see CheckDirty())
+			// https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_editor.html#method-resetDirty
+			editor.resetDirty();
+			alert('The "IsDirty" status has been reset');
+		}
+
+		function Focus() {
+			CKEDITOR.instances.editor1.focus();
+		}
+
+		function onFocus() {
+			//document.getElementById( 'eMessage' ).innerHTML = '<b>' + this.name + ' is focused </b>';
+		}
+
+		function onBlur() {
+			//	document.getElementById( 'eMessage' ).innerHTML = this.name + ' lost focus';
+		}
+
+	</script>
+
+</head>
+
+<body>
+	<!-- Preloader -->
+	<div class="preloader d-flex align-items-center justify-content-center">
+		<div class="lds-ellipsis">
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+	</div>
+
+	<!-- ##### Header Area Start ##### -->
+	<header class="header-area">
+		<!-- Top Header Area -->
+		<div class="top-header-area">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-12 col-md-6">
+						<!-- Breaking News Widget -->
+						<div class="breaking-news-area d-flex align-items-center">
+							<div class="news-title" style="width:300px;">
+								<p>Có thể bạn chưa biết:</p>
+							</div>
+							<div id="breakingNewsTicker" class="ticker">
+								<ul>
+									<li><a href="#">iPhone không cần cảm biến vân tay</a></li>
+									<li><a href="#">Giá xăng tăng kỉ lục</a></li>
+									<li><a href="#">Phương pháp đột phá, đẩy lùi "ung thử tử thần"</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-12 col-md-6">
+						<div class="top-meta-data d-flex align-items-center justify-content-end">
+							<!-- Top Social Info -->
+							<div class="top-social-info">
+								<a href="#"><i class="fa fa-facebook"></i></a>
+								<a href="#"><i class="fa fa-twitter"></i></a>
+								<a href="https://instagram.com/dinhhai.js"><i class="fa fa-instagram"></i></a>
+								<a href="#"><i class="fa fa-youtube-play"></i></a>
+							</div>
+							<!-- Top Search Area -->
+							<div class="top-search-area">
+								<form action="#" method="post">
+									<input type="search" name="top-search" id="topSearch" placeholder="Search">
+									<button type="submit" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>
+								</form>
+							</div>
+							<!-- Login -->
+							<a href="login.html" class="login-btn"><i class="fa fa-user" aria-hidden="true"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Navbar Area -->
+		<div class="vizew-main-menu" id="sticker">
+			<div class="classy-nav-container breakpoint-off">
+				<div class="container">
+
+					<!-- Menu -->
+					<nav class="classy-navbar justify-content-between " id="vizewNav">
+
+						<!-- Nav brand -->
+						<a href="index.html" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
+
+						<!-- Navbar Toggler -->
+						<div class="classy-navbar-toggler">
+							<span class="navbarToggler"><span></span><span></span><span></span></span>
+						</div>
+
+						<div class="classy-menu ">
+
+							<!-- Close Button -->
+							<div class="classycloseIcon">
+								<div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+							</div>
+
+							<!-- Nav Start -->
+							<div class="classynav ">
+								<ul class="nav nav-tabs">
+									<li><a data-toggle="tab" href="#DangBai">Đăng bài</a></li>
+									<li><a data-toggle="tab" href="#DaDuocDuyetBai">Bài viết được duyệt</a></li>
+									<li><a data-toggle="tab" href="#DaXuatBan">Bài viết đã xuất bản</a></li>
+									<li><a data-toggle="tab" href="#BiTuChoi">Bài viết bị từ chối</a></li>
+									<li><a data-toggle="tab" href="#ChuaDuocDuyet">Bài viết chưa duyệt</a></li>
+								</ul>
+							</div>
+							<!-- Nav End -->
+						</div>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- ##### Header Area End ##### -->
+
+	<div class="tab-content">
+		<div class="tab-pane fade show active" id="DangBai" role="tabpanel" aria-labelledby="tab-javascript">
+			<div id="alerts">
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<div class="section-heading">
+								<br><h4>Đăng bài</h4>
+								<div class="line"></div>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<p><b>Tên bài viết:</b></p>
+						<input type="text" class="form-control" id="exampleInputEmail1">
+					</div>
+
+					<div class="form-group">
+						<p><b>Chuyên mục:</b></p>
+						<select class="form-control">
+							<option>Thể thao</option>
+							<option>Sức khỏe</option>
+							<option>Tội phạm</option>
+							<option>Kinh doanh</option>
+							<option>Thị trường</option>
+						</select>
+					</div>
+
+					<noscript>
+						<p>
+							<strong>CKEditor requires JavaScript to run</strong>. In a browser with no JavaScript
+							support, like yours, you should still see the contents (HTML data) and you should
+							be able to edit it normally, without a rich editor interface.
+						</p>
+					</noscript>
+					<div class="form-group">
+						<p><b>Nội dung:</b></p>
+						<form action="#" method="post">
+							<textarea cols="100" id="editor1" name="editor1" rows="10"></textarea>
+
+							<script>
+								// Replace the <textarea id="editor1"> with an CKEditor instance.
+								CKEDITOR.replace('editor1', {
+									on: {
+										focus: onFocus,
+										blur: onBlur,
+
+										// Check for availability of corresponding plugins.
+										pluginsLoaded: function (evt) {
+											var doc = CKEDITOR.document, ed = evt.editor;
+											if (!ed.getCommand('bold'))
+												doc.getById('exec-bold').hide();
+											if (!ed.getCommand('link'))
+												doc.getById('exec-link').hide();
+										}
+									}
+								});
+							</script>
+
+							<p id="eMessage" style="text-align:center">
+							</p>
+
+							<div id="eButtons" style="display: none;text-align:center;">
+								<input class="post-cata cata-sm cata-success" id="exec-bold" onclick="ExecuteCommand('bold');"
+									type="button" value="Execute &quot;bold&quot; Command">
+								<input class="post-cata cata-sm cata-success" id="exec-link" onclick="ExecuteCommand('link');"
+									type="button" value="Execute &quot;link&quot; Command">
+								<input class="post-cata cata-sm cata-success" onclick="Focus();" type="button" value="Focus">
+								<br><br>
+
+
+							</div>
+						</form>
+					</div>
+				</div>
+				<div style="text-align: center;margin-top:20px;">
+					<button type="button" style="width: 300px;"
+						class="btn btn-success">Đăng bài</button>
+				</div>
+			</div>
+
+		</div>
+		<div class="tab-pane fade" id="DaDuocDuyetBai" role="tabpanel" aria-labelledby="tab-css">
+			<br><h3 style="text-align: center">Danh sách bài viết đã được duyệt</h3><br>
+			<table class="table">
+				<thead style="background: #5F9EA0">
+					<tr class="info">
+						<th>STT</th>
+						<th>Tên bài viết</th>
+						<th>Chuyên mục</th>
+						<th>Ngày đăng</th>
+						<th>Trạng thái</th>
+
+
+				</thead>
+				<tbody style="background: #FFEBCD">
+					<tr>
+						<td>1</td>
+						<td>Defaultson</td>
+						<td>def@somemail.com</td>
+						<td>Default</td>
+						<td>Defaultson</td>
+
+
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>Defaultson</td>
+						<td>def@somemail.com</td>
+						<td>Default</td>
+						<td>Defaultson</td>
+
+
+					</tr>
+					<tr>
+						<td>3</td>
+						<td>Defaultson</td>
+						<td>def@somemail.com</td>
+						<td>Default</td>
+						<td>Defaultson</td>
+
+
+					<tr>
+						<td>4</td>
+						<td>Defaultson</td>
+						<td>def@somemail.com</td>
+						<td>Default</td>
+						<td>Defaultson</td>
+
+
+					</tr>
+					<tr>
+						<td>5</td>
+						<td>Defaultson</td>
+						<td>def@somemail.com</td>
+						<td>Default</td>
+						<td>Defaultson</td>
+
+
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+		<div class="tab-pane fade " id="DaXuatBan" role="tabpanel" aria-labelledby="tab-bootstrap">
+			<br><h3 style="text-align: center">Danh sách bài viết đã xuất bản</h3><br>
+			<table class="table">
+				<thead style="background: #5F9EA0">
+					<tr class="info">
+						<th>STT</th>
+						<th>Tên bài viết</th>
+						<th>Chuyên mục</th>
+						<th>Ngày đăng</th>
+						<th>Trạng thái</th>
+
+
+				</thead>
+				<tbody style="background: #FFEBCD">
+					<tr>
+						<td>1</td>
+						<td>Defaultson</td>
+						<td>def@somemail.com</td>
+						<td>Default</td>
+						<td>Defaultson</td>
+
+
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>Defaultson</td>
+						<td>def@somemail.com</td>
+						<td>Default</td>
+						<td>Defaultson</td>
+
+
+					</tr>
+					<tr>
+						<td>3</td>
+						<td>Defaultson</td>
+						<td>def@somemail.com</td>
+						<td>Default</td>
+						<td>Defaultson</td>
+
+
+					</tr>
+					<tr>
+						<td>4</td>
+						<td>Defaultson</td>
+						<td>def@somemail.com</td>
+						<td>Default</td>
+						<td>Defaultson</td>
+
+
+					</tr>
+					<tr>
+						<td>5</td>
+						<td>Defaultson</td>
+						<td>def@somemail.com</td>
+						<td>Default</td>
+						<td>Defaultson</td>
+
+
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+		<div class="tab-pane fade " id="BiTuChoi" role="tabpanel" aria-labelledby="tab-bootstrap">
+			<br><h3 style="text-align: center">Danh sách bài viết bị từ chối</h3><br>
+			<table class="table">
+				<thead style="background: #5F9EA0">
+					<tr class="info">
+						<th>STT</th>
+						<th>Tên bài viết</th>
+						<th>Chuyên mục</th>
+						<th>Ngày đăng</th>
+						<th>Trạng thái</th>
+						<th>Lý do</th>
+						<th>Chỉnh sửa bài</th>
+				</thead>
+				<tbody style="background: #FFEBCD">
+					<tr>
+						<td>1</td>
+						<td>Defaultson</td>
+						<td>def@somemail.com</td>
+						<td>Default</td>
+						<td>Defaultson</td>
+						<td>def@somemail.com</td>
+						<td><a href="#"><button type="button" style="width: 300px;" class="btn btn-warning">Sửa bài</button></a>
+						</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>Defaultson</td>
+						<td>def@somemail.com</td>
+						<td>Default</td>
+						<td>Defaultson</td>
+						<td>def@somemail.com</td>
+						<td><a href="#"><button type="button" style="width: 300px;" class="btn btn-warning">Sửa bài</button></a>
+						</td>
+					</tr>
+					<tr>
+						<td>3</td>
+						<td>Defaultson</td>
+						<td>def@somemail.com</td>
+						<td>Default</td>
+						<td>Defaultson</td>
+						<td>def@somemail.com</td>
+						<td><a href="#"><button type="button" style="width: 300px;" class="btn btn-warning">Sửa bài</button></a>
+						</td>
+					</tr>
+					<tr>
+						<td>4</td>
+						<td>Defaultson</td>
+						<td>def@somemail.com</td>
+						<td>Default</td>
+						<td>Defaultson</td>
+						<td>def@somemail.com</td>
+						<td><a href="#"><button type="button" style="width: 300px;" class="btn btn-warning">Sửa bài</button></a>
+						</td>
+					</tr>
+					<tr>
+						<td>5</td>
+						<td>Defaultson</td>
+						<td>def@somemail.com</td>
+						<td>Default</td>
+						<td>Defaultson</td>
+						<td>def@somemail.com</td>
+						<td><a href="#"><button type="button" style="width: 300px;" class="btn btn-warning">Sửa bài</button></a>
+						</td>
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+		<div class="tab-pane fade " id="ChuaDuocDuyet" role="tabpanel" aria-labelledby="tab-bootstrap">
+			<br><h3 style="text-align: center">Danh sách bài viết chưa được duyệt</h3><br>
+			<table class="table">
+				<thead style="background: #5F9EA0">
+					<tr class="info">
+						<th>STT</th>
+						<th>Tên bài viết</th>
+						<th>Chuyên mục</th>
+						<th>Ngày đăng</th>
+						<th>Trạng thái</th>
+
+						<th>Chỉnh sửa bài</th>
+				</thead>
+				<tbody style="background: #FFEBCD">
+					<tr>
+						<td>1</td>
+						<td>Defaultson</td>
+						<td>def@somemail.com</td>
+						<td>Default</td>
+						<td>Defaultson</td>
+						<td><a href="#"><button type="button" style="width: 300px;" class="btn btn-warning">Sửa bài</button></a>
+						</td>
+
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>Defaultson</td>
+						<td>def@somemail.com</td>
+						<td>Default</td>
+						<td>Defaultson</td>
+						<td><a href="#"><button type="button" style="width: 300px;" class="btn btn-warning">Sửa bài</button></a>
+						</td>
+
+					</tr>
+					<tr>
+						<td>3</td>
+						<td>Defaultson</td>
+						<td>def@somemail.com</td>
+						<td>Default</td>
+						<td>Defaultson</td>
+						<td><a href="#"><button type="button" style="width: 300px;" class="btn btn-warning">Sửa bài</button></a>
+						</td>
+
+					<tr>
+						<td>4</td>
+						<td>Defaultson</td>
+						<td>def@somemail.com</td>
+						<td>Default</td>
+						<td>Defaultson</td>
+						<td><a href="#"><button type="button" style="width: 300px;" class="btn btn-warning">Sửa bài</button></a>
+						</td>
+
+					</tr>
+					<tr>
+						<td>5</td>
+						<td>Defaultson</td>
+						<td>def@somemail.com</td>
+						<td>Default</td>
+						<td>Defaultson</td>
+						<td><a href="#"><button type="button" style="width: 300px;" class="btn btn-warning">Sửa bài</button></a>
+						</td>
+
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<!-- ##### Footer Area Start ##### -->
+	<footer class="footer-area">
+		<div class="container">
+			<div class="row">
+				<!-- Footer Widget Area -->
+				<div class="col-12 col-sm-6 col-xl-3">
+					<div class="footer-widget mb-70">
+						<!-- Logo -->
+						<a href="index.html" class="foo-logo d-block mb-4"><img src="img/core-img/logo2.png" alt=""></a>
+						<p>Hãy để lại email để cập nhật những thông tin mới nhất từ VIZEW News</p>
+						<!-- Footer Newsletter Area -->
+						<div class="footer-nl-area">
+							<form action="#" method="post">
+								<input type="email" name="nl-email" class="form-control" id="nlEmail" placeholder="Your email">
+								<button type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+							</form>
+						</div>
+					</div>
+				</div>
+
+				<!-- Footer Widget Area -->
+				<div class="col-12 col-sm-6 col-xl-3">
+					<div class="footer-widget mb-70">
+						<h6 class="widget-title">Feedback</h6>
+						<!-- Twitter Slides -->
+						<div class="twitter-slides owl-carousel">
+
+							<!-- Single faceBook Slide -->
+							<div class="single--twitter-slide">
+								<!-- Single Facebook -->
+								<div class="single-twit">
+									<p><i class="fa fa-facebook"></i> <span>Tường Duy:</span> Mong VIZEW luôn cập nhật thông tin mới nhất.
+										Luôn ủng hộ VIZEW!</p>
+								</div>
+
+								<div class="single-twit">
+									<p><i class="fa fa-facebook"></i> <span>Đình Hải:</span> Ngày nào cũng lên VIZEW để xem những thông
+										tin mói nhất.</p>
+								</div>
+							</div>
+
+
+							<div class="single--twitter-slide">
+
+								<div class="single-twit">
+									<p><i class="fa fa-twitter"></i> <span>Duy Hậu:</span> Toàn những thông tin bổ ích, mong VIZEW ngày
+										càng phát triển hơn</p>
+								</div>
+
+								<div class="single-twit">
+									<p><i class="fa fa-twitter"></i> <span>Tường Duy:</span> Mong báo cập nhật nhiều tin tức hơn</p>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<!-- Footer Widget Area -->
+				<div class="col-12 col-sm-6 col-xl-3">
+					<div class="footer-widget mb-70">
+						<h6 class="widget-title">Thể thao</h6>
+
+						<!-- Single Blog Post -->
+						<div class="single-blog-post d-flex">
+							<div class="post-thumbnail">
+								<img src="img/bg-img/51.jpg" alt="">
+							</div>
+							<div class="post-content">
+								<a href="#" class="post-title">MU sẽ nhuộm đỏ trời Âu</a>
+								<div class="post-meta d-flex justify-content-between">
+									<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 14</a>
+									<a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 34</a>
+									<a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 84</a>
+								</div>
+							</div>
+						</div>
+
+						<!-- Single Blog Post -->
+						<div class="single-blog-post d-flex">
+							<div class="post-thumbnail">
+								<img src="img/bg-img/7.jpg" alt="">
+							</div>
+							<div class="post-content">
+								<a href="#" class="post-title">Song Heung Min sẽ đoạt QBV?</a>
+								<div class="post-meta d-flex justify-content-between">
+									<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 14</a>
+									<a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 34</a>
+									<a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 84</a>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+				<!-- Footer Widget Area -->
+				<div class="col-12 col-sm-6 col-xl-3">
+					<div class="footer-widget mb-70">
+						<h6 class="widget-title">Our Address</h6>
+						<!-- Contact Address -->
+						<div class="contact-address">
+							<p>Address: 227 Nguyễn Văn Cừ, <br>District 5, HCM</p>
+							<p>Phone: 0987654321</p>
+							<p>Email: contact@vizew.com</p>
+						</div>
+						<!-- Footer Social Area -->
+						<div class="footer-social-area">
+							<a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+							<a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+							<a href="https://instagram.com/dinhhai.js" class="instagram"><i class="fa fa-instagram"></i></a>
+							<a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+							<a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Copywrite Area -->
+		<div class="copywrite-area">
+			<div class="container">
+				<div class="row align-items-center">
+					<!-- Copywrite Text -->
+					<div class="col-12 col-sm-6">
+						<p class="copywrite-text">
+							Copyright &copy;
+							<script>document.write(new Date().getFullYear());</script> All rights reserved
+							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						</p>
+					</div>
+					<div class="col-12 col-sm-6">
+						<nav class="footer-nav">
+							<ul>
+								<li><a href="#">Advertise</a></li>
+								<li><a href="#">About</a></li>
+								<li><a href="#">Contact</a></li>
+								<li><a href="#">Disclaimer</a></li>
+								<li><a href="#">Privacy</a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- ##### Footer Area End ##### -->
+
+	<script src="js/jquery/jquery-2.2.4.min.js"></script>
+	<!-- Popper js -->
+	<script src="js/bootstrap/popper.min.js"></script>
+	<!-- Bootstrap js -->
+	<script src="js/bootstrap/bootstrap.min.js"></script>
+	<!-- All Plugins js -->
+	<script src="js/plugins/plugins.js"></script>
+	<!-- Active js -->
+	<script src="js/active.js"></script>
+</body>
+
+</html>
