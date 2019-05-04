@@ -10,7 +10,7 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 	<meta name="description" content="">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Writer	</title>
+	<title>Writer </title>
 	<script src="ckeditor/ckeditor.js"></script>
 
 	<!-- Stylesheet -->
@@ -212,11 +212,11 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 							<!-- Nav Start -->
 							<div class="classynav ">
 								<ul class="nav nav-tabs">
-									<li><a data-toggle="tab" href="#DangBai">Đăng bài viết</a></li>
-									<li><a data-toggle="tab" href="#DaDuocDuyetBai">Bài viết đã được duyệt</a></li>
+									<li><a data-toggle="tab" href="#DangBai">Đăng bài</a></li>
+									<li><a data-toggle="tab" href="#DaDuocDuyetBai">Bài viết được duyệt</a></li>
 									<li><a data-toggle="tab" href="#DaXuatBan">Bài viết đã xuất bản</a></li>
 									<li><a data-toggle="tab" href="#BiTuChoi">Bài viết bị từ chối</a></li>
-									<li><a data-toggle="tab" href="#ChuaDuocDuyet">Bài viết Chưa được duyệt</a></li>
+									<li><a data-toggle="tab" href="#ChuaDuocDuyet">Bài viết chưa duyệt</a></li>
 								</ul>
 							</div>
 							<!-- Nav End -->
@@ -235,26 +235,26 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 					<div class="row">
 						<div class="col-12">
 							<div class="section-heading">
-								<h4>Phần đăng bài</h4>
+								<br><h4>Đăng bài</h4>
 								<div class="line"></div>
 							</div>
 						</div>
 					</div>
 
 					<div class="form-group">
-							<p><b>Tên bài viết:</b></p>
-							<input type="text" class="form-control" id="exampleInputEmail1">
+						<p><b>Tên bài viết:</b></p>
+						<input type="text" class="form-control" id="exampleInputEmail1">
 					</div>
 
 					<div class="form-group">
-							<p><b>Chuyên mục:</b></p>
-							<select class="form-control">
-								<option>Thể thao</option>
-								<option>Sức khỏe</option>
-								<option>Tội phạm</option>
-								<option>Kinh doanh</option>
-								<option>Thị trường</option>
-							</select>
+						<p><b>Chuyên mục:</b></p>
+						<select class="form-control">
+							<option>Thể thao</option>
+							<option>Sức khỏe</option>
+							<option>Tội phạm</option>
+							<option>Kinh doanh</option>
+							<option>Thị trường</option>
+						</select>
 					</div>
 
 					<noscript>
@@ -264,17 +264,18 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 							be able to edit it normally, without a rich editor interface.
 						</p>
 					</noscript>
-
-					<form action="#" method="post">
+					<div class="form-group">
+						<p><b>Nội dung:</b></p>
+						<form action="#" method="post">
 							<textarea cols="100" id="editor1" name="editor1" rows="10"></textarea>
-		
+
 							<script>
 								// Replace the <textarea id="editor1"> with an CKEditor instance.
 								CKEDITOR.replace('editor1', {
 									on: {
 										focus: onFocus,
 										blur: onBlur,
-		
+
 										// Check for availability of corresponding plugins.
 										pluginsLoaded: function (evt) {
 											var doc = CKEDITOR.document, ed = evt.editor;
@@ -286,31 +287,32 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 									}
 								});
 							</script>
-		
+
 							<p id="eMessage" style="text-align:center">
 							</p>
-		
+
 							<div id="eButtons" style="display: none;text-align:center;">
-								<input class="post-cata cata-sm cata-success" id="exec-bold" onclick="ExecuteCommand('bold');" type="button"
-									value="Execute &quot;bold&quot; Command">
-								<input class="post-cata cata-sm cata-success" id="exec-link" onclick="ExecuteCommand('link');" type="button"
-									value="Execute &quot;link&quot; Command">
+								<input class="post-cata cata-sm cata-success" id="exec-bold" onclick="ExecuteCommand('bold');"
+									type="button" value="Execute &quot;bold&quot; Command">
+								<input class="post-cata cata-sm cata-success" id="exec-link" onclick="ExecuteCommand('link');"
+									type="button" value="Execute &quot;link&quot; Command">
 								<input class="post-cata cata-sm cata-success" onclick="Focus();" type="button" value="Focus">
 								<br><br>
-		
-		
+
+
 							</div>
 						</form>
-
+					</div>
 				</div>
-
+				<div style="text-align: center;margin-top:20px;">
+					<button type="button" style="width: 300px;"
+						class="btn btn-success">Đăng bài</button>
+				</div>
 			</div>
-			<div style="text-align: center;margin-top:20px;"><button type="button" style="width: 300px;"
-					class="btn btn-success">Đăng bài</button></div>
 
 		</div>
 		<div class="tab-pane fade" id="DaDuocDuyetBai" role="tabpanel" aria-labelledby="tab-css">
-			<h3 style="text-align: center">Danh sách bài viết đã được duyệt</h3>
+			<br><h3 style="text-align: center">Danh sách bài viết đã được duyệt</h3><br>
 			<table class="table">
 				<thead style="background: #5F9EA0">
 					<tr class="info">
@@ -372,7 +374,7 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 			</table>
 		</div>
 		<div class="tab-pane fade " id="DaXuatBan" role="tabpanel" aria-labelledby="tab-bootstrap">
-			<h3 style="text-align: center">Danh sách bài viết đã xuất bản</h3>
+			<br><h3 style="text-align: center">Danh sách bài viết đã xuất bản</h3><br>
 			<table class="table">
 				<thead style="background: #5F9EA0">
 					<tr class="info">
@@ -435,7 +437,7 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 			</table>
 		</div>
 		<div class="tab-pane fade " id="BiTuChoi" role="tabpanel" aria-labelledby="tab-bootstrap">
-			<h3 style="text-align: center">Danh sách bài viết bị từ chối</h3>
+			<br><h3 style="text-align: center">Danh sách bài viết bị từ chối</h3><br>
 			<table class="table">
 				<thead style="background: #5F9EA0">
 					<tr class="info">
@@ -503,7 +505,7 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 			</table>
 		</div>
 		<div class="tab-pane fade " id="ChuaDuocDuyet" role="tabpanel" aria-labelledby="tab-bootstrap">
-			<h3 style="text-align: center">Danh sách bài viết chưa được duyệt</h3>
+			<br><h3 style="text-align: center">Danh sách bài viết chưa được duyệt</h3><br>
 			<table class="table">
 				<thead style="background: #5F9EA0">
 					<tr class="info">
@@ -573,144 +575,149 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 
 	<!-- ##### Footer Area Start ##### -->
 	<footer class="footer-area">
+		<div class="container">
+			<div class="row">
+				<!-- Footer Widget Area -->
+				<div class="col-12 col-sm-6 col-xl-3">
+					<div class="footer-widget mb-70">
+						<!-- Logo -->
+						<a href="index.html" class="foo-logo d-block mb-4"><img src="img/core-img/logo2.png" alt=""></a>
+						<p>Hãy để lại email để cập nhật những thông tin mới nhất từ VIZEW News</p>
+						<!-- Footer Newsletter Area -->
+						<div class="footer-nl-area">
+							<form action="#" method="post">
+								<input type="email" name="nl-email" class="form-control" id="nlEmail" placeholder="Your email">
+								<button type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+							</form>
+						</div>
+					</div>
+				</div>
+
+				<!-- Footer Widget Area -->
+				<div class="col-12 col-sm-6 col-xl-3">
+					<div class="footer-widget mb-70">
+						<h6 class="widget-title">Feedback</h6>
+						<!-- Twitter Slides -->
+						<div class="twitter-slides owl-carousel">
+
+							<!-- Single faceBook Slide -->
+							<div class="single--twitter-slide">
+								<!-- Single Facebook -->
+								<div class="single-twit">
+									<p><i class="fa fa-facebook"></i> <span>Tường Duy:</span> Mong VIZEW luôn cập nhật thông tin mới nhất.
+										Luôn ủng hộ VIZEW!</p>
+								</div>
+
+								<div class="single-twit">
+									<p><i class="fa fa-facebook"></i> <span>Đình Hải:</span> Ngày nào cũng lên VIZEW để xem những thông
+										tin mói nhất.</p>
+								</div>
+							</div>
+
+
+							<div class="single--twitter-slide">
+
+								<div class="single-twit">
+									<p><i class="fa fa-twitter"></i> <span>Duy Hậu:</span> Toàn những thông tin bổ ích, mong VIZEW ngày
+										càng phát triển hơn</p>
+								</div>
+
+								<div class="single-twit">
+									<p><i class="fa fa-twitter"></i> <span>Tường Duy:</span> Mong báo cập nhật nhiều tin tức hơn</p>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<!-- Footer Widget Area -->
+				<div class="col-12 col-sm-6 col-xl-3">
+					<div class="footer-widget mb-70">
+						<h6 class="widget-title">Thể thao</h6>
+
+						<!-- Single Blog Post -->
+						<div class="single-blog-post d-flex">
+							<div class="post-thumbnail">
+								<img src="img/bg-img/51.jpg" alt="">
+							</div>
+							<div class="post-content">
+								<a href="#" class="post-title">MU sẽ nhuộm đỏ trời Âu</a>
+								<div class="post-meta d-flex justify-content-between">
+									<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 14</a>
+									<a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 34</a>
+									<a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 84</a>
+								</div>
+							</div>
+						</div>
+
+						<!-- Single Blog Post -->
+						<div class="single-blog-post d-flex">
+							<div class="post-thumbnail">
+								<img src="img/bg-img/7.jpg" alt="">
+							</div>
+							<div class="post-content">
+								<a href="#" class="post-title">Song Heung Min sẽ đoạt QBV?</a>
+								<div class="post-meta d-flex justify-content-between">
+									<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 14</a>
+									<a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 34</a>
+									<a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 84</a>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+				<!-- Footer Widget Area -->
+				<div class="col-12 col-sm-6 col-xl-3">
+					<div class="footer-widget mb-70">
+						<h6 class="widget-title">Our Address</h6>
+						<!-- Contact Address -->
+						<div class="contact-address">
+							<p>Address: 227 Nguyễn Văn Cừ, <br>District 5, HCM</p>
+							<p>Phone: 0987654321</p>
+							<p>Email: contact@vizew.com</p>
+						</div>
+						<!-- Footer Social Area -->
+						<div class="footer-social-area">
+							<a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+							<a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+							<a href="https://instagram.com/dinhhai.js" class="instagram"><i class="fa fa-instagram"></i></a>
+							<a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+							<a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Copywrite Area -->
+		<div class="copywrite-area">
 			<div class="container">
-					<div class="row">
-							<!-- Footer Widget Area -->
-							<div class="col-12 col-sm-6 col-xl-3">
-									<div class="footer-widget mb-70">
-											<!-- Logo -->
-											<a href="index.html" class="foo-logo d-block mb-4"><img src="img/core-img/logo2.png" alt=""></a>
-											<p>Hãy để lại email để cập nhật những thông tin mới nhất từ VIZEW News</p>
-											<!-- Footer Newsletter Area -->
-											<div class="footer-nl-area">
-													<form action="#" method="post">
-															<input type="email" name="nl-email" class="form-control" id="nlEmail" placeholder="Your email">
-															<button type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-													</form>
-											</div>
-									</div>
-							</div>
-
-							<!-- Footer Widget Area -->
-							<div class="col-12 col-sm-6 col-xl-3">
-									<div class="footer-widget mb-70">
-											<h6 class="widget-title">Feedback</h6>
-											<!-- Twitter Slides -->
-											<div class="twitter-slides owl-carousel">
-
-													<!-- Single faceBook Slide -->
-													<div class="single--twitter-slide">
-															<!-- Single Facebook -->
-															<div class="single-twit">
-																	<p><i class="fa fa-facebook"></i> <span>Tường Duy:</span> Mong VIZEW luôn cập nhật thông tin mới nhất. Luôn ủng hộ VIZEW!</p>
-															</div>
-
-															<div class="single-twit">
-																	<p><i class="fa fa-facebook"></i> <span>Đình Hải:</span> Ngày nào cũng lên VIZEW để xem những thông tin mói nhất.</p>
-															</div>
-													</div>
-
-
-													<div class="single--twitter-slide">
-
-															<div class="single-twit">
-																	<p><i class="fa fa-twitter"></i> <span>Duy Hậu:</span> Toàn những thông tin bổ ích, mong VIZEW ngày càng phát triển hơn</p>
-															</div>
-
-															<div class="single-twit">
-																	<p><i class="fa fa-twitter"></i> <span>Tường Duy:</span> Mong báo cập nhật nhiều tin tức hơn</p>
-															</div>
-													</div>
-
-											</div>
-									</div>
-							</div>
-
-							<!-- Footer Widget Area -->
-							<div class="col-12 col-sm-6 col-xl-3">
-									<div class="footer-widget mb-70">
-											<h6 class="widget-title">Thể thao</h6>
-
-											<!-- Single Blog Post -->
-											<div class="single-blog-post d-flex">
-													<div class="post-thumbnail">
-															<img src="img/bg-img/51.jpg" alt="">
-													</div>
-													<div class="post-content">
-															<a href="#" class="post-title">MU sẽ nhuộm đỏ trời Âu</a>
-															<div class="post-meta d-flex justify-content-between">
-																	<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 14</a>
-																	<a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 34</a>
-																	<a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 84</a>
-															</div>
-													</div>
-											</div>
-
-											<!-- Single Blog Post -->
-											<div class="single-blog-post d-flex">
-													<div class="post-thumbnail">
-															<img src="img/bg-img/7.jpg" alt="">
-													</div>
-													<div class="post-content">
-															<a href="#" class="post-title">Song Heung Min sẽ đoạt QBV?</a>
-															<div class="post-meta d-flex justify-content-between">
-																	<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 14</a>
-																	<a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 34</a>
-																	<a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 84</a>
-															</div>
-													</div>
-											</div>
-
-									</div>
-							</div>
-
-							<!-- Footer Widget Area -->
-							<div class="col-12 col-sm-6 col-xl-3">
-									<div class="footer-widget mb-70">
-											<h6 class="widget-title">Our Address</h6>
-											<!-- Contact Address -->
-											<div class="contact-address">
-													<p>Address: 227 Nguyễn Văn Cừ, <br>District 5, HCM</p>
-													<p>Phone: 0987654321</p>
-													<p>Email: contact@vizew.com</p>
-											</div>
-											<!-- Footer Social Area -->
-											<div class="footer-social-area">
-													<a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-													<a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-													<a href="https://instagram.com/dinhhai.js" class="instagram"><i class="fa fa-instagram"></i></a>
-													<a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-													<a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
-											</div>
-									</div>
-							</div>
+				<div class="row align-items-center">
+					<!-- Copywrite Text -->
+					<div class="col-12 col-sm-6">
+						<p class="copywrite-text">
+							Copyright &copy;
+							<script>document.write(new Date().getFullYear());</script> All rights reserved
+							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						</p>
 					</div>
-			</div>
-
-			<!-- Copywrite Area -->
-			<div class="copywrite-area">
-					<div class="container">
-							<div class="row align-items-center">
-									<!-- Copywrite Text -->
-									<div class="col-12 col-sm-6">
-											<p class="copywrite-text">
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-									</div>
-									<div class="col-12 col-sm-6">
-											<nav class="footer-nav">
-													<ul>
-															<li><a href="#">Advertise</a></li>
-															<li><a href="#">About</a></li>
-															<li><a href="#">Contact</a></li>
-															<li><a href="#">Disclaimer</a></li>
-															<li><a href="#">Privacy</a></li>
-													</ul>
-											</nav>
-									</div>
-							</div>
+					<div class="col-12 col-sm-6">
+						<nav class="footer-nav">
+							<ul>
+								<li><a href="#">Advertise</a></li>
+								<li><a href="#">About</a></li>
+								<li><a href="#">Contact</a></li>
+								<li><a href="#">Disclaimer</a></li>
+								<li><a href="#">Privacy</a></li>
+							</ul>
+						</nav>
 					</div>
+				</div>
 			</div>
+		</div>
 	</footer>
 	<!-- ##### Footer Area End ##### -->
 
