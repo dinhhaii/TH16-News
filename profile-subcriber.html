@@ -103,52 +103,11 @@
 
                             <!-- Nav Start -->
                             <div class="classynav">
-                                <ul>
-
-                                    <li><a href="category-list.html">Thể thao</a>
-                                        <ul class="dropdown">
-                                            <li><a href="category-list.html">Bóng đá</a></li>
-                                            <li><a href="category-list.html">Bóng rổ</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Sức khỏe</a>
-                                        <ul class="dropdown">
-
-                                            <li><a href="category-list.html">Bệnh ung thư</a></li>
-                                            <li><a href="category-list.html">Sinh lý</a></li>
-
-                                        </ul>
-                                    </li>
-
-                                    <li><a href="#">Tội phạm</a>
-                                        <ul class="dropdown">
-
-                                            <li><a href="category-list.html">Trong nước</a></li>
-                                            <li><a href="category-list.html">Ngoài nước</a></li>
-
-                                        </ul>
-                                    </li>
-
-                                    <li><a href="#">Kinh doanh</a>
-                                        <ul class="dropdown">
-                                            <li><a href="category-list.html">Nông sản</a></li>
-                                            <li><a href="category-list.html">Hải sản</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li><a href="#">Thị trường</a>
-                                        <ul class="dropdown">
-                                            <li><a href="category-list.html">Giá vàng</a></li>
-                                            <li><a href="category-list.html">Giá cà phê</a></li>
-
-
-                                        </ul>
-                                    </li>
-
-
-
-
-                                </ul>
+                                    <ul class="nav nav-tabs">
+                                        <li><a data-toggle="tab" href="#CapNhatThongTin">Cập nhật thông tin</a></li>
+                                        <li><a data-toggle="tab" href="#DoiMatKhau">Đổi mật khẩu</a></li>
+                                        <li><a data-toggle="tab" href="#GiaHan">Gia hạn</a></li>
+                                    </ul>
                             </div>
                             <!-- Nav End -->
                         </div>
@@ -159,107 +118,194 @@
     </header>
     <!-- ##### Header Area End ##### -->
 
-    <!-- ##### Breadcrumb Area Start ##### -->
-    <div class="vizew-breadcrumb">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Trang
-                                    chủ</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Thông tin cá nhân</li>
-                        </ol>
-                    </nav>
+    <div class="tab-content container">
+        <div class="tab-pane fade show active" id="CapNhatThongTin" role="tabpanel" aria-labelledby="tab-css">
+            <!-- ##### Breadcrumb Area Start ##### -->
+            <div class="vizew-breadcrumb">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#"><i class="fa fa-home" aria-hidden="true"></i>
+                                            Trang
+                                            chủ</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Thông tin cá nhân</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
                 </div>
+            </div>
+            <!-- ##### Breadcrumb Area End ##### -->
+    
+            <!-- ##### Login Area Start ##### -->
+            <div class="vizew-login-area section-padding-80">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-md-6">
+                            <div class="login-content">
+                                <!-- Section Title -->
+                                <div class="section-heading">
+                                    <h4>Thông tin cá nhân</h4>
+                                    <div class="line"></div>
+                                </div>
+    
+                                <form action="index.html" method="post">
+                                    <div class="form-group">
+                                        <p><b>Họ và tên</b></p>
+                                        <input type="text" class="form-control" id="exampleInputEmail1"
+                                            placeholder="Nguyễn Văn A">
+                                    </div>
+                                    <div class="form-group">
+                                        <p><b>Giới tính</b></p>
+                                        <input type="radio" name="gender" value="Nam" id="radiobtnNam"></input>
+                                        <label for="radiobtnNam" style="color:gray">Nam </label>
+                                        <input type="radio" name="gender" value="Nữ" id="radiobtnNu"></input>
+                                        <label for="radiobtnNu" style="color:gray">Nữ </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <p><b>Ngày sinh</b></p>
+                                        <input type="date" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <p><b>Email</b></p>
+                                        <input type="email" class="form-control" id="exampleInputEmail1"
+                                            placeholder="nvana@vizew.com">
+                                    </div>
+    
+                                    
+                                    <button type="submit" class="btn vizew-btn w-100 mt-30">Cập nhật</button>
+                                    <br>
+    
+                                </form>
+                            </div>
+                        </div>
+    
+                        <div class="col-12 col-md-5 col-lg-4">
+                            <div class="sidebar-area">
+                                <!-- ***** Single Widget ***** -->
+                                <div class="single-widget latest-video-widget mb-50">
+                                    <!-- Section Heading -->
+                                    <div class="section-heading style-2 mb-30">
+                                        <h4>Thông tin tài khoản</h4>
+                                        <div class="line"></div>
+                                    </div>
+    
+                                    <div class="single-blog-post d-flex">
+                                        <div>
+                                            <p><b>Ngày đăng kí:</b> 12/3/2019</p>
+                                            <p><b>Ngày hết hạn:</b> 19/3/2019</p>
+                                        </div>
+                                    </div>
+    
+                                    <div class="single-post-area mb-30">
+                                        <!-- Post Content -->
+                                        <div class="post-content">
+                                            <a href="#" class="post-cata cata-sm cata-success">Premium</a>
+                                            <a href="#" class="post-title">Còn 7 ngày</a>
+                                        </div>
+    
+                                        <button type="submit" class="btn vizew-btn w-100">Gia hạn</button>
+    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    
+        <div class="tab-pane fade" id="DoiMatKhau" role="tabpanel" aria-labelledby="tab-css">
+            <!-- ##### Breadcrumb Area Start ##### -->
+            <div class="vizew-breadcrumb">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#"><i class="fa fa-home" aria-hidden="true"></i>
+                                            Trang
+                                            chủ</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Đổi mật khẩu</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ##### Breadcrumb Area End ##### -->
+    
+            <!-- ##### Login Area Start ##### -->
+            <div class="vizew-login-area section-padding-80">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-md-6">
+                            <div class="login-content">
+                                <!-- Section Title -->
+                                <div class="section-heading">
+                                    <h4>Đổi mật khẩu</h4>
+                                    <div class="line"></div>
+                                </div>
+    
+                                
+                                <!-- ===============================================-->
+
+
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    
+        <div class="tab-pane fade" id="GiaHan" role="tabpanel" aria-labelledby="tab-css">
+            <!-- ##### Breadcrumb Area Start ##### -->
+            <div class="vizew-breadcrumb">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#"><i class="fa fa-home" aria-hidden="true"></i>
+                                            Trang
+                                            chủ</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Gia hạn</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ##### Breadcrumb Area End ##### -->
+    
+            <!-- ##### Login Area Start ##### -->
+            <div class="vizew-login-area section-padding-80">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-md-6">
+                            <div class="login-content">
+                                <!-- Section Title -->
+                                <div class="section-heading">
+                                    <h4>Gia hạn</h4>
+                                    <div class="line"></div>
+                                </div>
+    
+                                <!-- ===============================================-->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
             </div>
         </div>
     </div>
-    <!-- ##### Breadcrumb Area End ##### -->
 
-    <!-- ##### Login Area Start ##### -->
-    <div class="vizew-login-area section-padding-80">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12 col-md-6">
-                    <div class="login-content">
-                        <!-- Section Title -->
-                        <div class="section-heading">
-                            <h4>Thông tin cá nhân</h4>
-                            <div class="line"></div>
-                        </div>
-
-                        <form action="index.html" method="post">
-                            <div class="form-group">
-                                <p><b>Họ và tên</b></p>
-                                <input type="text" class="form-control" id="exampleInputEmail1"
-                                    placeholder="Nguyễn Văn A">
-                            </div>
-                            <div class="form-group">
-                                <p><b>Giới tính</b></p>
-                                <input type="radio" name="gender" value="Nam" id="radiobtnNam"></input>
-                                <label for="radiobtnNam" style="color:gray">Nam </label>
-                                <input type="radio" name="gender" value="Nữ" id="radiobtnNu"></input>
-                                <label for="radiobtnNu" style="color:gray">Nữ </label>
-                            </div>
-                            <div class="form-group">
-                                <p><b>Ngày sinh</b></p>
-                                <input type="date" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <p><b>Email</b></p>
-                                <input type="email" class="form-control" id="exampleInputEmail1"
-                                    placeholder="nvana@vizew.com">
-                            </div>
-
-                            <div class="form-group">
-                                <p><b>Mật khẩu</b></p>
-                                <input type="password" class="form-control" id="exampleInputPassword1">
-                            </div>
-                            <div class="form-group">
-                                <p><b>Nhập lại mật khẩu</b></p>
-                                <input type="password" class="form-control" id="exampleInputPassword1">
-                            </div>
-                            <button type="submit" class="btn vizew-btn w-100 mt-30">Cập nhật</button>
-
-                        </form>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-5 col-lg-4">
-                    <div class="sidebar-area">
-                        <!-- ***** Single Widget ***** -->
-                        <div class="single-widget latest-video-widget mb-50">
-                            <!-- Section Heading -->
-                            <div class="section-heading style-2 mb-30">
-                                <h4>Thông tin tài khoản</h4>
-                                <div class="line"></div>
-                            </div>
-
-                            <div class="single-blog-post d-flex">
-                                <div>
-                                    <p><b>Ngày đăng kí:</b> 12/3/2019</p>
-                                    <p><b>Ngày hết hạn:</b> 19/3/2019</p>
-                                </div>
-                            </div>
-
-                            <div class="single-post-area mb-30">
-                                <!-- Post Content -->
-                                <div class="post-content">
-                                    <a href="#" class="post-cata cata-sm cata-success">Premium</a>
-                                    <a href="#" class="post-title">Còn 7 ngày</a>
-                                </div>
-
-                                <button type="submit" class="btn vizew-btn w-100">Gia hạn</button>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- ##### Login Area End ##### -->
-        <br></br>
         <!-- ##### Footer Area Start ##### -->
         <footer class="footer-area">
             <div class="container">
