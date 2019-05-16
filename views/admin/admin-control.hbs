@@ -1,0 +1,285 @@
+
+<div class="tab-content">
+    <div class="tab-pane fade show active" id="ChuyenMuc" role="tabpanel" aria-labelledby="tab-javascript">
+        <div id="alerts">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-heading">
+                            <br>
+                            <h4>Quản lý chuyên mục</h4>
+                            <div class="line"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: right; margin-bottom: 20px;">
+                    <a href="/admin/insertcategory"><button type="button" style="width: 200px;"
+                            class="btn btn-success">Thêm</button></a>
+                </div>
+
+                <table class="table table-hover">
+                    <thead style="background: rgb(75, 148, 85)">
+                        <tr class="info">
+                            <th scope="col">#</th>
+                            <th scope="col">Chuyên mục</th>
+                            <th scope="col">Số lượng bài viết</th>
+                            <th scope="col">Ngày khởi tạo</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody style="background: white">
+                        {{#each this.categories}}
+                        <tr>
+                            <th>{{id}}</th>
+                            <td>{{name}}</td>
+                            <td>{{totalpost}}</td>
+                            <td>{{createddate}}</td>
+                            <td>
+                                <button type="button" style="width: 100px;" class="btn btn-success">Xóa</button>
+                                <button type="button" style="width: 100px;" class="btn btn-success">Sửa</button>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="tab-pane fade" id="Nhan" role="tabpanel" aria-labelledby="tab-css">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading">
+                        <br>
+                        <h4>Quản lý nhãn</h4>
+                        <div class="line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: right; margin-bottom: 20px;">
+                <a href="tag-insert.html"><button type="button" style="width: 200px;"
+                        class="btn btn-success">Thêm</button></a>
+            </div>
+
+            <table class="table">
+                <thead style="background: rgb(75, 148, 85)">
+                    <tr class="info">
+                        <th>STT</th>
+                        <th>Tên nhãn</th>
+                        <th>Số lượng bài viết</th>
+                        <th>Ngày khởi tạo</th>
+                        <th></th>
+                    </tr>
+
+                </thead>
+                <tbody style="background: rgb(207, 207, 207)">
+                    <tr>
+                        <td>1</td>
+                        <td>#apple</td>
+                        <td>4</td>
+                        <td>17/04/2019</td>
+                        <td>
+                            <button type="button" style="width: 100px;" class="btn btn-success">Xóa</button>
+                            <button type="button" style="width: 100px;" class="btn btn-success">Sửa</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>#nike</td>
+                        <td>2</td>
+                        <td>17/04/2019</td>
+                        <td>
+                            <button type="button" style="width: 100px;" class="btn btn-success">Xóa</button>
+                            <button type="button" style="width: 100px;" class="btn btn-success">Sửa</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>#javascript</td>
+                        <td>4</td>
+                        <td>17/04/2019</td>
+                        <td>
+                            <button type="button" style="width: 100px;" class="btn btn-success">Xóa</button>
+                            <button type="button" style="width: 100px;" class="btn btn-success">Sửa</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>#python</td>
+                        <td>6</td>
+                        <td>17/04/2019</td>
+                        <td>
+                            <button type="button" style="width: 100px;" class="btn btn-success">Xóa</button>
+                            <button type="button" style="width: 100px;" class="btn btn-success">Sửa</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="BaiViet" role="tabpanel" aria-labelledby="tab-css">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading">
+                        <br>
+                        <h4>Danh sách bài viết</h4>
+                        <div class="line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: right; margin-bottom: 20px;">
+                <a href="post-insert.html"><button type="button" style="width: 200px;"
+                        class="btn btn-success">Thêm</button></a>
+            </div>
+
+            <table class="table">
+                <thead style="background: rgb(75, 148, 85)">
+                    <tr class="info">
+                        <th>STT</th>
+                        <th>Tiêu đề</th>
+                        <th>Chuyên mục</th>
+                        <th>Người viết</th>
+                        <th>Đường dẫn</th>
+                        <th>Ngày đăng</th>
+                        <th></th>
+                    </tr>
+
+                </thead>
+                <tbody style="background: rgb(207, 207, 207)">
+                    <tr>
+                        <td>1</td>
+                        <td>Hồi kết của đại dịch HIV/AIDS</td>
+                        <td>Sức khỏe</td>
+                        <td>Nguyễn Duy Hậu</td>
+                        <td><a href="#">https://instagram.com/dinhhai.js</a></td>
+                        <td>14/03/2019</td>
+                        <td>
+                            <button type="button" style="width: 100px;" class="btn btn-success">Xóa</button>
+                            <button type="button" style="width: 100px;" class="btn btn-success">Sửa</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Hồi kết của đại dịch HIV/AIDS</td>
+                        <td>Sức khỏe</td>
+                        <td>Tường Duy</td>
+                        <td><a href="#">https://instagram.com/dinhhai.js</a></td>
+                        <td>14/03/2019</td>
+                        <td>
+                            <button type="button" style="width: 100px;" class="btn btn-success">Xóa</button>
+                            <button type="button" style="width: 100px;" class="btn btn-success">Sửa</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Hồi kết của đại dịch HIV/AIDS</td>
+                        <td>Sức khỏe</td>
+                        <td>Vũ Đình Hải</td>
+                        <td><a href="#">https://instagram.com/dinhhai.js</a></td>
+                        <td>14/03/2019</td>
+                        <td>
+                            <button type="button" style="width: 100px;" class="btn btn-success">Xóa</button>
+                            <button type="button" style="width: 100px;" class="btn btn-success">Sửa</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="NguoiDung" role="tabpanel" aria-labelledby="tab-css">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading">
+                        <br>
+                        <h4>Danh sách người dùng</h4>
+                        <div class="line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: right; margin-bottom: 20px;">
+                <a href="user-insert.html"><button type="button" style="width: 200px;"
+                        class="btn btn-success">Thêm</button></a>
+            </div>
+
+            <table class="table">
+                <thead style="background: rgb(75, 148, 85)">
+                    <tr class="info">
+                        <th>STT</th>
+                        <th>Họ tên</th>
+                        <th>Tên tài khoản</th>
+                        <th>Mật khẩu</th>
+                        <th>Ngày sinh</th>
+                        <th>Email</th>
+                        <th>Vị trí</th>
+                        <th></th>
+                    </tr>
+
+                </thead>
+                <tbody style="background: rgb(207, 207, 207)">
+                    <tr>
+                        <td>1</td>
+                        <td>Vũ Đình Hải</td>
+                        <td>dinhhaii</td>
+                        <td>6sd3i4hil293h4i3</td>
+                        <td>12/05/1998</td>
+                        <td>abc@gmail.com</td>
+                        <td style="background:skyblue">Subcriber</td>
+                        <td>
+                            <button type="button" style="width: 100px;" class="btn btn-success">Xóa</button>
+                            <button type="button" style="width: 100px;" class="btn btn-success">Sửa</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Nguyễn Duy Hậu</td>
+                        <td>damnyourman</td>
+                        <td>rt3797fhgvh663</td>
+                        <td>12/05/1998</td>
+                        <td>abc@gmail.com</td>
+                        <td style="background:olive">Editor</td>
+                        <td>
+                            <button type="button" style="width: 100px;" class="btn btn-success">Xóa</button>
+                            <button type="button" style="width: 100px;" class="btn btn-success">Sửa</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Trần Tường Duy</td>
+                        <td>duyhunterx</td>
+                        <td>t647er754ret</td>
+                        <td>12/05/1998</td>
+                        <td>abc@gmail.com</td>
+                        <td style="background:sandybrown">Writer</td>
+                        <td>
+                            <button type="button" style="width: 100px;" class="btn btn-success">Xóa</button>
+                            <button type="button" style="width: 100px;" class="btn btn-success">Sửa</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Lê Văn Đạt</td>
+                        <td>beconodokhongta</td>
+                        <td>ss532hrr2456</td>
+                        <td>12/05/1998</td>
+                        <td>abc@gmail.com</td>
+                        <td style="background:sandybrown">Writer</td>
+                        <td>
+                            <button type="button" style="width: 100px;" class="btn btn-success">Xóa</button>
+                            <button type="button" style="width: 100px;" class="btn btn-success">Sửa</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

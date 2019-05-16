@@ -1,0 +1,26 @@
+{
+  "name": "th16-news",
+  "version": "1.0.0",
+  "description": "1612149 - Trần Tường Duy\r 1612167 - Vũ Đình Hải\r 1612182 - Nguyễn Duy Hậu",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dinhhaii/TH16-News.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dinhhaii/TH16-News/issues"
+  },
+  "homepage": "https://github.com/dinhhaii/TH16-News#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.2",
+    "morgan": "^1.9.1",
+    "mysql": "^2.17.1"
+  }
+}

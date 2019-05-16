@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title -->
+    <title>{{title}}</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="/img/core-img/favicon.ico">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/style.css">
+    <script src="/ckeditor/ckeditor.js"></script>
+    <script>
+
+        // The instanceReady event is fired, when an instance of CKEditor has finished
+        // its initialization.
+        CKEDITOR.on('instanceReady', function (ev) {
+            // Show the editor name and description in the browser status bar.
+            // document.getElementById( 'eMessage' ).innerHTML = 'Instance <code>' + ev.editor.name + '<\/code> loaded.';
+
+            // Show this sample buttons.
+            document.getElementById('eButtons').style.display = 'block';
+        });
+
+        function InsertHTML() {
+            // Get the editor instance that we want to interact with.
+            var editor = CKEDITOR.instances.editor1;
+            var value = document.getElementById('htmlArea').value;
+
+            // Check the active editing mode.
+            if (editor.mode == 'wysiwyg') {
+                // Insert HTML code.
+                // https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_editor.html#method-insertHtml
+                editor.insertHtml(value);
+            }
+            else
+                alert('You must be in WYSIWYG mode!');
+        }
+
+        function InsertText() {
+            // Get the editor instance that we want to interact with.
+            var editor = CKEDITOR.instances.editor1;
+            var value = document.getElementById('txtArea').value;
+
+            // Check the active editing mode.
+            if (editor.mode == 'wysiwyg') {
+                // Insert as plain text.
+                // https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_editor.html#method-insertText
+                editor.insertText(value);
+            }
+            else
+                alert('You must be in WYSIWYG mode!');
+        }
+
+        function SetContents() {
+            // Get the editor instance that we want to interact with.
+            var editor = CKEDITOR.instances.editor1;
+            var value = document.getElementById('htmlArea').value;
+
+            // Set editor contents (replace current contents).
+            // https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_editor.html#method-setData
+            editor.setData(value);
+        }
+
+        function GetContents() {
+            // Get the editor instance that you want to interact with.
+            var editor = CKEDITOR.instances.editor1;
+
+            // Get editor contents
+            // https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_editor.html#method-getData
+            alert(editor.getData());
+        }
+
+        function ExecuteCommand(commandName) {
+            // Get the editor instance that we want to interact with.
+            var editor = CKEDITOR.instances.editor1;
+
+            // Check the active editing mode.
+            if (editor.mode == 'wysiwyg') {
+                // Execute the command.
+                // https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_editor.html#method-execCommand
+                editor.execCommand(commandName);
+            }
+            else
+                alert('You must be in WYSIWYG mode!');
+        }
+
+        function CheckDirty() {
+            // Get the editor instance that we want to interact with.
+            var editor = CKEDITOR.instances.editor1;
+            // Checks whether the current editor contents present changes when compared
+            // to the contents loaded into the editor at startup
+            // https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_editor.html#method-checkDirty
+            alert(editor.checkDirty());
+        }
+
+        function ResetDirty() {
+            // Get the editor instance that we want to interact with.
+            var editor = CKEDITOR.instances.editor1;
+            // Resets the "dirty state" of the editor (see CheckDirty())
+            // https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_editor.html#method-resetDirty
+            editor.resetDirty();
+            alert('The "IsDirty" status has been reset');
+        }
+
+        function Focus() {
+            CKEDITOR.instances.editor1.focus();
+        }
+
+        function onFocus() {
+            //document.getElementById( 'eMessage' ).innerHTML = '<b>' + this.name + ' is focused </b>';
+        }
+
+        function onBlur() {
+            //	document.getElementById( 'eMessage' ).innerHTML = this.name + ' lost focus';
+        }
+
+    </script>
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <header class="header-area">
+        {{>header}}
+
+        <div class="vizew-main-menu" id="sticker">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between " id="vizewNav">
+                        <!-- Nav brand -->
+                        <a href="/" class="nav-brand"><img src="/img/core-img/logo.png" alt=""></a>
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+                        <div class="classy-menu ">
+                            <!-- Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            {{>navbar}}
+                            <!-- Nav End -->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    {{{body}}}
+
+    {{>footer}}
+
+    <!-- jQuery-2.2.4 js -->
+    <script src="/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="/js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="/js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="/js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="/js/active.js"></script>
+
+</body>
+
+</html>

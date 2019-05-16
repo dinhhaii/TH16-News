@@ -1,0 +1,81 @@
+{{#if isMainNavigationBar}}
+<div class="classynav">
+    <ul>
+
+        <li><a href="thethao-list.html">Thể thao</a>
+            <ul class="dropdown">
+                <li><a href="thethao-list.html">Bóng đá</a></li>
+                <li><a href="thethao-list.html">Bóng rổ</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Sức khỏe</a>
+            <ul class="dropdown">
+
+                <li><a href="thethao-list.html">Bệnh ung thư</a></li>
+                <li><a href="thethao-list.html">Sinh lý</a></li>
+
+            </ul>
+        </li>
+
+        <li><a href="#">Tội phạm</a>
+            <ul class="dropdown">
+
+                <li><a href="thethao-list.html">Trong nước</a></li>
+                <li><a href="thethao-list.html">Ngoài nước</a></li>
+
+            </ul>
+        </li>
+
+        <li><a href="#">Kinh doanh</a>
+            <ul class="dropdown">
+                <li><a href="thethao-list.html">Nông sản</a></li>
+                <li><a href="thethao-list.html">Hải sản</a></li>
+            </ul>
+        </li>
+
+        <li><a href="#">Thị trường</a>
+            <ul class="dropdown">
+                <li><a href="thethao-list.html">Giá vàng</a></li>
+                <li><a href="thethao-list.html">Giá cà phê</a></li>
+            </ul>
+        </li>
+
+        <li><a href="/contact">Liên lạc</a></li>
+    </ul>
+</div>
+{{else}}
+{{#if isAdmin}}
+<div class="classynav ">
+    <ul class="nav nav-tabs">
+        <li><a data-toggle="tab" href="#ChuyenMuc">Quản lý chuyên mục</a></li>
+        <li><a data-toggle="tab" href="#Nhan">Quản lý nhãn</a></li>
+        <li><a data-toggle="tab" href="#BaiViet">Quản lý bài viết</a></li>
+        <li><a data-toggle="tab" href="#NguoiDung">Quản lý người dùng</a></li>
+    </ul>
+</div>
+
+{{else}}
+{{#if isEditor}}
+<div class="classynav">
+    <ul class="nav nav-tabs">
+        <li><a data-toggle="tab" href="#duyetBai">Duyệt Bài Viết</a></li>
+        <li><a data-toggle="tab" href="#biTuChoi">Bài viết bị từ chối</a></li>
+        <li><a data-toggle="tab" href="#daDuyet">Bài viết đã duyệt</a></li>
+    </ul>
+</div>
+
+{{else}}
+{{#if isWriter}}
+<div class="classynav ">
+    <ul class="nav nav-tabs">
+        <li><a data-toggle="tab" href="#DangBai">Đăng bài</a></li>
+        <li><a data-toggle="tab" href="#DaDuocDuyetBai">Bài viết được duyệt</a></li>
+        <li><a data-toggle="tab" href="#DaXuatBan">Bài viết đã xuất bản</a></li>
+        <li><a data-toggle="tab" href="#BiTuChoi">Bài viết bị từ chối</a></li>
+        <li><a data-toggle="tab" href="#ChuaDuocDuyet">Bài viết chưa duyệt</a></li>
+    </ul>
+</div>
+{{/if}}
+{{/if}}
+{{/if}}
+{{/if}}
