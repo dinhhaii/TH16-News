@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="section-heading">
+                <br>
+                <h4>Quản lý chuyên mục</h4>
+                <div class="line"></div>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: right; margin-bottom: 20px;">
+        <a href="/admin/insertcategory"><button type="button" style="width: 200px;"
+                class="btn btn-success">Thêm</button></a>
+    </div>
+
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr class="info">
+                <th scope="col">#</th>
+                <th scope="col">Chuyên mục</th>
+                <th scope="col">Số lượng bài viết</th>
+                <th scope="col">Ngày khởi tạo</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody class="table-light">
+            {{#each this.categories}}
+            <tr>
+                <th>{{id}}</th>
+                <td>{{name}}</td>
+                <td>{{totalpost}}</td>
+                <td>{{createddate}}</td>
+                <td>
+                    <a role="button" href="/admin/editcategory/{{id}}" style="width: 100px;" class="btn btn-success">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

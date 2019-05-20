@@ -1,0 +1,40 @@
+<div class="vizew-login-area section-padding-80">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-6">
+                <div class="login-content">
+                    <!-- Section Title -->
+                    <div class="section-heading">
+                        <h4>Chỉnh sửa chuyên mục</h4>
+                        <div class="line"></div>
+                    </div>
+                    {{#if error}}
+                        <div class="alert alert-danger" role="alert">
+                            Có lỗi xảy ra. <a href="/admin/category" class="alert-link">Quay trở lại</a>
+                        </div>
+                    {{else}}
+                        <form method="post" action="/admin/editcategory">
+                            <div class="form-group">
+                                <p><b>#</b></p>
+                                <input readonly type="text" class="form-control" name="id" value="{{category.id}}">
+                            </div>
+                            <div class="form-group">
+                                <p><b>Tên chuyên mục</b></p>
+                                <input type="text" class="form-control" name="name" value="{{category.name}}">
+                            </div>
+                            <div class="form-group" align="center">
+                                <button style="display: inline" onclick="location.href='/admin/category';" class="btn vizew-btn w-35 mt-30">
+                                    <i class="fa fa-arrow-left"></i> Trở lại
+                                </button>
+                                <button style="display: inline" type="submit" class="btn vizew-btn w-40 mt-30" formaction="/admin/deletecategory">
+                                    <i class="fa fa-trash-o"></i> Xóa
+                                </button>
+                                <button style="display: inline" type="submit" class="btn vizew-btn w-40 mt-30">Lưu lại</button>
+                            </div>                            
+                        </form>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
