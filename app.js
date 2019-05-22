@@ -30,10 +30,13 @@ app.engine('hbs', exphbs({
 
 app.set('view engine', 'hbs');
 
+app.use(require('./middlewares/locals.mdw'));
 app.use('/', express.static(publicPath));
 
 //Routing 
 app.use('/', require('./routes/index'));
+
+app.use('/category', require('./routes/category.route'));
 
 app.use('/admin', require('./routes/admin/admin.route'));
 

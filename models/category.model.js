@@ -5,6 +5,10 @@ module.exports = {
         return db.load('select * from category');
     },
 
+    allWithDetail: () => {
+        return db.load('select c.id, c.name, c.createddate, count(p.id) as totalpost from category c left join post p on c.id = p.idcategory group by c.id, c.name, c.createddate');
+    },
+
     add: (entity) => {
         return db.add('category', entity);
     },

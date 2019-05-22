@@ -6,13 +6,18 @@ var hbscontent = require('../../app');
 
 //=================================== Quản lý chuyên mục ===================================
 router.get('/category', (req, res) => {
-    var categoryItems = categoryModel.all();
+    var categoryItems = categoryModel.allWithDetail();
 
     categoryItems.then(rows => {
         hbscontent['categories'] = rows;
         hbscontent.title = 'Quản trị viên';
         hbscontent.isAdmin = true;
         hbscontent.isMainNavigationBar = false;
+
+        //update totalpost in category table
+        rows.forEach(element => {
+            categoryModel.update(element).then().catch(err => { console.log(err)});
+        });
 
         res.render('admin/category/admin-category', hbscontent);
     }).catch(err => {
@@ -50,7 +55,6 @@ router.get('/editcategory/:id', (req, res) => {
     
     var id = req.params.id;
     categoryModel.single(id)
-
     .then(rows => {
         if(rows.length > 0){
             hbscontent['error'] = false;
