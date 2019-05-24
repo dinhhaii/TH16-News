@@ -1,4 +1,5 @@
 {{>breadcrumb}}
+
 <div class="vizew-bongda-list-posts-area mb-80">
     <div class="container">
         <div class="row justify-content-center">
@@ -7,7 +8,7 @@
                 <div class="bongda-catagory-view mb-50 d-flex align-items-center justify-content-between">
                     <!-- Catagory -->
                     <div class="bongda-catagory">
-                        <h4><i class="fa fa-list" aria-hidden="true"></i> {{title}} </h4>
+                        <a href="/category/{{idcategory}}/posts" class="post-cata cata-sm cata-success">{{title}}</a>
                     </div>
                     <!-- View Options -->
                     <div class="view-options">
@@ -15,7 +16,7 @@
                     </div>
                 </div>
 
-                {{#each this.posts}}
+                {{#each posts}}
                 <!-- Single Post Area -->
                 <div class="single-post-area style-2">
                     <div class="row align-items-center">
@@ -29,15 +30,13 @@
                         <div class="col-12 col-md-6">
                             <!-- Post Content -->
                             <div class="post-content mt-0">
-                                <a href="category/{{idcategory}}/products" class="post-cata cata-sm cata-success">{{title}}</a>
-                                <a href="#" class="post-title mb-2">{{titlepost}}</a>
+                                <a href="/post/{{id}}" class="post-title mb-2">{{titlepost}}</a>
                                 <div class="post-meta d-flex align-items-center mb-2">
-                                    <a href="#" class="post-author">By Hai</a>
+                                    <a href="#" class="post-author">Bởi {{namewriter}}</a>
                                     <i class="fa fa-circle" aria-hidden="true"></i>
-                                    <a href="#" class="post-date">19/4/2019</a>
+                                    <a href="#" class="post-date">{{createddate}}</a>
                                 </div>
-                                <p class="mb-2">VFF lạc quan về việc Philippines sẽ điều chỉnh phân nhóm hạt giống bóng
-                                    đá nam SEA Games.</p>
+                                {{{summary}}}
                                 <div class="post-meta d-flex">
                                     <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 32</a>
                                     <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 42</a>
@@ -48,7 +47,6 @@
                     </div>
                 </div>
                 {{/each}}
-
                 
                 <!-- Pagination -->
                 <nav class="mt-50">
@@ -65,6 +63,9 @@
                     </ul>
                 </nav>
             </div>
+
+
+
 
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="sidebar-area">
@@ -91,14 +92,14 @@
                         <div class="single-post-area mb-30">
                             <!-- Post Thumbnail -->
                             <div class="post-thumbnail">
-                                <img src="img/bg-img/13.jpg" alt="">
+                                <img src="/img/bg-img/13.jpg" alt="">
 
 
                             </div>
 
                             <!-- Post Content -->
                             <div class="post-content">
-                                <a href="category-list.html" class="post-cata cata-sm cata-success">Thị trường</a>
+                                <a href="/category/{{idcategory}}/posts" class="post-cata cata-sm cata-success">Thị trường</a>
                                 <a href="#" class="post-title">Giá cà phê tiếp tục giảm mạnh</a>
                                 <div class="post-meta d-flex">
                                     <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 14</a>
@@ -111,7 +112,7 @@
                         <!-- Single Blog Post -->
                         <div class="single-blog-post d-flex">
                             <div class="post-thumbnail">
-                                <img src="img/bg-img/12.jpg" alt="">
+                                <img src="/img/bg-img/12.jpg" alt="">
                             </div>
                             <div class="post-content">
                                 <a href="#" class="post-title">Chuyên gia hiến kế thảo dược để trở nên đẹp trai</a>
@@ -126,7 +127,7 @@
                         <!-- Single Blog Post -->
                         <div class="single-blog-post d-flex">
                             <div class="post-thumbnail">
-                                <img src="img/bg-img/12.jpg" alt="">
+                                <img src="/img/bg-img/12.jpg" alt="">
                             </div>
                             <div class="post-content">
                                 <a href="#" class="post-title">Chuyên gia hiến kế thảo dược để trở nên đẹp trai</a>
@@ -141,7 +142,7 @@
                         <!-- Single Blog Post -->
                         <div class="single-blog-post d-flex">
                             <div class="post-thumbnail">
-                                <img src="img/bg-img/12.jpg" alt="">
+                                <img src="/img/bg-img/12.jpg" alt="">
                             </div>
                             <div class="post-content">
                                 <a href="#" class="post-title">Chuyên gia hiến kế thảo dược để trở nên đẹp trai</a>

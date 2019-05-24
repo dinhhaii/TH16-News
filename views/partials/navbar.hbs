@@ -2,7 +2,7 @@
 <div class="classynav">
     <ul>
         {{#each this.categories}}
-        <li><a href="/category/{{id}}/products">{{name}}</a></li>
+        <li><a href="/category/{{id}}/posts">{{name}}</a></li>
         {{/each}}
         
         {{!-- <li><a href="thethao-list.html">Thể thao</a>
@@ -11,8 +11,22 @@
                 <li><a href="thethao-list.html">Bóng rổ</a></li>
             </ul>
         </li> --}}
+
         
-        <li><a href="/contact">Liên lạc</a></li>
+
+        {{#if isAdmin}}
+            <li><a href="/admin">Quản lý [admin]</a></li>
+        {{else}}
+        {{#if isEditor}}
+            <li><a href="/editor">Quản lý [editor]</a></li>
+        {{else}}
+        {{#if isWriter}}
+            <li><a href="/writer">Quản lý [writer]</a></li>
+        {{else}}
+            <li><a href="/contact">Liên lạc</a></li>
+        {{/if}}
+        {{/if}}
+        {{/if}}
     </ul>
 </div>
 {{else}}
@@ -30,9 +44,9 @@
 {{#if isEditor}}
 <div class="classynav">
     <ul class="nav nav-tabs">
-        <li><a data-toggle="tab" href="#duyetBai">Duyệt Bài Viết</a></li>
-        <li><a data-toggle="tab" href="#biTuChoi">Bài viết bị từ chối</a></li>
-        <li><a data-toggle="tab" href="#daDuyet">Bài viết đã duyệt</a></li>
+        <li><a href="/editor/approvepost">Duyệt Bài Viết</a></li>
+        <li><a href="/editor/rejectedpost">Bài viết bị từ chối</a></li>
+        <li><a href="/editor/approvedpost">Bài viết đã duyệt</a></li>
     </ul>
 </div>
 
@@ -40,11 +54,10 @@
 {{#if isWriter}}
 <div class="classynav ">
     <ul class="nav nav-tabs">
-        <li><a data-toggle="tab" href="#DangBai">Đăng bài</a></li>
-        <li><a data-toggle="tab" href="#DaDuocDuyetBai">Bài viết được duyệt</a></li>
-        <li><a data-toggle="tab" href="#DaXuatBan">Bài viết đã xuất bản</a></li>
-        <li><a data-toggle="tab" href="#BiTuChoi">Bài viết bị từ chối</a></li>
-        <li><a data-toggle="tab" href="#ChuaDuocDuyet">Bài viết chưa duyệt</a></li>
+        <li><a href="/writer/writepost">Đăng bài</a></li>
+        <li><a href="/writer/unapprovedpost">Bài viết được duyệt</a></li>
+        <li><a href="/writer/approvedpost">Bài viết đã xuất bản</a></li>
+        <li><a href="/writer/rejectedpost">Bài viết bị từ chối</a></li>
     </ul>
 </div>
 {{/if}}

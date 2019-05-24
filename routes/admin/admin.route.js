@@ -4,16 +4,20 @@ var router = express.Router();
 var categoryModel = require('../../models/category.model');
 var hbscontent = require('../../app');
 
+router.get('/', (req, res) => {
+    hbscontent.title = 'Quản trị viên';
+    hbscontent.isAdmin = true;
+    hbscontent.isMainNavigationBar = false;
+    hbscontent.currentPage = req.protocol + '://' + req.get('host') + req.originalUrl;
+    res.redirect('/admin/category');
+});
+
 //=================================== Quản lý chuyên mục ===================================
 router.get('/category', (req, res) => {
     var categoryItems = categoryModel.allWithDetail();
-
+    
     categoryItems.then(rows => {
         hbscontent['categories'] = rows;
-        hbscontent.title = 'Quản trị viên';
-        hbscontent.isAdmin = true;
-        hbscontent.isMainNavigationBar = false;
-
         //update totalpost in category table
         rows.forEach(element => {
             categoryModel.update(element).then().catch(err => { console.log(err)});
@@ -23,14 +27,10 @@ router.get('/category', (req, res) => {
     }).catch(err => {
         console.log(err);
     });
-
-    
 });
 
 //Thêm chuyên mục
 router.get('/insertcategory', (req,res)=>{
-    hbscontent.isMainNavigationBar = false;
-
     res.render('admin/category/admin-insertcategory', hbscontent);
 });
 
@@ -52,7 +52,6 @@ router.post('/insertcategory', (req,res)=>{
 
 //Sửa danh mục
 router.get('/editcategory/:id', (req, res) => {
-    
     var id = req.params.id;
     categoryModel.single(id)
     .then(rows => {
@@ -60,7 +59,6 @@ router.get('/editcategory/:id', (req, res) => {
             hbscontent['error'] = false;
             hbscontent['category'] = rows[0];
             hbscontent.isMainNavigationBar = false;
-
             res.render('admin/category/admin-editcategory', hbscontent);
         }
     })

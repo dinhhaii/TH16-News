@@ -1,0 +1,40 @@
+<div class="container">
+    {{#if isAdmin}}
+    <div class="row">
+        <div class="col-12">
+            <div class="section-heading">
+                <br><br>
+                <h4>ADMINISTRATOR</h4>
+                <div class="line"></div>
+            </div>
+        </div>
+    </div>
+
+    {{else}}
+    {{#if isWriter}}
+    <div class="row">
+        <div class="col-12">
+            <div class="section-heading">
+                <br><br>
+                <h4>WRITER</h4>
+                <div class="line"></div>
+            </div>
+        </div>
+    </div>
+
+    {{else}}
+    {{#if isEditor}}
+    <div class="row">
+        <div class="col-12">
+            <div class="section-heading">
+                <br><br>
+                <h4>EDITOR</h4>
+                <div class="line"></div>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+    {{/if}}
+    {{/if}}
+</div>
+

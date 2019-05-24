@@ -18,7 +18,8 @@ var hbsContent = {
     isAdmin: false,
     isEditor: false,
     isWriter: false,
-    isSubcriber: false
+    isSubcriber: false,
+    currentPage: '/'
 };
 
 app.engine('hbs', exphbs({
@@ -36,6 +37,10 @@ app.use('/', express.static(publicPath));
 
 //Routing 
 app.use('/', require('./routes/index'));
+
+app.use('/login', require('./routes/login.route'));
+
+app.use('/logout', require('./routes/logout.route'));
 
 app.use('/post', require('./routes/post.route'));
 
@@ -62,4 +67,4 @@ app.listen(3000, () => {
     console.log("Web Server running on Port 3000");
 });
 
-module.exports = hbsContent;
+module.exports = {hbsContent,app};

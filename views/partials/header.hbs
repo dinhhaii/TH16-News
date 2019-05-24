@@ -35,11 +35,29 @@
                                 </form>
                             </div>
                             <!-- Login -->
-                            <a href="/login" class="login-btn"><i class="fa fa-user" aria-hidden="true"></i></a>
+                            
                             {{#if isLogin}}
-                            <a href="profile-subcriber.html" style="color: gray; align-content: center;">{{Username}}</a>
+                                {{#if isSubcriber}}
+                            <a href="/user/subcriber-editprofile" style="color: gray; align-content: center;"> {{Username}}</a>
+                                {{else}}
+                                {{#if isEditor}}
+                                <a href="/editor/editor-editprofile" style="color: gray; align-content: center;"> {{Username}}</a>
+                                {{else}}
+                                {{#if isWriter}}
+                                <a href="/writer/writer-editprofile" style="color: gray; align-content: center;"> {{Username}}</a>
+                                {{else}}
+                                <a href="#" style="color: gray; align-content: center;"> {{Username}}</a>
+                                {{/if}}
+                                {{/if}}
+                                {{/if}}
+                            <form method="POST" action="/logout" id="myform">
+                                <a class="login-btn" role="button" onclick="document.getElementById('myform').submit()" style="color: white">
+                                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                </a>
+                            </form>
                             {{else}}
-                            <a href="profile-subcriber.html" style="color: gray; align-content: center;">Đăng nhập</a>
+                            <a href="/login" style="color: gray; align-content: center;"> Đăng nhập</a>
+                            <a href="/login" class="login-btn"><i class="fa fa-user" aria-hidden="true"></i></a>
                             {{/if}}
 
                         </div>

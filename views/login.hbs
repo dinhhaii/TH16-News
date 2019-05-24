@@ -13,13 +13,19 @@
                             <div class="line"></div>
                         </div>
 
-                        <form action="index.html" method="post">
+                        {{#if isLoginError}}
+                            <div class="alert alert-danger" role="alert">
+                            Tên tài khoản hoặc mật khẩu không chính xác. Vui lòng kiểm tra lại!
+                            </div>
+                        {{/if}}
+
+                        <form action="/login" method="post">
                             <div class="form-group">
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Tên tài khoản hoặc Email">
+                                <input type="text" class="form-control" name="username" placeholder="Tên tài khoản hoặc Email">
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Mật khẩu">
-                                <a href="forgetpassword.html">Quên mật khẩu?</a>
+                                <input type="password" class="form-control" name="password" placeholder="Mật khẩu">
+                                <a href="/forgetpassword">Quên mật khẩu?</a>
                             </div>
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox mr-sm-2">
@@ -30,7 +36,7 @@
                             <button type="submit" class="btn vizew-btn w-100 mt-30">Đăng nhập</button>
 
                             <div align="center">
-                                <br><span style="color:gray">Bạn chưa có tài khoản? </span><a href="signup.html">Đăng kí</a>
+                                <br><span style="color:gray">Bạn chưa có tài khoản? </span><a href="/signup">Đăng kí</a>
                             </div>
 
                         </form>
