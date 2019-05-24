@@ -6,22 +6,19 @@ var categoryModel = require('../models/category.model');
 var hbscontent = require('../app');
 
 
-router.get('/:id/products', (req, res) => {
+router.get('/:id/posts', (req, res, next) => {
     var id = req.params.id;
+    //Lấy name của category để làm title
     var title = '';
     categoryModel.single(id).then(catrows => {
         if (catrows.length > 0) {
             title = catrows[0].name;         
         }
-    }).catch(err => {
-        console.log(err);
-        res.end('Error occured');
-    });
-
+    }).catch(next);
 
     var page = req.query.page || 1;
     if(page < 1) page = 1;
-    var limit = 3;
+    var limit = 5;
     var offset = (page - 1) * limit;
     
     Promise.all([
@@ -46,26 +43,7 @@ router.get('/:id/products', (req, res) => {
 
         res.render('categorylist', hbscontent);
     })
-    .catch(err => {
-        console.log(err);
-        res.end('Error occured');
-    })
-
-
-    // postModel.allByCat(id)
-    // .then(rows => {
-    //     hbscontent['posts'] = rows;
-    //     hbscontent.isMainNavigationBar = true;
-    //     hbscontent.title = title;
-    //     hbscontent.breadcrumbitemactive = title;
-        
-    //     res.render('categorylist', hbscontent);
-    // })
-    // .catch(err => {
-    //     console.log(err);
-    //     res.end('Error occured');
-    // });
-    
+    .catch(next);
 });
 
 module.exports = router;
