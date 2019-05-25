@@ -2,13 +2,27 @@ var express = require('express');
 var router = express.Router();
 var hbscontent = require('../app');
 
+var postModel = require('../models/post.model');
+var categoryModel = require('../models/category.model');
 //Trang chủ
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
     hbscontent.title = 'VIZEW | Trang chủ';
     hbscontent.isMainNavigationBar = true;
     hbscontent.currentPage = req.protocol + '://' + req.get('host') + req.originalUrl;
 
-    res.render('index', hbscontent);
+    postModel.latestpost(10)
+    .then(rows => {
+        rows.forEach(element => {
+            categoryModel.single(element.idcategory).then(catrows => {
+                element['namecategory'] = catrows[0].name;
+                var dt = new Date(Date(element.createddate));
+                element['createddate'] = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
+            }).catch(next);
+        })
+        hbscontent['latestposts'] = rows;
+        res.render('index', hbscontent);
+    }).catch(next);
+    
 });
 
 //Đăng kí
@@ -67,5 +81,6 @@ router.get('/changepassword', (req, res) => {
     
     res.render('changepassword', hbscontent);
 });
+
 
 module.exports = router;
