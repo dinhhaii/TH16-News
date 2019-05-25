@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
+var postTagModel = require('../models/post-tag.model');
 var postModel = require('../models/post.model');
 var categoryModel = require('../models/category.model');
 var hbscontent = require('../app');
@@ -15,6 +16,12 @@ router.get('/:id', (req, res, next) => {
             var idcat = rows[0].idcategory;
             hbscontent['post'] = rows[0];
             hbscontent['title'] = rows[0].titlepost;
+
+            postTagModel.allTagByPost(rows[0].id)
+            .then(posttagrows => {
+                hbscontent['posttags'] = posttagrows;
+            })
+            .catch(next);
 
             categoryModel.single(idcat).then(catrows => {
                 if (catrows.length > 0) {            

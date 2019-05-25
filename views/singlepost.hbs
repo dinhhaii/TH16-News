@@ -47,9 +47,9 @@
                         <!-- Post Tags -->
                         <div class="post-tags mt-30">
                             <ul>
-                                <li><a href="#">Amazon</a></li>
-                                <li><a href="#">BillGates</a></li>
-                                <li><a href="#">Microsoft</a></li>
+                                {{#each posttags}}
+                                    <li><a href="/tag/{{idtag}}/posts">{{name}}</a></li>
+                                {{/each}}
                             </ul>
                         </div>
 
@@ -62,7 +62,6 @@
                             </div>
 
                             <div class="row">
-
                                 <!-- Single Blog Post -->
                                 <div class="col-12 col-md-6">
                                     <div class="single-post-area mb-50">

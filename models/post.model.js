@@ -16,7 +16,7 @@ module.exports = {
     countByCat: catID => {
         return db.load(`select count(*) as total from post where ${catID} = idcategory`)
     },
-
+  
     add: (entity) => {
         return db.add('post', entity);
     },

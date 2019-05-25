@@ -44,6 +44,8 @@ app.use('/logout', require('./routes/logout.route'));
 
 app.use('/post', require('./routes/post.route'));
 
+app.use('/tag', require('./routes/tag.route'));
+
 app.use('/category', require('./routes/category.route'));
 
 app.use('/admin', require('./routes/admin/admin.route'));

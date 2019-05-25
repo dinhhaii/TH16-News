@@ -2,18 +2,17 @@ var express = require('express');
 var router = express.Router();
 
 var userModel = require('../models/user.model');
-var postModel = require('../models/post.model');
-var categoryModel = require('../models/category.model');
+var postTagModel = require('../models/post-tag.model');
+var tagModel = require('../models/tag.model');
 var hbscontent = require('../app');
 
 
 router.get('/:id/posts', (req, res, next) => {
-    var id = req.params.id;
-    //Lấy name của category để làm title
+    var id = req.params.id; // idtag
 
-    categoryModel.single(id).then(catrows => {
-        if (catrows.length > 0) {
-            hbscontent.title = catrows[0].name;         
+    tagModel.single(id).then(tagrows => {
+        if (tagrows.length > 0) {
+            hbscontent.title = "#" + tagrows[0].name;         
         }
     }).catch(next);
 
@@ -23,8 +22,8 @@ router.get('/:id/posts', (req, res, next) => {
     var offset = (page - 1) * limit;
     
     Promise.all([
-        postModel.pageByCat(id, limit, offset),
-        postModel.countByCat(id)
+        postTagModel.pagePostByTag(id, limit, offset),
+        postTagModel.countPostByTag(id)
     ]).then(([rows, count_rows]) => {   
         
         //Lấy tên writer và ngày khởi tạo bài viết
@@ -49,11 +48,11 @@ router.get('/:id/posts', (req, res, next) => {
 
         hbscontent['posts'] = rows;
         hbscontent.isMainNavigationBar = true;
-        hbscontent.breadcrumbitemactive = hbscontent.title;
+        hbscontent.breadcrumb = '';
         hbscontent['pages'] = pages;
         hbscontent.currentPage = req.protocol + '://' + req.get('host') + req.originalUrl;
         
-        res.render('categorylist', hbscontent);
+        res.render('taglist', hbscontent);
     })
     .catch(next);
 });
