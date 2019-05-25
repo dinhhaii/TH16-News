@@ -1,4 +1,4 @@
-# TH16-News
+﻿# TH16-News
 1612149 - Trần Tường Duy
 1612167 - Vũ Đình Hải
 1612182 - Nguyễn Duy Hậu
@@ -41,3 +41,5 @@ views/changepassword
 
 (+) Đúng phân hệ mới được sử dụng chức năng của mình
 (+) Download dành cho subcriber
+(+) Home
+(+) Sign up

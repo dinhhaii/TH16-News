@@ -18,7 +18,7 @@ router.get('/category', (req, res) => {
     
     categoryItems.then(rows => {
         hbscontent['categories'] = rows;
-        //update totalpost in category table
+        //Update totalpost in category table
         rows.forEach(element => {
             categoryModel.update(element).then().catch(err => { console.log(err)});
         });
@@ -29,7 +29,7 @@ router.get('/category', (req, res) => {
     });
 });
 
-//Thêm chuyên mục
+//Add category
 router.get('/insertcategory', (req,res)=>{
     res.render('admin/category/admin-insertcategory', hbscontent);
 });
