@@ -25,14 +25,14 @@
             </tr>
         </thead>
         <tbody class="table-light">
-            {{#each this.categories}}
+            {{#each categories}}
             <tr>
-                <th>{{id}}</th>
+                <th>{{this.id}}</th>
                 <td>{{name}}</td>
                 <td>{{totalpost}}</td>
                 <td>{{createddate}}</td>
                 <td>
-                    <a role="button" href="/admin/editcategory/{{id}}" style="width: 100px;" class="btn btn-success">
+                    <a role="button" href="/admin/editcategory/{{this.id}}" style="width: 100px;" class="btn btn-success">
                         <i class="fa fa-pencil"></i>
                     </a>
                 </td>

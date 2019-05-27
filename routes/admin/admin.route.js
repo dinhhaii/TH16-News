@@ -14,15 +14,17 @@ router.get('/', (req, res) => {
 
 //=================================== Quản lý chuyên mục ===================================
 router.get('/category', (req, res) => {
-    var categoryItems = categoryModel.allWithDetail();
     
-    categoryItems.then(rows => {
+    categoryModel.allWithDetail()
+    .then(rows => {
+        console.log(rows);
+
         hbscontent['categories'] = rows;
         //Update totalpost in category table
         rows.forEach(element => {
             categoryModel.update(element).then().catch(err => { console.log(err)});
         });
-
+        console.log(rows);
         res.render('admin/category/admin-category', hbscontent);
     }).catch(err => {
         console.log(err);

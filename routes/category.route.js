@@ -48,6 +48,7 @@ router.get('/:id/posts', (req, res, next) => {
         }
 
         hbscontent['posts'] = rows;
+        hbscontent['idcategory'] = id;
         hbscontent.isMainNavigationBar = true;
         hbscontent.breadcrumbitemactive = hbscontent.title;
         hbscontent['pages'] = pages;

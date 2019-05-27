@@ -10,6 +10,7 @@ router.get('/', (req, res, next) => {
     hbscontent.isMainNavigationBar = true;
     hbscontent.currentPage = req.protocol + '://' + req.get('host') + req.originalUrl;
 
+    //Latest post
     postModel.latestpost(10)
     .then(rows => {
         rows.forEach(element => {
@@ -20,8 +21,25 @@ router.get('/', (req, res, next) => {
             }).catch(next);
         })
         hbscontent['latestposts'] = rows;
-        res.render('index', hbscontent);
     }).catch(next);
+
+    //10 Trending post
+    postModel.descendingviews(10)
+    .then(rows => {
+        rows.forEach(element => {
+            categoryModel.single(element.idcategory).then(catrows => {
+                element['namecategory'] = catrows[0].name;
+                var dt = new Date(Date(element.createddate));
+                element['createddate'] = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
+            }).catch(next);
+        });
+        
+        hbscontent['firsttrendingpost'] = rows[0];
+        rows.splice(0,1);
+        hbscontent['trendingposts'] = rows;
+    }).catch(next);
+
+    res.render('index', hbscontent);
     
 });
 
