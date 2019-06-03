@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="section-heading">
+                <br>
+                <h4>Quản lý bài viết</h4>
+                <div class="line"></div>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: right; margin-bottom: 20px;">
+        <a href="/admin/insertpost"><button type="button" style="width: 200px;"
+                class="btn btn-success">Thêm</button></a>
+    </div>
+
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr class="info">
+                <th scope="col">#</th>
+                <th scope="col">Tiêu đề</th>
+         
+                <th scope="col">Hình ảnh</th>
+              
+                <th scope="col">Ngày gửi</th>
+                <th scope="col">Trạng thái</th>
+                <th scope="col">Views</th>
+               
+                <th></th>
+                
+            </tr>
+        </thead>
+        <tbody class="table-light">
+            {{#each posts}}
+            <tr>
+                <th>{{this.id}}</th>
+                <td>{{titlepost}}</td>
+              
+                <td><img src="{{image}}" /></td>
+                <td>{{submittime}}</td>
+                <td>{{status}}</td>
+                <td>{{views}}</td>               
+                <td>
+                    <a role="button" href="/admin/editpost/{{this.id}}" style="width: 100px;" class="btn btn-success">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
