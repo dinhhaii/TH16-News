@@ -4,6 +4,7 @@ var hbscontent = require('../app');
 
 var postModel = require('../models/post.model');
 var categoryModel = require('../models/category.model');
+
 //Trang chủ
 router.get('/', (req, res, next) => {
     hbscontent.title = 'VIZEW | Trang chủ';
@@ -27,20 +28,21 @@ router.get('/', (req, res, next) => {
     postModel.descendingviews(10)
     .then(rows => {
         rows.forEach(element => {
+            element['isfirsttrendingpost'] = false;
             categoryModel.single(element.idcategory).then(catrows => {
-                element['namecategory'] = catrows[0].name;
                 var dt = new Date(Date(element.createddate));
                 element['createddate'] = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
+                element['namecategory'] = catrows[0].name;                
             }).catch(next);
         });
         
-        hbscontent['firsttrendingpost'] = rows[0];
-        rows.splice(0,1);
+        rows[0]['isfirsttrendingpost'] = true;
         hbscontent['trendingposts'] = rows;
+        console.log(rows);
     }).catch(next);
 
     res.render('index', hbscontent);
-    
+
 });
 
 //Đăng kí

@@ -32,11 +32,11 @@ router.get('/category', (req, res) => {
 });
 
 //Add category
-router.get('/insertcategory', (req,res)=>{
+router.get('/insertcategory', (req, res)=>{
     res.render('admin/category/admin-insertcategory', hbscontent);
 });
 
-router.post('/insertcategory', (req,res)=>{
+router.post('/insertcategory', (req, res)=>{
     var entity = req.body;
     entity['totalpost'] = 0;
     entity['createddate'] = new Date();
@@ -98,6 +98,15 @@ router.post('/deletecategory', (req,res) => {
     });
     
 });
+
+//=================================== Quản lý nhãn ===================================
+
+
+//=================================== Quản lý nhãn ===================================
+
+
+//=================================== Quản lý nhãn ===================================
+
 
 
 module.exports = router;
