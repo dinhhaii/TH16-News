@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+var tagModel = require('../../models/tag.model');
 var categoryModel = require('../../models/category.model');
 var hbscontent = require('../../app');
 
@@ -23,14 +23,14 @@ router.get('/category', (req, res) => {
     
     categoryModel.allWithDetail()
     .then(rows => {
-        console.log(rows);
+        //console.log(rows);
 
         hbscontent['categories'] = rows;
         //Update totalpost in category table
         rows.forEach(element => {
             categoryModel.update(element).then().catch(err => { console.log(err)});
         });
-        console.log(rows);
+        //console.log(rows);
         res.render('admin/category/admin-category', hbscontent);
     }).catch(err => {
         console.log(err);
@@ -49,13 +49,12 @@ router.post('/insertcategory', (req, res)=>{
 
     categoryModel.add(entity)
     .then(() => {
-        res.render('admin/category/admin-insertcategory', hbscontent);
+        res.redirect('/admin/category');
     })
     .catch(err => {
         console.log(err);
         res.end('Error occured');
     });
-    
 });
 
 //Sửa danh mục
@@ -107,6 +106,108 @@ router.post('/deletecategory', (req,res) => {
 
 //=================================== Quản lý nhãn ===================================
 
+router.get('/', (req, res) => {
+    hbscontent.title = 'Quản trị viên';
+    hbscontent.isAdmin = true;
+    hbscontent.isMainNavigationBar = false;
+    hbscontent.currentPage = req.protocol + '://' + req.get('host') + req.originalUrl;
+    res.redirect('/admin/tag');
+});
+
+router.get('/', (req, res) => {
+    hbscontent.title = 'Quản trị viên';
+    hbscontent.isAdmin = true;
+    hbscontent.isMainNavigationBar = false;
+    hbscontent.currentPage = req.protocol + '://' + req.get('host') + req.originalUrl;
+    res.redirect('/admin/tag');
+});
+
+// select all table tag
+router.get('/tag', (req, res) => {
+    
+    tagModel.all()
+    .then(rows => {
+        console.log(rows);
+
+        hbscontent['tags'] = rows;
+        //Update totalpost in tag table
+        rows.forEach(element => {
+            tagModel.update(element).then().catch(err => { console.log(err)});
+        });
+        console.log(rows);
+        res.render('admin/tag/admin-tag', hbscontent);
+    }).catch(err => {
+        console.log(err);
+    });
+});
+
+//Thêm nhãn
+router.get('/inserttag', (req, res)=>{
+    res.render('admin/tag/admin-inserttag', hbscontent);
+});
+
+router.post('/inserttag', (req, res)=>{
+    var entity = req.body;
+    entity['createddate'] = new Date();
+
+    tagModel.add(entity)
+    .then(() => {
+        res.redirect('/admin/tag');
+        
+    })
+    .catch(err => {
+        console.log(err);
+        res.end('Error occured');
+    });
+    
+});
+
+//Sửa nhãn
+router.get('/edittag/:id', (req, res) => {
+    var id = req.params.id;
+    tagModel.single(id)
+    .then(rows => {
+        if(rows.length > 0){
+            hbscontent['error'] = false;
+            hbscontent['tag'] = rows[0];
+            hbscontent.isMainNavigationBar = false;
+            res.render('admin/tag/admin-edittag', hbscontent);
+        }
+    })
+    .catch(err => {
+        hbscontent['error'] = true;
+        console.log(err);
+        res.end('Error occured');
+    });
+    
+});
+
+router.post('/edittag', (req,res)=>{
+    var entity = req.body;
+
+    tagModel.update(entity)
+    .then(() => {
+        res.redirect('/admin/tag');
+    })
+    .catch(err => {
+        console.log(err);
+        res.end('Error occured');
+    });
+    
+});
+
+router.post('/deletetag', (req,res) => {
+    tagModel.delete(req.body.id)
+    .then(() => {
+        //console.log(req.body);
+        res.redirect('/admin/tag');
+    })
+    .catch(err => {
+        console.log(err);
+        res.end('Error occured');
+    });
+    
+});
 
 //=================================== Quản lý bài viết ===================================
 

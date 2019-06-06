@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="section-heading">
+                <br>
+                <h4>Quản lý nhãn</h4>
+                <div class="line"></div>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: right; margin-bottom: 20px;">
+        <a href="/admin/inserttag"><button type="button" style="width: 200px;"
+                class="btn btn-success">Thêm</button></a>
+    </div>
+
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr class="info">
+                <th scope="col">#</th>
+                <th scope="col">Nhãn</th>
+                <th scope="col">Ngày khởi tạo</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody class="table-light">
+            {{#each tags}}
+            <tr>
+                <th>{{this.id}}</th>
+                <td>{{name}}</td>
+                <td>{{createddate}}</td>
+                <td>
+                    <a role="button" href="/admin/edittag/{{this.id}}" style="width: 100px;" class="btn btn-success">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

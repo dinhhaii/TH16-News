@@ -4,7 +4,7 @@ var hbscontent = require('../app');
 
 var postModel = require('../models/post.model');
 var categoryModel = require('../models/category.model');
-
+var tagModel = require('../models/tag.model');
 //Trang chủ
 router.get('/', (req, res, next) => {
     hbscontent.title = 'VIZEW | Trang chủ';
