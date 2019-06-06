@@ -1,0 +1,66 @@
+<div class="vizew-login-area section-padding-80">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-6">
+                <div class="login-content">
+                    <!-- Section Title -->
+                    <div class="section-heading">
+                        <h4>Chỉnh sửa người dùng</h4>
+                        <div class="line"></div>
+                    </div>
+                    {{#if error}}
+                        <div class="alert alert-danger" role="alert">
+                            Có lỗi xảy ra. <a href="/admin/user" class="alert-link">Quay trở lại</a>
+                        </div>
+                    {{else}}
+                        <form method="post" action="/admin/edituser">
+                            <div class="form-group">    
+                                <p><b>ID người dùng</b></p>
+                                <input readonly type="text" class="form-control" name="id" value="{{user.id}}">
+                            </div>
+                            <div class="form-group">
+                                <p><b>Tên người dùng</b></p>
+                                <input type="text" class="form-control" name="name" value="{{user.name}}">
+                            </div>
+
+                            <div class="form-group">
+                                <p><b>Tài khoản người dùng</b></p>
+                                <input type="text" class="form-control" name="username" value="{{user.username}}">
+                            </div>
+
+                            <div class="form-group">
+                                <p><b>Mật khẩu người dùng</b></p>
+                                <input type="password" class="form-control" name="password" value="{{user.password}}">
+                            </div>
+
+                            <div class="form-group">
+                                <p><b>Email người dùng</b></p>
+                                <input type="text" class="form-control" name="email" value="{{user.email}}">
+                            </div>
+
+                            <div class="form-group">
+                                <p><b>Số điện thoại người dùng</b></p>
+                                <input type="text" class="form-control" name="phone" value="{{user.phone}}">
+                            </div>
+
+                            <div class="form-group">
+                                <p><b>Vị trí người dùng</b></p>
+                                <input type="text" class="form-control" name="position" value="{{user.position}}">
+                            </div>
+
+                            <div class="form-group" align="center">
+                                <button style="display: inline" onclick="location.href='/admin/user';" class="btn vizew-btn w-35 mt-30">
+                                    <i class="fa fa-arrow-left"></i> Trở lại
+                                </button>
+                                <button style="display: inline" type="submit" class="btn vizew-btn w-40 mt-30" formaction="/admin/deleteuser">
+                                    <i class="fa fa-trash-o"></i> Xóa
+                                </button>
+                                <button style="display: inline" type="submit" class="btn vizew-btn w-40 mt-30">Lưu lại</button>
+                            </div>                            
+                        </form>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

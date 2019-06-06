@@ -3,7 +3,7 @@ var router = express.Router();
 var tagModel = require('../../models/tag.model');
 var categoryModel = require('../../models/category.model');
 var hbscontent = require('../../app');
-
+var userModel = require('../../models/user.model');
 //post
 var postModel = require('../../models/post.model');
 
@@ -105,14 +105,6 @@ router.post('/deletecategory', (req,res) => {
 });
 
 //=================================== Quản lý nhãn ===================================
-
-router.get('/', (req, res) => {
-    hbscontent.title = 'Quản trị viên';
-    hbscontent.isAdmin = true;
-    hbscontent.isMainNavigationBar = false;
-    hbscontent.currentPage = req.protocol + '://' + req.get('host') + req.originalUrl;
-    res.redirect('/admin/tag');
-});
 
 router.get('/', (req, res) => {
     hbscontent.title = 'Quản trị viên';
@@ -256,8 +248,102 @@ router.post('/insertpost', (req, res)=>{
     // });
     
 });
-//=================================== Quản lý nhãn ===================================
 
+//=================================== Quản lý người dùng ===================================
 
+router.get('/', (req, res) => {
+    hbscontent.title = 'Quản trị viên';
+    hbscontent.isAdmin = true;
+    hbscontent.isMainNavigationBar = false;
+    hbscontent.currentPage = req.protocol + '://' + req.get('host') + req.originalUrl;
+    res.redirect('/admin/user');
+});
+
+// select all table user
+router.get('/user', (req, res) => {
+    
+    userModel.all()
+    .then(rows => {
+        console.log(rows);
+
+        hbscontent['user'] = rows;
+        //Update totalpost in tag table
+        rows.forEach(element => {
+            userModel.update(element).then().catch(err => { console.log(err)});
+        });
+        console.log(rows);
+        res.render('admin/user/admin-user', hbscontent);
+    }).catch(err => {
+        console.log(err);
+    });
+});
+
+//Thêm người dùng
+router.get('/insertuser', (req, res)=>{
+    res.render('admin/user/admin-insertuser', hbscontent);
+});
+
+router.post('/insertuser', (req, res)=>{
+    var entity = req.body;
+    entity['createddate'] = new Date();
+
+    userModel.add(entity)
+    .then(() => {
+        res.redirect('/admin/user');
+        
+    })
+    .catch(err => {
+        console.log(err);
+        res.end('Error occured');
+    });
+    
+});
+
+//Sửa người dùng
+router.get('/edituser/:id', (req, res) => {
+    var id = req.params.id;
+    userModel.single(id)
+    .then(rows => {
+        if(rows.length > 0){
+            hbscontent['error'] = false;
+            hbscontent['user'] = rows[0];
+            hbscontent.isMainNavigationBar = false;
+            res.render('admin/user/admin-edituser', hbscontent);
+        }
+    })
+    .catch(err => {
+        hbscontent['error'] = true;
+        console.log(err);
+        res.end('Error occured');
+    });
+    
+});
+
+router.post('/edituser', (req,res)=>{
+    var entity = req.body;
+
+    userModel.update(entity)
+    .then(() => {
+        res.redirect('/admin/user');
+    })
+    .catch(err => {
+        console.log(err);
+        res.end('Error occured');
+    });
+    
+});
+
+router.post('/deleteuser', (req,res) => {
+    userModel.delete(req.body.id)
+    .then(() => {
+        //console.log(req.body);
+        res.redirect('/admin/user');
+    })
+    .catch(err => {
+        console.log(err);
+        res.end('Error occured');
+    });
+    
+});
 
 module.exports = router;
