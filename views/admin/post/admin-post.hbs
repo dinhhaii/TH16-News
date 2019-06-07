@@ -34,15 +34,21 @@
             {{#each posts}}
             <tr>
                 <th>{{this.id}}</th>
-                <td>{{titlepost}}</td>
+                <td style="width: 200px;">{{titlepost}}</td>
               
-                <td><img src="{{image}}" /></td>
+                <td style="width: 200px;"><img src="{{image}}" /></td>
                 <td>{{submittime}}</td>
                 <td>{{status}}</td>
                 <td>{{views}}</td>
-                {{#if "Chưa duyệt"}}
-                <td><a href="/admin/insertpost"><button type="button" style="width: 200px;"
-                class="btn btn-success">Duyệt</button></a></td> 
+                
+                {{#if isApprove }}
+                <td>
+                    <form action="/admin/approvepost/{{this.id}}" method="POST">
+                        <button type="submit" style="width: 100px;" class="btn btn-success">Duyệt</button>
+                    </form>
+                </td> 
+                {{else}}
+                <td></td>
                 {{/if}}
                               
                 <td>

@@ -221,31 +221,73 @@ router.get('/post', (req, res) => {
         //Update totalpost in category table
         rows.forEach(element => {
             postModel.update(element).then().catch(err => { console.log(err)});
+            if(element.status=="Chưa duyệt")
+            {
+                element['isApprove'] = true; 
+            }
         });
+       
         console.log(rows);
         res.render('admin/post/admin-post', hbscontent);
     }).catch(err => {
         console.log(err);
     });
 });
-//Add post 
-router.get('/insertpost', (req, res)=>{
-    res.render('admin/post/admin-insertpost', hbscontent);
+//Chua duyet => duyet 
+
+
+
+router.post('/approvepost/:id', (req,res)=>{
+    var id = req.params.id;
+    postModel.single(id)
+    .then(rows=>{
+        rows[0].status = "Đã duyệt";
+        postModel.update(rows[0]).then(()=>{
+            res.redirect('/admin/post');
+        }) 
+        .catch(err => {
+            console.log(err);
+            res.end('Error occured');
+        });
+    })
+    .catch(err => {
+        console.log(err);
+        res.end('Error occured');
+    });
+    
+});
+//Edit post
+//Sửa nhãn
+router.get('/editpost/:id', (req, res) => {
+    var id = req.params.id;
+    tagModel.single(id)
+    .then(rows => {
+        if(rows.length > 0){
+            hbscontent['error'] = false;
+            hbscontent['post'] = rows[0];
+            hbscontent.isMainNavigationBar = false;
+            res.render('admin/tag/admin-post', hbscontent);
+        }
+    })
+    .catch(err => {
+        hbscontent['error'] = true;
+        console.log(err);
+        res.end('Error occured');
+    });
     
 });
 
-router.post('/insertpost', (req, res)=>{
-    // handle alow or denied post to post database
-    
-    // var entity = req.body;
-    // categoryModel.add(entity)
-    // .then(() => {
-    //     res.render('admin/category/admin-insertpost', hbscontent);
-    // })
-    // .catch(err => {
-    //     console.log(err);
-    //     res.end('Error occured');
-    // });
+router.post('/editpost', (req,res)=>{
+    var entity = req.body;
+
+    tagModel.update(entity)
+    .then(() => {
+        res.redirect('/admin/post');
+    })
+    .catch(err => {
+        console.log(err);
+        res.end('Error occured');
+    });
     
 });
 
