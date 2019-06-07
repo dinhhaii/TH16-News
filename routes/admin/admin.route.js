@@ -257,7 +257,7 @@ router.post('/approvepost/:id', (req,res)=>{
     
 });
 //Edit post
-//Sửa nhãn
+
 router.get('/editpost/:id', (req, res) => {
     var id = req.params.id;
     tagModel.single(id)
@@ -266,7 +266,7 @@ router.get('/editpost/:id', (req, res) => {
             hbscontent['error'] = false;
             hbscontent['post'] = rows[0];
             hbscontent.isMainNavigationBar = false;
-            res.render('admin/tag/admin-post', hbscontent);
+            res.render('admin/post/admin-editpost', hbscontent);
         }
     })
     .catch(err => {
