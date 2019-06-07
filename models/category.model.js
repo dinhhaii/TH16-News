@@ -23,5 +23,9 @@ module.exports = {
 
     delete: (id) => {
         return db.delete('category', 'id', id);
+    },
+
+    getIDCategory: (name) => {
+        return db.load(`select id from category where name = ${name}`);
     }
 }

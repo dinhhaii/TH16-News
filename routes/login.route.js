@@ -29,6 +29,7 @@ router.post('/', (req, res, next) => {
                 }
                 hbscontent.Username = rows[0].name;
                 hbscontent.isLogin = true;
+                hbscontent.currentuserid = rows[0].id;
                 isloginerror = false;            
             }
             else{

@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var hbscontent = require('../../app');
 
+//=================================== Duyệt bài viết ===================================
+
 router.get('/', (req, res) => {
     hbscontent.title = 'Editor';
     hbscontent.isMainNavigationBar = false;

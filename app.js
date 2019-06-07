@@ -19,7 +19,8 @@ var hbsContent = {
     isEditor: false,
     isWriter: false,
     isSubcriber: false,
-    currentPage: '/'
+    currentPage: '/',
+    currentuserid: 0
 };
 
 app.engine('hbs', exphbs({

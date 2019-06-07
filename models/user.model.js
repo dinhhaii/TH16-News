@@ -21,7 +21,7 @@ module.exports = {
         return db.update('user', 'id', entity);
     },
 
-    delete: (id) => {
+    delete: (id) => {   
         return db.delete('user', 'id', id);
     }
 }

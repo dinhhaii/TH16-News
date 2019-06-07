@@ -1,7 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var hbscontent = require('../../app')
-
+var categoryModel = require('../..//models/category.model')
+var postModel = require('../..//models/post.model')
+var userModel = require('../..//models/user.model')
 
 router.get('/', (req, res) => {
     hbscontent.title = 'Writer';
@@ -10,14 +12,32 @@ router.get('/', (req, res) => {
     res.redirect('/writer/writepost');
 });
 
-router.get('/writepost', (req, res) => {
-
-    res.render('writer/writer-writepost', hbscontent);
+router.get('/writepost', (req, res, next) => {
+    categoryModel.all()
+        .then(rows => {
+            hbscontent['categories'] = rows;
+            res.render('writer/writer-writepost');
+        })
+        .catch(next);
 });
 
-router.get('/writepost', (req, res) => {
+router.post('/writepost', (req, res) => {
+    var entity = req.body;
+    entity['view'] = 0;
+    entity['status'] = "Chưa duyệt";
+    entity['submittime'] = new Date();
+    entity['createddate'] = new Date();
+    entity['idwriter'] = hbscontent.currentuserid;
+    postModel.add(entity)
+        .then(() => {
+            res.redirect('writer/writer-unapprovedpost');
 
-    res.render('writer/writer-writepost', hbscontent);
+        })
+        .catch(err => {
+            console.log(err);
+            res.end('Error occured1');
+        });
+
 });
 
 router.get('/approvedpost', (req, res) => {
