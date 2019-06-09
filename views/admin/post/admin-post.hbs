@@ -18,12 +18,10 @@
         <thead class="thead-dark">
             <tr class="info">
                 <th scope="col">#</th>
-                <th scope="col">Tiêu đề</th>
-         
-                <th scope="col">Hình ảnh</th>
-              
+                <th scope="col">Tiêu đề</th>         
+                <th scope="col">Hình ảnh</th>              
                 <th scope="col">Ngày gửi</th>
-                <th scope="col">Trạng thái</th>
+                <th scope="col" style="width: 150px">Trạng thái</th>
                 <th scope="col">Views</th>
                 <th></th>
                 <th></th>
@@ -38,10 +36,20 @@
               
                 <td style="width: 200px;"><img src="{{image}}" /></td>
                 <td>{{submittime}}</td>
-                <td>{{status}}</td>
+                {{#if isApproved}}
+                <td style="background:greenyellow">{{status}}</td>
+                {{else}}
+                {{#if isUnapproved}}
+                <td style="background:yellow">{{status}}</td>
+                {{else}}
+                {{#if isRejected}}
+                <td style="background:orange">{{status}}</td>
+                {{/if}}
+                {{/if}}
+                {{/if}}
                 <td>{{views}}</td>
                 
-                {{#if isApprove }}
+                {{#if isUnapproved}}
                 <td>
                     <form action="/admin/approvepost/{{this.id}}" method="POST">
                         <button type="submit" style="width: 100px;" class="btn btn-success">Duyệt</button>
@@ -52,9 +60,12 @@
                 {{/if}}
                               
                 <td>
-                    <a role="button" href="/admin/editpost/{{this.id}}" style="width: 100px;" class="btn btn-success">
-                        <i class="fa fa-pencil"></i>
-                    </a>
+                    <form method="post" action="/admin/deletepost/{{this.id}}">
+                        <button style="width: 100px;" class="btn btn-danger" type="submit">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </form>
+                    
                 </td>
             </tr>
             {{/each}}

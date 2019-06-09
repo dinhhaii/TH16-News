@@ -17,7 +17,6 @@ router.get('/', (req, res) => {
 });
 
 
-
 //=================================== Quản lý chuyên mục ===================================
 router.get('/category', (req, res) => {
     
@@ -105,14 +104,6 @@ router.post('/deletecategory', (req,res) => {
 });
 
 //=================================== Quản lý nhãn ===================================
-
-router.get('/', (req, res) => {
-    hbscontent.title = 'Quản trị viên';
-    hbscontent.isAdmin = true;
-    hbscontent.isMainNavigationBar = false;
-    hbscontent.currentPage = req.protocol + '://' + req.get('host') + req.originalUrl;
-    res.redirect('/admin/tag');
-});
 
 // select all table tag
 router.get('/tag', (req, res) => {
@@ -223,7 +214,15 @@ router.get('/post', (req, res) => {
             postModel.update(element).then().catch(err => { console.log(err)});
             if(element.status=="Chưa duyệt")
             {
-                element['isApprove'] = true; 
+                element['isUnapproved'] = true; 
+            }
+            else if(element.status=="Đã duyệt")
+            {
+                element['isApproved'] = true; 
+            }
+            else if(element.status=="Từ chối")
+            {
+                element['isRejected'] = true; 
             }
         });
        
@@ -233,7 +232,6 @@ router.get('/post', (req, res) => {
         console.log(err);
     });
 });
-//Chua duyet => duyet 
 
 
 
@@ -288,6 +286,17 @@ router.post('/editpost', (req,res)=>{
         console.log(err);
         res.end('Error occured');
     });
+    
+});
+
+router.post('/deletepost/:id', (req,res, next)=>{
+    var id = req.params.id;
+    console.log(req.params);
+    postModel.delete(id)
+    .then(() => {
+        res.redirect('/admin/post');
+    })
+    .catch(next);
     
 });
 
