@@ -1,34 +1,121 @@
 <table class="table">
     <thead style="background: #5F9EA0">
         <tr class="info">
-            <th>STT</th>
-            <th>Tên phóng viên</th>
-            <th>Tên bài viết</th>
-            <th>Chuyên mục</th>
-            <th>Ngày gửi bài viết</th>
-            <th>Trạng thái</th>
+             <th scope="col">#</th>
+                <th scope="col">Tiêu đề</th>         
+                <th scope="col">Hình ảnh</th>              
+                <th scope="col">Ngày gửi</th>
+                <th scope="col" style="width: 150px">Trạng thái</th>
+                <th scope="col">Views</th>
+                <th></th>
+                <th></th>
+                
     </thead>
     <tbody style="background: #FFEBCD">
-        <tr>
-            <td>1</td>
-            <td>abcxyz</td>
-            <td>def@somemail.com</td>
-            <td>Default</td>
-            <td>Defaultson</td>
-            <td>
-                <a href="#"><button type="button" style="width: 100px;" class="btn btn-warning"
-                        onclick="promptthree()">Duyệt</button></a>
-                <script type="text/javascript">
-                    function promptthree() {
-                        prompt("Chuyên mục", '');
-                        prompt("Nhãn", '');
-                        prompt("Ngày xuất bản", '');
-                    }
-                </script>
-                <a href="#"><button type="button" style="width: 100px;" class="btn btn-warning"
-                        onclick="prompt('Lý do từ chối', '')">Từ Chối</button></a>
-            </td>
-        </tr>
+        {{#each posts}}
+            <tr>
+                <th>{{this.id}}</th>
+                <td style="width: 200px;">{{titlepost}}</td>
+              
+                <td style="width: 200px;"><img src="{{image}}" /></td>
+                <td>{{submittime}}</td>
+                {{#if isApproved}}
+                <td style="background:greenyellow">{{status}}</td>
+                {{else}}
+                {{#if isUnapproved}}
+                <td style="background:yellow">{{status}}</td>
+                {{else}}
+                {{#if isRejected}}
+                <td style="background:orange">{{status}}</td>
+                {{/if}}
+                {{/if}}
+                {{/if}}
+                <td>{{views}}</td>
+                
+                {{#if isUnapproved}}
+                <td>
+                      
+                        <button  style="width: 100px;" class="btn btn-warning"
+                       data-toggle="modal" data-target="#myModal">Duyệt</button>
+                        <div class="modal" id="myModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                
+                                    <div class="container">
+                                        <h2>Duyệt</h2>
+                                        <form method="post" action="/editor/approvedpost/{{this.id}}">
+                                            <div class="form-group">
+                                            <label for="select">Chuyên mục:</label>
+                                            <select name="Category" class="form-control">
+                                                {{#each posts}}
+                                                {{/each}}
+                                                
+                                            </select>
+                                            
+                                            </div>
+                                            <div class="form-group">
+                                            <label for="pwd">Tag:</label>
+                                            <input type="text" class="form-control" id="pwd" placeholder="Enter tag" name="Tag">
+                                            </div>
+                                            <div class="form-group">
+                                            <label for="pwd">Ngày xuất bản:</label>
+                                            <input type="date" class="form-control" id="pwd" placeholder="Enter approve date" name="ApproveDate">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">OK</button>
+                                            </form>
+                                        
+                                    </div>
+                                    
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    
+                </td>
+                 <td>
+                     
+                    <button type="submit" style="width: 100px;" class="btn btn-warning" data-toggle="modal" data-target="#modalReject1"
+                        >Từ Chối</button>
+                        <div class="modal" id="modalReject1">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                
+                                    <div class="container">
+                                        <h2>Lý do từ chối</h2>
+                                        <form method="post" action="/editor/rejectedpost/{{this.id}}">
+                                            
+                                            <div class="form-group">
+                                            <label for="pwd">Lý do từ chối:</label>
+                                            <input type="text" class="form-control" id="pwd" placeholder="Enter reason" name="ReasonReject">
+                                            </div>
+                                            <button type="submit"  class="btn btn-primary">OK</button>
+                                            </form>
+                                        
+                                    </div>
+                                    
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
+                </td>
+                {{else}}
+                <td></td>
+                <td></td>
+                {{/if}}
+                              
+               
+            </tr>
+            {{/each}}
+      
 
     </tbody>
 </table>
