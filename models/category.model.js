@@ -27,5 +27,9 @@ module.exports = {
 
     getIDCategory: (name) => {
         return db.load(`select id from category where name = ${name}`);
+    },
+
+    getNameCategory: (id) => {
+        return db.load(`select name from category where id =${id}`)
     }
 }

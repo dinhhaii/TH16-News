@@ -3,7 +3,7 @@
         <div class="col-12">
             <div class="section-heading">
                 <br>
-                <h4>Quản lý bài viết đang chờ duyệt</h4>
+                <h4>Quản lý bài viết chưa duyệt</h4>
                 <div class="line"></div>
             </div>
         </div>
@@ -12,24 +12,24 @@
     <table class="table table-hover">
         <thead class="thead-dark">
             <tr class="info">
-                <th scope="col">ID bài viết</th>
+                <th scope="col">#</th>
                 <th scope="col">Tên bài viết</th>
-                <th scope="col">Chuyên mục</th>
+                <th scope="col" width="120px">Chuyên mục</th>
                 <th scope="col">Nội dung</th>
                 <th scope="col">Ngày khởi tạo</th>
-                <th scope="col">Trạng thái</th>
+                <th scope="col" width="120px">Trạng thái</th>
                 <th></th>
             </tr>
         </thead>
         <tbody class="table-light">
-            {{#each unapprovedpost}}
+            {{#each unapprovedposts}}
             <tr>
                 <th>{{this.id}}</th>
-                <td>{{name}}</td>
-                <td>{{category}}</td>
-                <td>{{content}}</td>
+                <td>{{titlepost}}</td>
+                <td>{{namecategory}}</td>
+                <td>{{{summary}}}</td>
                 <td>{{createddate}}</td>
-                <td>Đang chờ duyệt</td>
+                <td>Chưa duyệt</td>
                 <td>
                     <a role="button" href="/writer/editwriter/{{this.id}}" style="width: 100px;" class="btn btn-success">
                         <i class="fa fa-pencil"></i>

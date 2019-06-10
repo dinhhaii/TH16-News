@@ -39,5 +39,9 @@ module.exports = {
 
     descendingviews: (limit) => {
         return db.load(`SELECT * FROM post order by views desc limit ${limit} offset 0`);
+    },
+
+    findIdWriterAndStatus: (idwriter, status) => {
+        return db.load(`SELECT * FROM post where idwriter = ${idwriter} and status = '${status}'`);
     }
 }

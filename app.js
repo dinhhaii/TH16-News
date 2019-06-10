@@ -2,6 +2,7 @@ var express = require('express');
 var exphbs = require('express-handlebars');
 var morgan = require('morgan');
 var app = express();
+var hbs_sections = require('express-handlebars-sections');
 const publicPath = './assets';
 
 app.use(morgan('dev'));
@@ -27,7 +28,8 @@ app.engine('hbs', exphbs({
     extname: 'hbs',
     defaultLayout: 'main.hbs',
     layoutsDir: 'views/layouts',
-    partialsDir: 'views/partials'
+    partialsDir: 'views/partials',
+    helpers: { section: hbs_sections() }
 }));
 
 app.set('view engine', 'hbs');
