@@ -77,6 +77,36 @@ router.get('/unapprovedpost', (req, res) => {
     }); 
 });
 
+router.get('/editpost/:id', (req,res) => {
+    var id = req.params.id;
+    postModel.single(id)
+    .then(rows => {
+        if(rows.length > 0){
+            hbscontent['error'] = false;
+            hbscontent['post'] = rows[0];
+            hbscontent.isMainNavigationBar = false;
+            res.render('writer/writer-editpost', hbscontent);
+        }
+    })
+    .catch(err => {
+        console.log(err);
+        res.end('Error occured');
+    }); 
+})
+
+router.post('/editpost', (req,res) => {
+    var entity = req.body;
+    entity['summary'] = '<p class="mb-2">' + entity.summary + '</p>';
+    postModel.update(entity)
+    .then(() => {
+        res.redirect('/writer/unapprovedpost');
+    })
+    .catch(err => {
+        console.log(err);
+        res.end('Error occured');
+    });
+})
+
 router.get('/rejectedpost', (req, res) => {
 
     res.render('writer/writer-rejectedpost', hbscontent);

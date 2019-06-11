@@ -1,0 +1,120 @@
+{{#section 'css'}}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+{{/section}}
+
+{{#section 'js'}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/js/fileinput.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/themes/fa/theme.min.js" ></script>
+<script>
+    $(function () {
+        $('#fuMain').fileinput({
+            theme: 'fa' 
+        });
+    })
+</script>
+{{/section}}
+
+<div class="tab-content container">
+    <div class="tab-pane fade show active" id="DangBai" role="tabpanel" aria-labelledby="tab-javascript">
+        <div id="alerts">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-heading">
+                            <br>
+                            <h4>Sửa bài</h4>
+                            <div class="line"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <noscript>
+                    <p>
+                        <strong>CKEditor requires JavaScript to run</strong>. In a browser with no JavaScript
+                        support, like yours, you should still see the contents (HTML data) and you should
+                        be able to edit it normally, without a rich editor interface.
+                    </p>
+                </noscript>
+          
+                    <form action="/writer/editpost" method="post">
+                        
+                        <div class="form-group">
+                            <p><b>ID Bài viết:</b></p>
+                            <input readonly type="text" class="form-control" id="exampleInputEmail1" name="id" value="{{post.id}}"> 
+                        </div>
+
+                        <div class="form-group">
+                            <p><b>Tên bài viết:</b></p>
+                            <input type="text" class="form-control" id="exampleInputEmail1" name="titlepost"  value="{{post.titlepost}}"> 
+                        </div>
+
+                        <div class="form-group">
+                            <p><b>Hình ảnh:</b></p>
+                            <div class="file-loading">
+                                <input class="form-control" id="fuMain" name="image" type="file" value="{{post.image}}" multiple>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <p><b>Tóm tắt nội dung:</b></p>
+                            <input type="text" class="form-control" id="exampleInputEmail1" name="summary" value="{{post.summary}}">
+                        </div>
+
+                        <div class="form-group">
+                            <p><b>Chuyên mục:</b></p>
+                            <select class="form-control" name="idcategory" value="{{post.idcategory}}">
+                                {{#each categories}}
+                                <option value="{{id}}">{{name}}</option>
+                                {{/each}}
+                            </select>
+
+                        </div>
+
+                        <p><b>Nội dung:</b></p>
+                        <textarea cols="100" id="content" name="content" rows="10" value="{{post.content}}"></textarea>
+
+                        <script>
+                            // Replace the <textarea id="editor1"> with an CKEditor instance.
+                            CKEDITOR.replace('content', {
+                                on: {
+                                    focus: onFocus,
+                                    blur: onBlur,
+
+                                    // Check for availability of corresponding plugins.
+                                    pluginsLoaded: function (evt) {
+                                        var doc = CKEDITOR.document, ed = evt.editor;
+                                        if (!ed.getCommand('bold'))
+                                            doc.getById('exec-bold').hide();
+                                        if (!ed.getCommand('link'))
+                                            doc.getById('exec-link').hide();
+                                    }
+                                }
+                            });
+                        </script>
+
+                        <p id="eMessage" style="text-align:center">
+                        </p>
+
+                        <div id="eButtons" style="display: none;text-align:center;">
+                            <input class="post-cata cata-sm cata-success" id="exec-bold"
+                                onclick="ExecuteCommand('bold');" type="button"
+                                value="Execute &quot;bold&quot; Command">
+                            <input class="post-cata cata-sm cata-success" id="exec-link"
+                                onclick="ExecuteCommand('link');" type="button"
+                                value="Execute &quot;link&quot; Command">
+                            <input class="post-cata cata-sm cata-success" onclick="Focus();" type="button"
+                                value="Focus">
+                            <br><br>
+
+
+                        </div>
+
+                        <button type="submit" class="btn vizew-btn w-100 mt-30">Cập nhật</button>
+                    </form>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
