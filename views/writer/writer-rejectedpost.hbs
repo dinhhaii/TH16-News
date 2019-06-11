@@ -1,74 +1,42 @@
-<div class="tab-pane fade " id="BiTuChoi" role="tabpanel" aria-labelledby="tab-bootstrap">
-        <br>
-        <h3 style="text-align: center">Danh sách bài viết bị từ chối</h3><br>
-        <table class="table">
-            <thead style="background: #5F9EA0">
-                <tr class="info">
-                    <th>STT</th>
-                    <th>Tên bài viết</th>
-                    <th>Chuyên mục</th>
-                    <th>Ngày đăng</th>
-                    <th>Trạng thái</th>
-                    <th>Lý do</th>
-                    <th>Chỉnh sửa bài</th>
-            </thead>
-            <tbody style="background: #FFEBCD">
-                <tr>
-                    <td>1</td>
-                    <td>Defaultson</td>
-                    <td>def@somemail.com</td>
-                    <td>Default</td>
-                    <td>Defaultson</td>
-                    <td>def@somemail.com</td>
-                    <td><a href="#"><button type="button" style="width: 300px;" class="btn btn-warning">Sửa
-                                bài</button></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Defaultson</td>
-                    <td>def@somemail.com</td>
-                    <td>Default</td>
-                    <td>Defaultson</td>
-                    <td>def@somemail.com</td>
-                    <td><a href="#"><button type="button" style="width: 300px;" class="btn btn-warning">Sửa
-                                bài</button></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Defaultson</td>
-                    <td>def@somemail.com</td>
-                    <td>Default</td>
-                    <td>Defaultson</td>
-                    <td>def@somemail.com</td>
-                    <td><a href="#"><button type="button" style="width: 300px;" class="btn btn-warning">Sửa
-                                bài</button></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Defaultson</td>
-                    <td>def@somemail.com</td>
-                    <td>Default</td>
-                    <td>Defaultson</td>
-                    <td>def@somemail.com</td>
-                    <td><a href="#"><button type="button" style="width: 300px;" class="btn btn-warning">Sửa
-                                bài</button></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Defaultson</td>
-                    <td>def@somemail.com</td>
-                    <td>Default</td>
-                    <td>Defaultson</td>
-                    <td>def@somemail.com</td>
-                    <td><a href="#"><button type="button" style="width: 300px;" class="btn btn-warning">Sửa
-                                bài</button></a>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="section-heading">
+                <br>
+                <h4>Quản lý bài viết chưa duyệt</h4>
+                <div class="line"></div>
+            </div>
+        </div>
     </div>
+
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr class="info">
+                <th scope="col">#</th>
+                <th scope="col">Tên bài viết</th>
+                <th scope="col" width="120px">Chuyên mục</th>
+                <th scope="col">Nội dung</th>
+                <th scope="col">Ngày khởi tạo</th>
+                <th scope="col" width="120px">Lý do</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody class="table-light">
+            {{#each rejectedposts}}
+            <tr>
+                <th>{{this.id}}</th>
+                <td>{{titlepost}}</td>
+                <td>{{namecategory}}</td>
+                <td>{{{summary}}}</td>
+                <td>{{createddate}}</td>
+                <td>{{reject}}</td>
+                <td>
+                    <a role="button" href="/writer/editpost/{{this.id}}" style="width: 100px;" class="btn btn-success">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

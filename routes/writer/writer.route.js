@@ -136,8 +136,29 @@ router.post('/editpost', (req,res) => {
 })
 
 router.get('/rejectedpost', (req, res) => {
-
-    res.render('writer/writer-rejectedpost', hbscontent);
+    var id = hbscontent.currentuserid;
+    postModel.findIdWriterAndStatus(id,'Từ Chối')
+    .then(rows => {
+        hbscontent['rejectedposts'] = rows;
+        hbscontent['error'] = false;
+        rows.forEach(element => {
+            var id = element.idcategory;
+            categoryModel.getNameCategory(id)
+            .then(name => {
+                element['namecategory'] = name[0].name;
+            })
+            .catch(err => {
+                console.log(err);
+                res.end('Error occured1');
+            });
+        });
+        console.log(rows);
+        res.render('writer/writer-rejectedpost', hbscontent);
+    })
+    .catch(err => {
+        console.log(err);
+        res.end('Error occured2');
+    }); 
 });
 
 router.get('/editprofile', (req, res) => {
