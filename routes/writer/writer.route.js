@@ -40,8 +40,36 @@ router.post('/writepost', (req, res) => {
 
 });
 
-router.get('/approvedpos', (req, res) => {
-    res.render('writer/writer-approvedpost', hbscontent);
+router.get('/approvedpost', (req, res) => {
+    var id = hbscontent.currentuserid;
+    postModel.findIdWriterAndStatus(id,'Đã duyệt')
+    .then(rows => {
+        hbscontent['approvedposts'] = rows;
+        hbscontent['error'] = false;
+        rows.forEach(element => {
+            var id = element.idcategory;
+            var inputsummary = element.summary;
+            var check = inputsummary.slice(0,15);
+            categoryModel.getNameCategory(id)
+            .then(name => {
+                if (check == '<p class="mb-2">') {
+                    element['summary'] = '<p class="mb-2">' + inputsummary + '</p>';
+                    postModel.update(element).then().catch(err => { console.log(err)});
+                }
+                element['namecategory'] = name[0].name;
+            })
+            .catch(err => {
+                console.log(err);
+                res.end('Error occured1');
+            });
+        });
+        console.log(rows);
+        res.render('writer/writer-approvedpost', hbscontent);
+    })
+    .catch(err => {
+        console.log(err);
+        res.end('Error occured2');
+    }); 
     
 });
 
