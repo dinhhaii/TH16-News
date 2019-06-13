@@ -46,8 +46,9 @@
                                         <form method="post" action="/editor/approvedpost/{{this.id}}">
                                             <div class="form-group">
                                             <label for="select">Chuyên mục:</label>
-                                            <select name="Category" class="form-control">
-                                                {{#each posts}}
+                                            <select name="Categories" class="form-control">
+                                                {{#each ../categories}}
+                                                <option value="" >{{name}}</option>
                                                 {{/each}}
                                                 
                                             </select>
@@ -59,7 +60,7 @@
                                             </div>
                                             <div class="form-group">
                                             <label for="pwd">Ngày xuất bản:</label>
-                                            <input type="date" class="form-control" id="pwd" placeholder="Enter approve date" name="ApproveDate">
+                                            <input type="date" class="form-control" id="pwd" placeholder="Enter approve date" name="publishdate">
                                             </div>
                                             <button type="submit" class="btn btn-primary">OK</button>
                                             </form>

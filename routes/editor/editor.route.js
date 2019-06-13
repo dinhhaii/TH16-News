@@ -3,6 +3,7 @@ var router = express.Router();
 var hbscontent = require('../../app');
 //post
 var postModel = require('../../models/post.model');
+var categoryModel = require('../../models/category.model');
 //=================================== Duyệt bài viết ===================================
 
 router.get('/', (req, res) => {
@@ -37,10 +38,22 @@ router.get('/approvepost', (req, res) => {
         });
        
         console.log(rows);
-        res.render('editor/editor-approvepost', hbscontent);
+       
     }).catch(err => {
         console.log(err);
     }); 
+    categoryModel.all().then(cateRows=>{
+        console.log(cateRows);
+
+        hbscontent['categories'] = cateRows;
+        //Update totalpost in category table
+        
+       
+        console.log(cateRows);
+        res.render('editor/editor-approvepost', hbscontent);
+    }).catch(err =>{
+        console.log(err);
+    });
 });
 
 
