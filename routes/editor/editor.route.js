@@ -30,6 +30,19 @@ router.get('/approvepost', (req, res) => {
             
            
             console.log(cateRows);
+           
+        }).catch(err =>{
+            console.log(err);
+        });
+        //List tag
+        tagModel.all().then(tagRows=>{
+            console.log(tagRows);
+    
+            hbscontent['tags'] = tagRows;
+            //Update totalpost in category table
+            
+           
+            console.log(tagRows);
             res.render('editor/editor-approvepost', hbscontent);
         }).catch(err =>{
             console.log(err);
@@ -52,7 +65,7 @@ router.get('/approvepost', (req, res) => {
         });
        
         console.log(rows);
-       
+     
     }).catch(err => {
         console.log(err);
     }); 

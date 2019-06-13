@@ -25,10 +25,12 @@ module.exports = {
         return db.add('post_tag', entity);
     },
     
-    single: (id) => {
-        return db.load(`select * from post_tag where id = ${id}`);
+    findidtag: (id) => {
+        return db.load(`select * from post_tag where idtag = ${id}`);
     },
-
+    findidpost: (id) => {
+        return db.load(`select * from post_tag where idpost = ${id}`);
+    },
     update: (entity) => {
         return db.update('post_tag', 'id', entity);
     },

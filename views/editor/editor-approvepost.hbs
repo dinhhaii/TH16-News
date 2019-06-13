@@ -55,8 +55,13 @@
                                             
                                             </div>
                                             <div class="form-group">
-                                            <label for="pwd">Tag:</label>
-                                            <input type="text" class="form-control" id="pwd" placeholder="Enter tag" name="tag" >
+                                            <label for="select">Tags:</label>
+                                            <select name="idtag" class="form-control">
+                                                {{#each ../tags}}
+                                                <option value="{{id}}" >{{name}}</option>
+                                                {{/each}}
+                                                
+                                            </select>
                                             </div>
                                             <div class="form-group">
                                             <label for="pwd">Ngày xuất bản:</label>
