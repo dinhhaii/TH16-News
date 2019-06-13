@@ -39,9 +39,10 @@ router.get('/', (req, res, next) => {
         rows[0]['isfirsttrendingpost'] = true;
         hbscontent['trendingposts'] = rows;
         console.log(rows);
+        res.render('index', hbscontent);
     }).catch(next);
 
-    res.render('index', hbscontent);
+    
 
 });
 

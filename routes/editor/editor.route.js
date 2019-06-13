@@ -6,6 +6,7 @@ var postModel = require('../../models/post.model');
 var categoryModel = require('../../models/category.model');
 var posttagModel = require('../../models/post-tag.model');
 var tagModel = require('../../models/tag.model');
+
 //=================================== Duyệt bài viết ===================================
 
 router.get('/', (req, res) => {
@@ -77,18 +78,46 @@ router.post('/approvedpost/:id', (req, res) => {
     
     var entity = req.body;
     entity['status'] = 'Đã duyệt';
- 
+    
     console.log(entity);
     var id = req.params.id;
+    var entityPostTag;
+    // entityPostTag['idpost'] = id;
+    // entityPostTag['idtag'] = entity.idtag;
     entity['id'] = id;
-        
+    var idtag = entity.idtag;
+    
     postModel.single(id)
     .then(rows=>{
         rows[0].status = "Đã duyệt";
         rows[0].idcategory = entity.idcategory;
         rows[0].publishdate = entity.publishdate;
         postModel.update(rows[0]).then(()=>{
-            res.redirect('/editor/approvepost');
+            posttagModel.findidtag(idtag).then(tagRows=>{
+                console.log(tagRows.length);
+                if(tagRows.length==0)
+                {
+                    console.log(tagRows.length);
+                    tagRows[0]['idpost'] = id;
+                    tagRows[0]['idtag'] = entity.idtag;
+                    posttagModel.add(tagRows[0]).then(()=>{
+                       //error
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        res.end('Error occured');
+                    });
+                }  
+                else
+                {
+                    
+                } 
+                
+            }).catch(err=>{
+                console.log(err);
+                res.end('Error occured');
+            })
+            res.redirect('/editor/approvepost'); 
         }) 
         .catch(err => {
             console.log(err);
