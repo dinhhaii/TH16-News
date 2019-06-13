@@ -4,6 +4,8 @@ var hbscontent = require('../../app');
 //post
 var postModel = require('../../models/post.model');
 var categoryModel = require('../../models/category.model');
+var posttagModel = require('../../models/post-tag.model');
+var tagModel = require('../../models/tag.model');
 //=================================== Duyệt bài viết ===================================
 
 router.get('/', (req, res) => {
@@ -20,6 +22,18 @@ router.get('/approvepost', (req, res) => {
         console.log(rows);
 
         hbscontent['posts'] = rows;
+        categoryModel.all().then(cateRows=>{
+            console.log(cateRows);
+    
+            hbscontent['categories'] = cateRows;
+            //Update totalpost in category table
+            
+           
+            console.log(cateRows);
+            res.render('editor/editor-approvepost', hbscontent);
+        }).catch(err =>{
+            console.log(err);
+        });
         //Update totalpost in category table
         rows.forEach(element => {
             postModel.update(element).then().catch(err => { console.log(err)});
@@ -42,29 +56,24 @@ router.get('/approvepost', (req, res) => {
     }).catch(err => {
         console.log(err);
     }); 
-    categoryModel.all().then(cateRows=>{
-        console.log(cateRows);
-
-        hbscontent['categories'] = cateRows;
-        //Update totalpost in category table
-        
-       
-        console.log(cateRows);
-        res.render('editor/editor-approvepost', hbscontent);
-    }).catch(err =>{
-        console.log(err);
-    });
+   
 });
 
 
 router.post('/approvedpost/:id', (req, res) => {
     
     var entity = req.body;
+    entity['status'] = 'Đã duyệt';
+ 
     console.log(entity);
     var id = req.params.id;
+    entity['id'] = id;
+        
     postModel.single(id)
     .then(rows=>{
         rows[0].status = "Đã duyệt";
+        rows[0].idcategory = entity.idcategory;
+        rows[0].publishdate = entity.publishdate;
         postModel.update(rows[0]).then(()=>{
             res.redirect('/editor/approvepost');
         }) 
@@ -77,6 +86,7 @@ router.post('/approvedpost/:id', (req, res) => {
         console.log(err);
         res.end('Error occured');
     });
+    
     
 });
 
