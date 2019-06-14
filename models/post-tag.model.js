@@ -22,7 +22,8 @@ module.exports = {
     },
 
     add: (entity) => {
-        return db.add('post_tag', entity);
+        return db.add('post_tag',entity);
+        
     },
     
     findidtag: (id) => {

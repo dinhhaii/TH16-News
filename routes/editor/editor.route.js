@@ -94,14 +94,23 @@ router.post('/approvedpost/:id', (req, res) => {
         rows[0].publishdate = entity.publishdate;
         postModel.update(rows[0]).then(()=>{
             posttagModel.findidtag(idtag).then(tagRows=>{
-                console.log(tagRows.length);
-                if(tagRows.length==0)
+                
+                var check = false;
+                tagRows.forEach(tagChild=>{
+                    if(tagChild.idpost==id)
+                    {
+                        console.log(tagChild);
+                        check =true;
+                    }
+                });
+                if(check==false)
                 {
-                    console.log(tagRows.length);
-                    tagRows[0]['idpost'] = id;
-                    tagRows[0]['idtag'] = entity.idtag;
-                    posttagModel.add(tagRows[0]).then(()=>{
-                       //error
+                        var ef={
+                            idpost:id,
+                            idtag:entity.idtag,
+                        }
+                        posttagModel.add(ef).then(()=>{
+                        res.redirect('/editor/approvepost');
                     })
                     .catch(err => {
                         console.log(err);
@@ -117,7 +126,7 @@ router.post('/approvedpost/:id', (req, res) => {
                 console.log(err);
                 res.end('Error occured');
             })
-            res.redirect('/editor/approvepost'); 
+           
         }) 
         .catch(err => {
             console.log(err);
@@ -153,7 +162,7 @@ router.post('/rejectedpost/:id', (req, res) => {
     });
 });
 
-router.get('/editprofile', (req, res) => {
+router.get('/editor-editprofile', (req, res) => {
 
     res.render('editor/editor-editprofile');
 });
