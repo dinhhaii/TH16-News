@@ -6,6 +6,7 @@ var postModel = require('../../models/post.model');
 var categoryModel = require('../../models/category.model');
 var posttagModel = require('../../models/post-tag.model');
 var tagModel = require('../../models/tag.model');
+var userModel = require('../../models/user.model');
 
 //=================================== Duyệt bài viết ===================================
 
@@ -163,8 +164,15 @@ router.post('/rejectedpost/:id', (req, res) => {
 });
 
 router.get('/editor-editprofile', (req, res) => {
-
+    hbscontent.title = 'Cập nhật thông tin';
+    hbscontent.isMainNavigationBar = false;
+    hbscontent.isEditor = true;
     res.render('editor/editor-editprofile');
 });
+router.post('/editor-editprofile', (req, res) => {
 
+    
+    var id = req.params.id;
+    
+});
 module.exports = router;

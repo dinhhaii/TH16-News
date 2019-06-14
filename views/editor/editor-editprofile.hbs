@@ -34,10 +34,10 @@
                             <form action="index.html" method="post">
                                 <div class="form-group">
                                     <p><b>Họ và tên</b></p>
-                                    <input type="text" class="form-control" id="exampleInputEmail1"
+                                    <input type="text" value=""  class="form-control" name="name" id="exampleInputEmail1"
                                         placeholder="Nguyễn Văn A">
                                 </div>
-                                <div class="form-group">
+                                {{!-- <div class="form-group">
                                     <p><b>Giới tính</b></p>
                                     <input type="radio" name="gender" value="Nam" id="radiobtnNam"></input>
                                     <label for="radiobtnNam" style="color:gray">Nam </label>
@@ -46,14 +46,18 @@
                                 </div>
                                 <div class="form-group">
                                     <p><b>Ngày sinh</b></p>
-                                    <input type="date" class="form-control">
-                                </div>
+                                    <input type="date" name="" class="form-control">
+                                </div> --}}
                                 <div class="form-group">
                                     <p><b>Email</b></p>
                                     <input type="email" class="form-control" id="exampleInputEmail1"
                                         placeholder="nvana@vizew.com">
                                 </div>
-
+                                <div class="form-group">
+                                    <p><b>Số điện thoại</b></p>
+                                    <input type="text" name="phone" class="form-control" id="exampleInputEmail1"
+                                        placeholder="nvana@vizew.com">
+                                </div>
 
                                 <button type="submit" class="btn vizew-btn w-100 mt-30">Cập nhật</button>
                                 <br>
@@ -113,7 +117,7 @@
                                     <input type="password" class="form-control" id="exampleInputPassword1">
                                 </div>
                                 <div class="form-group">
-                                    <button class="btn vizew-btn w-100 mt-30">Xong</button>
+                                    <button  class="btn vizew-btn w-100 mt-30">Xong</button>
                                 </div>
                             </form>
 

@@ -10,6 +10,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 
 var hbsContent = {
+    
     isLogin: false,
     Username: '',
     title: '',
