@@ -46,7 +46,7 @@
                                         <form method="post" action="/editor/approvedpost/{{this.id}}">
                                             <div class="form-group">
                                             <label for="select">Chuyên mục:</label>
-                                            <select style="background: transparent;color:black;" name="idcategory" class="form-control">
+                                            <select style="background: #F5F5DC;color:black;" name="idcategory" value="" class="form-control">
                                                 {{#each ../categories}}
                                                 <option value="{{id}}" >{{name}}</option>
                                                 {{/each}}
@@ -56,7 +56,7 @@
                                             </div>
                                             <div class="form-group">
                                             <label for="select">Tags:</label>
-                                            <select style=" background: transparent;color:black;" name="idtag" class="form-control">
+                                            <select style=" background: #F5F5DC;color:black;" name="idtag" class="form-control">
                                                 {{#each ../tags}}
                                                 <option value="{{id}}" >{{name}}</option>
                                                 {{/each}}
@@ -65,7 +65,7 @@
                                             </div>
                                             <div class="form-group">
                                             <label for="pwd">Ngày xuất bản:</label>
-                                            <input type="date" class="form-control" style=" background: transparent;color:black;" id="pwd" placeholder="Enter approve date" name="publishdate">
+                                            <input type="date" class="form-control" style=" background: #F5F5DC;color:black;" id="pwd" placeholder="Enter approve date" name="publishdate">
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="submit" class="btn btn-primary" style="width:45%;float:left;" >Duyệt</button>
@@ -98,7 +98,7 @@
                                             
                                             <div class="form-group">
                                             <label for="pwd">Lý do từ chối:</label>
-                                            <input style=" background: transparent;color:black;" type="text" class="form-control" id="pwd" placeholder="Enter reason" name="reason">
+                                            <input style=" background: #F5F5DC;color:black;" type="text" class="form-control" id="pwd" placeholder="Enter reason" name="reason">
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="submit"  class="btn btn-primary  " style="width:45%;float:left;" >Từ chối</button>

@@ -36,22 +36,27 @@ router.get('/approvepost', (req, res) => {
         }).catch(err =>{
             console.log(err);
         });
+        
         //List tag
         tagModel.all().then(tagRows=>{
             console.log(tagRows);
     
             hbscontent['tags'] = tagRows;
             //Update totalpost in category table
-            
            
-            console.log(tagRows);
+
+           
+           
+            //console.log(tagRows);
             res.render('editor/editor-approvepost', hbscontent);
         }).catch(err =>{
             console.log(err);
         });
         //Update totalpost in category table
         rows.forEach(element => {
+            
             postModel.update(element).then().catch(err => { console.log(err)});
+            
             if(element.status=="Chưa duyệt")
             {
                 element['isUnapproved'] = true; 
