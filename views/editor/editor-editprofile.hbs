@@ -31,7 +31,7 @@
                                 <div class="line"></div>
                             </div>
 
-                            <form action="index.html" method="post">
+                            <form action="/editor/editor-editprofile" method="post">
                                 <div class="form-group">
                                     <p><b>Họ và tên</b></p>
                                     <input type="text" value="{{EditorName}}"  class="form-control" name="name" id="exampleInputEmail1"
@@ -62,7 +62,7 @@
                                 </div> --}}
                                 <div class="form-group">
                                     <p><b>Email</b></p>
-                                    <input type="email" class="form-control" value="{{EditorEmail}}" id="exampleInputEmail1"
+                                    <input type="email" class="form-control" name="email" value="{{EditorEmail}}" id="exampleInputEmail1"
                                         placeholder="nvana@vizew.com">
                                 </div>
                                 <div class="form-group">
@@ -83,61 +83,4 @@
         </div>
     </div>
 
-    <div class="tab-pane fade" id="DoiMatKhau" role="tabpanel" aria-labelledby="tab-css">
-        <!-- ##### Breadcrumb Area Start ##### -->
-        <div class="vizew-breadcrumb">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#"><i class="fa fa-home" aria-hidden="true"></i>
-                                        Trang
-                                        chủ</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Đổi mật khẩu</li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- ##### Breadcrumb Area End ##### -->
-
-        <!-- ##### Login Area Start ##### -->
-        <div class="vizew-login-area section-padding-80">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-12 col-md-6">
-                        <div class="login-content">
-                            <!-- Section Title -->
-                            <div class="section-heading">
-                                <h4>Đổi mật khẩu</h4>
-                                <div class="line"></div>
-                            </div>
-
-                            <form action="index.html" method="post">
-                                <div class="form-group">
-                                    <p><b>Mật khẩu cũ</b></p>
-                                    <input type="password" class="form-control" id="exampleInputPassword1">
-                                </div>
-                                <div class="form-group">
-                                    <p><b>Mật khẩu mới</b></p>
-                                    <input type="password" class="form-control" id="exampleInputPassword1">
-                                </div>
-                                <div class="form-group">
-                                    <p><b>Nhập lại mật khẩu mới</b></p>
-                                    <input type="password" class="form-control" id="exampleInputPassword1">
-                                </div>
-                                <div class="form-group">
-                                    <button  class="btn vizew-btn w-100 mt-30">Xong</button>
-                                </div>
-                            </form>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
 </div>

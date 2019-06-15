@@ -179,11 +179,13 @@ router.get('/editor-editprofile', (req, res) => {
         if(user[0].gender=='Nam')
         {
             hbscontent['isMale'] =  true;
+            hbscontent['isFemale'] =  false;
             res.render('editor/editor-editprofile',hbscontent);
         }
         if(user[0].gender=='Nữ')
         {
             hbscontent['isFemale'] = true;
+            hbscontent['isMale'] =  false;
             res.render('editor/editor-editprofile',hbscontent);
         }
       
@@ -195,8 +197,14 @@ router.get('/editor-editprofile', (req, res) => {
 });
 router.post('/editor-editprofile', (req, res) => {
 
-    
-    var id = req.params.id;
-    
+    var entity = req.body;
+    entity['id'] = hbscontent.currentuserid;
+    userModel.update(entity).then(()=>{
+        res.redirect('/editor/editor-editprofile')
+    })
+    .catch(err=>{
+        console.log(err);
+        res.end('Error occured');
+    })
 });
 module.exports = router;
