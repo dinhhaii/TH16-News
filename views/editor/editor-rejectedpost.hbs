@@ -1,21 +1,37 @@
-<table id="biTuChoi" class="table">
+<table class="table">
     <thead style="background: #5F9EA0">
         <tr class="info">
-            <th>STT</th>
-            <th>Tên phóng viên</th>
-            <th>Tên bài viết</th>
-            <th>Chuyên mục</th>
-            <th>Ngày gửi bài viết</th>
-            <th>Lý do từ chối</th>
+             <th scope="col">#</th>
+                <th scope="col">Tiêu đề</th>         
+                <th scope="col">Hình ảnh</th>              
+                <th scope="col">Ngày gửi</th>
+                <th scope="col" style="width: 150px">Trạng thái</th>
+                <th scope="col">Lý do từ chối</th>
+                
+                
     </thead>
     <tbody style="background: #FFEBCD">
-        <tr>
-            <td>1</td>
-            <td>abcxyz</td>
-            <td>def@somemail.com</td>
-            <td>Default</td>
-            <td>Defaultson</td>
-            <td>Viết sai từ vựng</td>
-        </tr>
+        {{#each rejectedposts}}
+            <tr>
+                <th>{{this.id}}</th>
+                <td style="width: 200px;">{{titlepost}}</td>
+              
+                <td style="width: 200px;"><img src="{{image}}" /></td>
+                <td>{{submittime}}</td>
+               
+             
+               
+                <td style="background:orange">{{status}}</td>
+               
+              
+                <td>{{reason}}</td>
+                
+                
+                              
+               
+            </tr>
+            {{/each}}
+      
+
     </tbody>
 </table>

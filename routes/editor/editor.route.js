@@ -146,9 +146,11 @@ router.post('/rejectedpost/:id', (req, res) => {
 
     
     var id = req.params.id;
+    var entity = req.body;
     postModel.single(id)
     .then(rows=>{
         rows[0].status = "Từ chối";
+        rows[0].reason = entity.reason;
         postModel.update(rows[0]).then(()=>{
             res.redirect('/editor/approvepost');
         }) 
@@ -163,6 +165,40 @@ router.post('/rejectedpost/:id', (req, res) => {
     });
 });
 
+router.get('/approvedpost',(req,res) => {
+    var listApproved = [];
+    postModel.all().then(rows=>{
+        rows.forEach(post=>{
+            if(post.status=='Đã duyệt')
+            {
+                listApproved.push(post);
+            }
+        });
+        hbscontent['approvedposts'] = listApproved;
+        res.render('editor/editor-approvedpost',hbscontent);
+    }).catch(err=>{
+        console.log(err);
+        res.end('Error occured');
+    })
+    
+});
+router.get('/rejectedpost',(req,res) => {
+    var listRejected = [];
+    postModel.all().then(rows=>{
+        rows.forEach(post=>{
+            if(post.status=='Từ chối')
+            {
+                listRejected.push(post);
+            }
+        });
+        hbscontent['rejectedposts'] = listRejected;
+        res.render('editor/editor-rejectedpost',hbscontent);
+    }).catch(err=>{
+        console.log(err);
+        res.end('Error occured');
+    })
+    
+});
 router.get('/editor-editprofile', (req, res) => {
     hbscontent.title = 'Cập nhật thông tin';
     hbscontent.isMainNavigationBar = false;

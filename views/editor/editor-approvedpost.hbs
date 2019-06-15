@@ -1,21 +1,34 @@
-<table id="daDuyet" class="table">
+<table class="table">
     <thead style="background: #5F9EA0">
         <tr class="info">
-            <th>STT</th>
-            <th>Tên phóng viên</th>
-            <th>Tên bài viết</th>
-            <th>Chuyên mục</th>
-            <th>Nhãn</th>
-            <th>Ngày xuất bản</th>
+             <th scope="col">#</th>
+                <th scope="col">Tiêu đề</th>         
+                <th scope="col">Hình ảnh</th>              
+                <th scope="col">Ngày gửi</th>
+                <th scope="col" style="width: 150px">Trạng thái</th>
+                <th scope="col">Views</th>
+                <th scope="col">Ngày đăng</th>
+                
     </thead>
     <tbody style="background: #FFEBCD">
-        <tr>
-            <td>1</td>
-            <td>abcxyz</td>
-            <td>def@somemail.com</td>
-            <td>Default</td>
-            <td>#Default</td>
-            <td>5/5/2019</td>
-        </tr>
+        {{#each approvedposts}}
+            <tr>
+                <th>{{this.id}}</th>
+                <td style="width: 200px;">{{titlepost}}</td>
+              
+                <td style="width: 200px;"><img src="{{image}}" /></td>
+                <td>{{submittime}}</td>
+                
+                <td style="background:greenyellow">{{status}}</td>
+               
+                <td>{{views}}</td>
+                <td>{{publishdate}}</td>
+                
+                              
+               
+            </tr>
+            {{/each}}
+      
+
     </tbody>
 </table>
