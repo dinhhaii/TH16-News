@@ -37,15 +37,16 @@
                                     <input type="text" value="{{EditorName}}"  class="form-control" name="name" id="exampleInputEmail1"
                                         >
                                 </div>
-                                {{#if isMale}}
+                               {{#if isMale}}
                                 <div class="form-group">
                                     <p><b>Giới tính</b></p>
                                     <input type="radio"  name="gender" checked="checked" value="Nam" id="radiobtnNam"></input>
                                     <label for="radiobtnNam"   style="color:gray">Nam </label>
-                                    <input type="radio" name="gender" {{Femalechecked}} value="Nữ" id="radiobtnNu"></input>
+                                    <input type="radio" name="gender"  value="Nữ" id="radiobtnNu"></input>
                                     <label for="radiobtnNu" style="color:gray">Nữ </label>
                                 </div>
-                                {{/if}}
+                                {{else}}
+                               
                                 {{#if isFemale}}
                                 <div class="form-group">
                                     <p><b>Giới tính</b></p>
@@ -54,6 +55,16 @@
                                     <input type="radio" name="gender" checked="checked" value="Nữ" id="radiobtnNu"></input>
                                     <label for="radiobtnNu" style="color:gray">Nữ </label>
                                 </div>
+                               
+                                 {{else}}
+                                  <div class="form-group">
+                                    <p><b>Giới tính</b></p>
+                                    <input type="radio"  name="gender"  value="Nam" id="radiobtnNam"></input>
+                                    <label for="radiobtnNam"   style="color:gray">Nam </label>
+                                    <input type="radio" name="gender"  value="Nữ" id="radiobtnNu"></input>
+                                    <label for="radiobtnNu" style="color:gray">Nữ </label>
+                                </div>
+                                 {{/if}}
                                 {{/if}}
                                 
                                 {{!-- <div class="form-group">

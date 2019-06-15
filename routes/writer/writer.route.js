@@ -134,7 +134,51 @@ router.post('/editpost', (req,res) => {
         res.end('Error occured');
     });
 })
+router.get('/writer-editprofile',(req,res)=>{
+    hbscontent.title = "Cập nhật thông tin";
+    userModel.single(hbscontent.currentuserid).then(user=>{
+        console.log(user);
+        hbscontent['WriterName'] = user[0].name;
+        hbscontent['WriterEmail'] = user[0].email;
+        hbscontent['WriterPhone'] = user[0].phone;
+        if(user[0].gender=='Nam')
+        {
+            hbscontent['isMale'] =  true;
+            hbscontent['isFemale'] =  false;
+            res.render('writer/writer-editprofile', hbscontent);
+        }
+        else if(user[0].gender=='Nữ')
+        {
+            hbscontent['isFemale'] = true;
+            hbscontent['isMale'] =  false;
+            res.render('writer/writer-editprofile', hbscontent);
+        }
+        else
+        {
+            hbscontent['isFemale'] = false;
+            hbscontent['isMale'] =  false;
+            res.render('writer/writer-editprofile', hbscontent);
+        }
 
+      
+    }).catch(err=>{
+        console.log(err);
+        res.end('Error occured');
+    });
+    
+});
+router.post('/writer-editprofile', (req, res) => {
+
+    var entity = req.body;
+    entity['id'] = hbscontent.currentuserid;
+    userModel.update(entity).then(()=>{
+        res.redirect('/writer/writer-editprofile')
+    })
+    .catch(err=>{
+        console.log(err);
+        res.end('Error occured');
+    })
+});
 router.get('/rejectedpost', (req, res) => {
     var id = hbscontent.currentuserid;
     postModel.findIdWriterAndStatus(id,'Từ Chối')

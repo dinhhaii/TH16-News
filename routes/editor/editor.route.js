@@ -201,12 +201,12 @@ router.get('/rejectedpost',(req,res) => {
 });
 router.get('/editor-editprofile', (req, res) => {
     hbscontent.title = 'Cập nhật thông tin';
-    hbscontent.isMainNavigationBar = false;
-    hbscontent.isEditor = true;
+    // hbscontent.isMainNavigationBar = false;
+    // hbscontent.isEditor = true;
     
-    hbscontent.isAdmin = false; 
-    hbscontent.isWriter = false; 
-    hbscontent.isSubcriber = false;
+    // hbscontent.isAdmin = false; 
+    // hbscontent.isWriter = false; 
+    // hbscontent.isSubcriber = false;
     userModel.single(hbscontent.currentuserid).then(user=>{
         console.log(user);
         hbscontent['EditorName'] = user[0].name;
@@ -218,11 +218,15 @@ router.get('/editor-editprofile', (req, res) => {
             hbscontent['isFemale'] =  false;
             res.render('editor/editor-editprofile',hbscontent);
         }
-        if(user[0].gender=='Nữ')
+        else if(user[0].gender=='Nữ')
         {
             hbscontent['isFemale'] = true;
             hbscontent['isMale'] =  false;
             res.render('editor/editor-editprofile',hbscontent);
+        }
+        else
+        {
+            res.render('writer/writer-editprofile', hbscontent);
         }
       
     }).catch(err=>{
