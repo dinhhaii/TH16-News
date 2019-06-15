@@ -33,6 +33,8 @@ app.engine('hbs', exphbs({
     helpers: { section: hbs_sections() }
 }));
 
+require('./middlewares/upload')(app);
+
 app.set('view engine', 'hbs');
 
 app.use(require('./middlewares/locals.mdw'));

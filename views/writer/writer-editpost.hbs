@@ -8,7 +8,11 @@
 <script>
     $(function () {
         $('#fuMain').fileinput({
-            theme: 'fa' 
+            theme: 'fa' ,
+            dropZoneEnabled: false,
+            allowedFileExtensions: ['png', 'jpg', 'gif'],
+            uploadUrl: '/upload',
+            uploadAsync: false,
         });
     })
 </script>
@@ -51,7 +55,7 @@
                         <div class="form-group">
                             <p><b>Hình ảnh:</b></p>
                             <div class="file-loading">
-                                <input class="form-control" id="fuMain" name="image" type="file" value="{{post.image}}" multiple>
+                                <input id="fuMain" name="fuMain" type="file" multiple>
                             </div>
                         </div>
 
@@ -71,7 +75,7 @@
                         </div>
 
                         <p><b>Nội dung:</b></p>
-                        <textarea cols="100" id="content" name="content" rows="10" value="{{post.content}}"></textarea>
+                        <textarea cols="100" id="content" name="content" rows="10"></textarea>
 
                         <script>
                             // Replace the <textarea id="editor1"> with an CKEditor instance.

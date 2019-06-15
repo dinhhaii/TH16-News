@@ -23,11 +23,13 @@ router.get('/writepost', (req, res, next) => {
 
 router.post('/writepost', (req, res) => {
     var entity = req.body;
+    entity['image'] = "/img/bg-img/" + entity.fuMain;
     entity['views'] = 0;
     entity['status'] = "Chưa duyệt";
     entity['submittime'] = new Date();
     entity['createddate'] = new Date();
     entity['idwriter'] = hbscontent.currentuserid;
+    delete entity['fuMain'];
     postModel.add(entity)
     .then(() => {
         res.redirect('/writer/unapprovedpost');
@@ -63,7 +65,6 @@ router.get('/approvedpost', (req, res) => {
                 res.end('Error occured1');
             });
         });
-        console.log(rows);
         res.render('writer/writer-approvedpost', hbscontent);
     })
     .catch(err => {
@@ -96,7 +97,6 @@ router.get('/unapprovedpost', (req, res) => {
                 res.end('Error occured1');
             });
         });
-        console.log(rows);
         res.render('writer/writer-unapprovedpost', hbscontent);
     })
     .catch(err => {
@@ -125,6 +125,8 @@ router.get('/editpost/:id', (req,res) => {
 router.post('/editpost', (req,res) => {
     var entity = req.body;
     entity['summary'] = '<p class="mb-2">' + entity.summary + '</p>';
+    entity['image'] = "/img/bg-img/" + entity.fuMain;
+    delete entity['fuMain'];
     postModel.update(entity)
     .then(() => {
         res.redirect('/writer/unapprovedpost');
@@ -137,7 +139,6 @@ router.post('/editpost', (req,res) => {
 router.get('/writer-editprofile',(req,res)=>{
     hbscontent.title = "Cập nhật thông tin";
     userModel.single(hbscontent.currentuserid).then(user=>{
-        console.log(user);
         hbscontent['WriterName'] = user[0].name;
         hbscontent['WriterEmail'] = user[0].email;
         hbscontent['WriterPhone'] = user[0].phone;
@@ -215,7 +216,6 @@ router.get('/rejectedpost', (req, res) => {
                 res.end('Error occured1');
             });
         });
-        console.log(rows);
         res.render('writer/writer-rejectedpost', hbscontent);
     })
     .catch(err => {
