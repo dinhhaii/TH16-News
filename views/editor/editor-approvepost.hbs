@@ -46,7 +46,7 @@
                                         <form method="post" action="/editor/approvedpost/{{this.id}}">
                                             <div class="form-group">
                                             <label for="select">Chuyên mục:</label>
-                                            <select name="idcategory" class="form-control">
+                                            <select style="background: rgb(209, 209, 174);" name="idcategory" class="form-control">
                                                 {{#each ../categories}}
                                                 <option value="{{id}}" >{{name}}</option>
                                                 {{/each}}
@@ -56,7 +56,7 @@
                                             </div>
                                             <div class="form-group">
                                             <label for="select">Tags:</label>
-                                            <select name="idtag" class="form-control">
+                                            <select style="background: rgb(209, 209, 174);" name="idtag" class="form-control">
                                                 {{#each ../tags}}
                                                 <option value="{{id}}" >{{name}}</option>
                                                 {{/each}}
@@ -65,7 +65,7 @@
                                             </div>
                                             <div class="form-group">
                                             <label for="pwd">Ngày xuất bản:</label>
-                                            <input type="date" class="form-control" id="pwd" placeholder="Enter approve date" name="publishdate">
+                                            <input type="date" class="form-control" style="background: rgb(209, 209, 174);" id="pwd" placeholder="Enter approve date" name="publishdate">
                                             </div>
                                             <button type="submit" class="btn btn-primary w-100 mt-30" width="" >Duyệt</button>
                                             </form>
@@ -96,7 +96,7 @@
                                             
                                             <div class="form-group">
                                             <label for="pwd">Lý do từ chối:</label>
-                                            <input type="text" class="form-control" id="pwd" placeholder="Enter reason" name="reason">
+                                            <input style="background: rgb(209, 209, 174);" type="text" class="form-control" id="pwd" placeholder="Enter reason" name="reason">
                                             </div>
                                             <button type="submit"  class="btn btn-primary  w-100 mt-30" >Duyệt</button>
                                             </form>
