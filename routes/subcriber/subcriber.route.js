@@ -11,6 +11,8 @@ router.get('/subcriber-editprofile', (req, res) => {
         hbscontent['subscriberName'] = user[0].name;
         hbscontent['subscriberEmail'] = user[0].email;
         hbscontent['subscriberPhone'] = user[0].phone;
+        hbscontent['subscriberusername'] = user[0].username;
+        hbscontent['subscriberpassword'] = user[0].password;
         console.log(hbscontent);
         if(user[0].gender=='Nam')
         {
@@ -41,6 +43,23 @@ router.get('/subcriber-editprofile', (req, res) => {
 router.post('/subcriber-editprofile', (req, res) => {
 
     var entity = req.body;
+    if(entity.password.trim()=="")
+    {
+        delete entity['password'];
+        delete entity['passwordconfirm'];
+    }
+    else
+    {
+        if(entity.password==entity.passwordconfirm)
+        {
+            delete entity['passwordconfirm'];
+        }
+        else
+        {
+            delete entity['password'];
+            delete entity['passwordconfirm'];
+        }
+    }
     entity['id'] = hbscontent.currentuserid;
     userModel.update(entity).then(()=>{
         res.redirect('/subcriber/subcriber-editprofile')

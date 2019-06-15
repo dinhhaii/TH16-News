@@ -141,6 +141,8 @@ router.get('/writer-editprofile',(req,res)=>{
         hbscontent['WriterName'] = user[0].name;
         hbscontent['WriterEmail'] = user[0].email;
         hbscontent['WriterPhone'] = user[0].phone;
+        hbscontent['writerusername'] = user[0].username;
+        hbscontent['writerpassword'] = user[0].password;
         if(user[0].gender=='Nam')
         {
             hbscontent['isMale'] =  true;
@@ -170,6 +172,23 @@ router.get('/writer-editprofile',(req,res)=>{
 router.post('/writer-editprofile', (req, res) => {
 
     var entity = req.body;
+    if(entity.password.trim()=="")
+    {
+        delete entity['password'];
+        delete entity['passwordconfirm'];
+    }
+    else
+    {
+        if(entity.password==entity.passwordconfirm)
+        {
+            delete entity['passwordconfirm'];
+        }
+        else
+        {
+            delete entity['password'];
+            delete entity['passwordconfirm'];
+        }
+    }
     entity['id'] = hbscontent.currentuserid;
     userModel.update(entity).then(()=>{
         res.redirect('/writer/writer-editprofile')

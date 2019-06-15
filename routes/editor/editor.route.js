@@ -212,6 +212,8 @@ router.get('/editor-editprofile', (req, res) => {
         hbscontent['EditorName'] = user[0].name;
         hbscontent['EditorEmail'] = user[0].email;
         hbscontent['EditorPhone'] = user[0].phone;
+        hbscontent['Editorusername'] = user[0].username;
+        hbscontent['Editorpassword'] = user[0].password;
         if(user[0].gender=='Nam')
         {
             hbscontent['isMale'] =  true;
@@ -238,8 +240,26 @@ router.get('/editor-editprofile', (req, res) => {
 router.post('/editor-editprofile', (req, res) => {
 
     var entity = req.body;
+    if(entity.password.trim()=="")
+    {
+        delete entity['password'];
+        delete entity['passwordconfirm'];
+    }
+    else
+    {
+        if(entity.password==entity.passwordconfirm)
+        {
+            delete entity['passwordconfirm'];
+        }
+        else
+        {
+            delete entity['password'];
+            delete entity['passwordconfirm'];
+        }
+    }
     entity['id'] = hbscontent.currentuserid;
     userModel.update(entity).then(()=>{
+        console.log(entity);
         res.redirect('/editor/editor-editprofile')
     })
     .catch(err=>{
