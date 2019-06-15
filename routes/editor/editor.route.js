@@ -167,7 +167,31 @@ router.get('/editor-editprofile', (req, res) => {
     hbscontent.title = 'Cập nhật thông tin';
     hbscontent.isMainNavigationBar = false;
     hbscontent.isEditor = true;
-    res.render('editor/editor-editprofile');
+    
+    hbscontent.isAdmin = false; 
+    hbscontent.isWriter = false; 
+    hbscontent.isSubcriber = false;
+    userModel.single(hbscontent.currentuserid).then(user=>{
+        console.log(user);
+        hbscontent['EditorName'] = user[0].name;
+        hbscontent['EditorEmail'] = user[0].email;
+        hbscontent['EditorPhone'] = user[0].phone;
+        if(user[0].gender=='Nam')
+        {
+            hbscontent['isMale'] =  true;
+            res.render('editor/editor-editprofile',hbscontent);
+        }
+        if(user[0].gender=='Nữ')
+        {
+            hbscontent['isFemale'] = true;
+            res.render('editor/editor-editprofile',hbscontent);
+        }
+      
+    }).catch(err=>{
+        console.log(err);
+        res.end('Error occured');
+    });
+    
 });
 router.post('/editor-editprofile', (req, res) => {
 
