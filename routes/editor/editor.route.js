@@ -120,7 +120,7 @@ router.post('/approvedpost/:id', (req, res) => {
                 }  
                 else
                 {
-                    
+                    res.redirect('/editor/approvepost');
                 } 
                 
             }).catch(err=>{
