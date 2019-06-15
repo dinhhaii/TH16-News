@@ -358,8 +358,21 @@ router.get('/edituser/:id', (req, res) => {
         if(rows.length > 0){
             hbscontent['error'] = false;
             hbscontent['user'] = rows[0];
-            hbscontent.isMainNavigationBar = false;
+            if(rows[0].gender=='Nam')
+            {
+                hbscontent['isMale'] =  true;
+                hbscontent['isFemale'] =  false;
+                hbscontent.isMainNavigationBar = false;
             res.render('admin/user/admin-edituser', hbscontent);
+            }
+            if(rows[0].gender=='Nữ')
+            {
+                hbscontent['isFemale'] = true;
+                hbscontent['isMale'] =  false;
+                hbscontent.isMainNavigationBar = false;
+            res.render('admin/user/admin-edituser', hbscontent);
+            }
+            
         }
     })
     .catch(err => {

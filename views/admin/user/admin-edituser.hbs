@@ -32,7 +32,24 @@
                                 <p><b>Mật khẩu người dùng</b></p>
                                 <input type="password" class="form-control" name="password" value="{{user.password}}">
                             </div>
-
+                                {{#if isMale}}
+                                <div class="form-group">
+                                    <p><b>Giới tính</b></p>
+                                    <input type="radio"  name="gender" checked="checked" value="Nam" id="radiobtnNam"></input>
+                                    <label for="radiobtnNam"   style="color:gray">Nam </label>
+                                    <input type="radio" name="gender" {{Femalechecked}} value="Nữ" id="radiobtnNu"></input>
+                                    <label for="radiobtnNu" style="color:gray">Nữ </label>
+                                </div>
+                                {{/if}}
+                                {{#if isFemale}}
+                                <div class="form-group">
+                                    <p><b>Giới tính</b></p>
+                                    <input type="radio"  name="gender"  value="Nam" id="radiobtnNam"></input>
+                                    <label for="radiobtnNam"   style="color:gray">Nam </label>
+                                    <input type="radio" name="gender" checked="checked" value="Nữ" id="radiobtnNu"></input>
+                                    <label for="radiobtnNu" style="color:gray">Nữ </label>
+                                </div>
+                                {{/if}}
                             <div class="form-group">
                                 <p><b>Email người dùng</b></p>
                                 <input type="text" class="form-control" name="email" value="{{user.email}}">
