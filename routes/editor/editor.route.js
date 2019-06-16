@@ -28,17 +28,28 @@ router.get('/approvepost', authEditor, (req, res) => {
         }).catch(err =>{
             console.log(err);
         });
+        
         //List tag
         tagModel.all().then(tagRows=>{
             hbscontent['tags'] = tagRows;
             //Update totalpost in category table
+<<<<<<< HEAD
+=======
+           
+
+           
+           
+            //console.log(tagRows);
+>>>>>>> 3c325d52d4c573b012fff2fec899a7f86a4ecfca
             res.render('editor/editor-approvepost', hbscontent);
         }).catch(err =>{
             console.log(err);
         });
         //Update totalpost in category table
         rows.forEach(element => {
+            
             postModel.update(element).then().catch(err => { console.log(err)});
+            
             if(element.status=="Chưa duyệt")
             {
                 element['isUnapproved'] = true; 
@@ -103,7 +114,7 @@ router.post('/approvedpost/:id', authEditor, (req, res) => {
                 }  
                 else
                 {
-                    
+                    res.redirect('/editor/approvepost');
                 } 
                 
             }).catch(err=>{
@@ -185,12 +196,12 @@ router.get('/rejectedpost', authEditor, (req,res) => {
 });
 router.get('/editor-editprofile', authEditor, (req, res) => {
     hbscontent.title = 'Cập nhật thông tin';
-    // hbscontent.isMainNavigationBar = false;
-    // hbscontent.isEditor = true;
+     hbscontent.isMainNavigationBar = false;
+     hbscontent.isEditor = true;
     
-    // hbscontent.isAdmin = false; 
-    // hbscontent.isWriter = false; 
-    // hbscontent.isSubcriber = false;
+     hbscontent.isAdmin = false; 
+     hbscontent.isWriter = false; 
+     hbscontent.isSubcriber = false;
     userModel.single(hbscontent.currentuserid).then(user=>{
         console.log(user);
         hbscontent['EditorName'] = user[0].name;
