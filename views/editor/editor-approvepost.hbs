@@ -37,7 +37,7 @@
                       
                         <button  style="width: 100px;" class="btn btn-warning"
                        data-toggle="modal" data-target="#myModal">Duyệt</button>
-                        <div class="modal" id="myModal">
+                        <div class="modal conatiner" id="myModal">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                 
@@ -46,7 +46,7 @@
                                         <form method="post" action="/editor/approvedpost/{{this.id}}">
                                             <div class="form-group">
                                             <label for="select">Chuyên mục:</label>
-                                            <select name="idcategory" class="form-control">
+                                            <select style="background: #F5F5DC;color:black;" name="idcategory" value="" class="form-control">
                                                 {{#each ../categories}}
                                                 <option value="{{id}}" >{{name}}</option>
                                                 {{/each}}
@@ -56,7 +56,7 @@
                                             </div>
                                             <div class="form-group">
                                             <label for="select">Tags:</label>
-                                            <select name="idtag" class="form-control">
+                                            <select style=" background: #F5F5DC;color:black;" name="idtag" class="form-control">
                                                 {{#each ../tags}}
                                                 <option value="{{id}}" >{{name}}</option>
                                                 {{/each}}
@@ -65,17 +65,19 @@
                                             </div>
                                             <div class="form-group">
                                             <label for="pwd">Ngày xuất bản:</label>
-                                            <input type="date" class="form-control" id="pwd" placeholder="Enter approve date" name="publishdate">
+                                            <input type="date" class="form-control" style=" background: #F5F5DC;color:black;" id="pwd" placeholder="Enter approve date" name="publishdate">
                                             </div>
-                                            <button type="submit" class="btn btn-primary">OK</button>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary" style="width:45%;float:left;" >Duyệt</button>
+                                            <button type="button" class="btn btn-danger " style="float:right; width:45%;" data-dismiss="modal">Đóng</button>
+                                            </div>
+                                            
                                             </form>
                                         
                                     </div>
                                     
                                     <!-- Modal footer -->
-                                    <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                    </div>
+                                    
                                     
                                 </div>
                             </div>
@@ -86,7 +88,7 @@
                      
                     <button type="submit" style="width: 100px;" class="btn btn-warning" data-toggle="modal" data-target="#modalReject1"
                         >Từ Chối</button>
-                        <div class="modal" id="modalReject1">
+                        <div class="modal conatiner" id="modalReject1">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                 
@@ -96,17 +98,19 @@
                                             
                                             <div class="form-group">
                                             <label for="pwd">Lý do từ chối:</label>
-                                            <input type="text" class="form-control" id="pwd" placeholder="Enter reason" name="reason">
+                                            <input style=" background: #F5F5DC;color:black;" type="text" class="form-control" id="pwd" placeholder="Enter reason" name="reason">
                                             </div>
-                                            <button type="submit"  class="btn btn-primary">OK</button>
+                                            <div class="modal-footer">
+                                                <button type="submit"  class="btn btn-primary  " style="width:45%;float:left;" >Từ chối</button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal" style="width:45%;float:left;"  >Đóng</button>
+                                            </div>
+                                            
                                             </form>
                                         
                                     </div>
                                     
                                     <!-- Modal footer -->
-                                    <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                    </div>
+                                    
                                     
                                 </div>
                             </div>
