@@ -22,23 +22,9 @@ var hbsContent = {
     currentuserid: 0
 };
 
-<<<<<<< HEAD
 require('./middlewares/view-engine')(app);
 require('./middlewares/session')(app);
 require('./middlewares/passport')(app);
-=======
-app.engine('hbs', exphbs({
-    extname: 'hbs',
-    defaultLayout: 'main.hbs',
-    layoutsDir: 'views/layouts',
-    partialsDir: 'views/partials',
-    helpers: { section: hbs_sections() }
-}));
-
-require('./middlewares/upload')(app);
-
-app.set('view engine', 'hbs');
->>>>>>> 3c325d52d4c573b012fff2fec899a7f86a4ecfca
 
 app.use(require('./middlewares/locals.mdw'));
 app.use('/', express.static(publicPath));

@@ -33,14 +33,6 @@ router.get('/approvepost', authEditor, (req, res) => {
         tagModel.all().then(tagRows=>{
             hbscontent['tags'] = tagRows;
             //Update totalpost in category table
-<<<<<<< HEAD
-=======
-           
-
-           
-           
-            //console.log(tagRows);
->>>>>>> 3c325d52d4c573b012fff2fec899a7f86a4ecfca
             res.render('editor/editor-approvepost', hbscontent);
         }).catch(err =>{
             console.log(err);
