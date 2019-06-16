@@ -1,8 +1,8 @@
 <!-- Top Header Area -->
         <div class="top-header-area">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row align-items-center">
-                    <div class="col-12 col-md-6">
+                    <div class="col-12 col-md-4">
                         <!-- Breaking News Widget -->
                         <div class="breaking-news-area d-flex align-items-center">
                             <div class="news-title" style="width:250px;">
@@ -10,15 +10,15 @@
                             </div>
                             <div id="breakingNewsTicker" class="ticker">
                                 <ul>
-                                    <li><a href="#">iPhone không cần cảm biến vân tay</a></li>
-                                    <li><a href="#">Giá xăng tăng kỉ lục</a></li>
-                                    <li><a href="#">Phương pháp đột phá, đẩy lùi "ung thử tử thần"</a></li>
+                                    {{#each latestposts}}
+                                    <li><a href="/post/{{id}}">{{titlepost}}</a></li>
+                                    {{/each}}
                                 </ul>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-12 col-md-6">
+                    <div class="col-12 col-md-8">
                         <div class="top-meta-data d-flex align-items-center justify-content-end">
                             <!-- Top Social Info -->
                             <div class="top-social-info">
@@ -27,7 +27,7 @@
                                 <a href="https://instagram.com/dinhhai.js"><i class="fa fa-instagram"></i></a>
                             </div>
                             <!-- Top Search Area -->
-                            <div class="top-search-area">
+                            <div class="top-search-area" style="padding-right: 5px;">
                                 <form action="#" method="post">
                                     <input type="search" name="top-search" id="topSearch" placeholder="Search">
                                     <button type="submit" class="btn"><i class="fa fa-search"
@@ -38,15 +38,15 @@
                             
                             {{#if isLogin}}
                                 {{#if isSubcriber}}
-                            <a href="/subcriber/subcriber-editprofile" style="color: gray; align-content: center;"> {{Username}}</a>
+                            <a href="/subcriber/subcriber-editprofile" style="color: gray; align-content: center;"><i class="fa fa-user" style="margin-right: 5px;" aria-hidden="true"></i>{{Username}}</a>
                                 {{else}}
                                 {{#if isEditor}}
-                                <a href="/editor/editor-editprofile" style="color: gray; align-content: center;"> {{Username}}</a>
+                                <a href="/editor/editor-editprofile" style="color: gray; align-content: center;"><i class="fa fa-user" style="margin-right: 5px;"  aria-hidden="true"></i>{{Username}}</a>
                                 {{else}}
                                 {{#if isWriter}}
-                                <a href="/writer/writer-editprofile" style="color: gray; align-content: center;"> {{Username}}</a>
+                                <a href="/writer/writer-editprofile" style="color: gray; align-content: center;"><i class="fa fa-user" style="margin-right: 5px;"  aria-hidden="true"></i>{{Username}}</a>
                                 {{else}}
-                                <a href="#" style="color: gray; align-content: center;"> {{Username}}</a>
+                                <a href="#" style="color: gray; align-content: center;"><i class="fa fa-user" aria-hidden="true" style="margin-right: 5px;" ></i>{{Username}}</a>
                                 {{/if}}
                                 {{/if}}
                                 {{/if}}
@@ -56,8 +56,8 @@
                                 </a>
                             </form>
                             {{else}}
-                            <a href="/login" style="color: gray; align-content: center;"> Đăng nhập</a>
-                            <a href="/login" class="login-btn"><i class="fa fa-user" aria-hidden="true"></i></a>
+                            <a href="/login" class="login-btn">Đăng nhập</i></a>
+                            <a href="/signup" class="login-btn">Đăng kí</a>
                             {{/if}}
 
                         </div>

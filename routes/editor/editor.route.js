@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var hbscontent = require('../../app');
-//post
+var authEditor = require('../../middlewares/auth-editor');
 var postModel = require('../../models/post.model');
 var categoryModel = require('../../models/category.model');
 var posttagModel = require('../../models/post-tag.model');
@@ -10,41 +10,28 @@ var userModel = require('../../models/user.model');
 
 //=================================== Duyệt bài viết ===================================
 
-router.get('/', (req, res) => {
+router.get('/', authEditor, (req, res) => {
     hbscontent.title = 'Editor';
     hbscontent.isMainNavigationBar = false;
     hbscontent.isEditor = true;
     res.redirect('/editor/approvepost');
 });
 
-router.get('/approvepost', (req, res) => {    
+router.get('/approvepost', authEditor, (req, res) => {    
     
     postModel.all()
     .then(rows => {
-        console.log(rows);
-
         hbscontent['posts'] = rows;
-        categoryModel.all().then(cateRows=>{
-            console.log(cateRows);
-    
+        categoryModel.all().then(cateRows=>{   
             hbscontent['categories'] = cateRows;
             //Update totalpost in category table
-            
-           
-            console.log(cateRows);
-           
         }).catch(err =>{
             console.log(err);
         });
         //List tag
         tagModel.all().then(tagRows=>{
-            console.log(tagRows);
-    
             hbscontent['tags'] = tagRows;
             //Update totalpost in category table
-            
-           
-            console.log(tagRows);
             res.render('editor/editor-approvepost', hbscontent);
         }).catch(err =>{
             console.log(err);
@@ -65,8 +52,6 @@ router.get('/approvepost', (req, res) => {
                 element['isRejected'] = true; 
             }
         });
-       
-        console.log(rows);
      
     }).catch(err => {
         console.log(err);
@@ -75,12 +60,11 @@ router.get('/approvepost', (req, res) => {
 });
 
 
-router.post('/approvedpost/:id', (req, res) => {
+router.post('/approvedpost/:id', authEditor, (req, res) => {
     
     var entity = req.body;
     entity['status'] = 'Đã duyệt';
-    
-    console.log(entity);
+
     var id = req.params.id;
     var entityPostTag;
     // entityPostTag['idpost'] = id;
@@ -100,7 +84,6 @@ router.post('/approvedpost/:id', (req, res) => {
                 tagRows.forEach(tagChild=>{
                     if(tagChild.idpost==id)
                     {
-                        console.log(tagChild);
                         check =true;
                     }
                 });
@@ -142,7 +125,7 @@ router.post('/approvedpost/:id', (req, res) => {
     
 });
 
-router.post('/rejectedpost/:id', (req, res) => {
+router.post('/rejectedpost/:id',authEditor, (req, res) => {
 
     
     var id = req.params.id;
@@ -165,7 +148,7 @@ router.post('/rejectedpost/:id', (req, res) => {
     });
 });
 
-router.get('/approvedpost',(req,res) => {
+router.get('/approvedpost', authEditor, (req,res) => {
     var listApproved = [];
     postModel.all().then(rows=>{
         rows.forEach(post=>{
@@ -182,7 +165,8 @@ router.get('/approvedpost',(req,res) => {
     })
     
 });
-router.get('/rejectedpost',(req,res) => {
+
+router.get('/rejectedpost', authEditor, (req,res) => {
     var listRejected = [];
     postModel.all().then(rows=>{
         rows.forEach(post=>{
@@ -199,7 +183,7 @@ router.get('/rejectedpost',(req,res) => {
     })
     
 });
-router.get('/editor-editprofile', (req, res) => {
+router.get('/editor-editprofile', authEditor, (req, res) => {
     hbscontent.title = 'Cập nhật thông tin';
     // hbscontent.isMainNavigationBar = false;
     // hbscontent.isEditor = true;
@@ -237,7 +221,7 @@ router.get('/editor-editprofile', (req, res) => {
     });
     
 });
-router.post('/editor-editprofile', (req, res) => {
+router.post('/editor-editprofile', authEditor, (req, res) => {
 
     var entity = req.body;
     if(entity.password.trim()=="")

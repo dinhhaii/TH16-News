@@ -11,23 +11,22 @@ router.get('/', (req, res, next) => {
     hbscontent.isMainNavigationBar = true;
     hbscontent.currentPage = req.protocol + '://' + req.get('host') + req.originalUrl;
 
-    //Latest post
-    postModel.latestpost(10)
-    .then(rows => {
-        rows.forEach(element => {
+    Promise.all([
+        postModel.latestpost(10),
+        postModel.descendingviews(10)
+    ]).then(([latestposts, trendingposts]) => {
+        //Latest post
+        latestposts.forEach(element => {
             categoryModel.single(element.idcategory).then(catrows => {
                 element['namecategory'] = catrows[0].name;
                 var dt = new Date(Date(element.createddate));
                 element['createddate'] = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
             }).catch(next);
         })
-        hbscontent['latestposts'] = rows;
-    }).catch(next);
+        hbscontent['latestposts'] = latestposts;
 
-    //10 Trending post
-    postModel.descendingviews(10)
-    .then(rows => {
-        rows.forEach(element => {
+        //10 Trending post
+        trendingposts.forEach(element => {
             element['isfirsttrendingpost'] = false;
             categoryModel.single(element.idcategory).then(catrows => {
                 var dt = new Date(Date(element.createddate));
@@ -36,25 +35,12 @@ router.get('/', (req, res, next) => {
             }).catch(next);
         });
         
-        rows[0]['isfirsttrendingpost'] = true;
-        hbscontent['trendingposts'] = rows;
-        console.log(rows);
+        trendingposts[0]['isfirsttrendingpost'] = true;
+        hbscontent['trendingposts'] = trendingposts;
         res.render('index', hbscontent);
+
     }).catch(next);
 
-    
-
-});
-
-//Đăng kí
-router.get('/signup', (req, res) => {
-
-    hbscontent.title = 'Đăng kí';
-    hbscontent.breadcrumbitemactive = 'Đăng kí';
-    hbscontent.isMainNavigationBar = true;
-    hbscontent.currentPage = req.protocol + '://' + req.get('host') + req.originalUrl;
-
-    res.render('signup', hbscontent);
 });
 
 //Liên lạc

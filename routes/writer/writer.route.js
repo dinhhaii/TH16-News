@@ -4,15 +4,16 @@ var hbscontent = require('../../app')
 var categoryModel = require('../..//models/category.model')
 var postModel = require('../..//models/post.model')
 var userModel = require('../..//models/user.model')
+var authWriter = require('../../middlewares/auth-writer');
 
-router.get('/', (req, res) => {
+router.get('/',authWriter, (req, res) => {
     hbscontent.title = 'Writer';
     hbscontent.isMainNavigationBar = false;
     hbscontent.isWriter = true;
     res.redirect('/writer/writepost');
 });
 
-router.get('/writepost', (req, res, next) => {
+router.get('/writepost',authWriter, (req, res, next) => {
     categoryModel.all()
         .then(rows => {
             hbscontent['categories'] = rows;
@@ -21,7 +22,7 @@ router.get('/writepost', (req, res, next) => {
         .catch(next);
 });
 
-router.post('/writepost', (req, res) => {
+router.post('/writepost', authWriter,(req, res) => {
     var entity = req.body;
     entity['views'] = 0;
     entity['status'] = "Chưa duyệt";
@@ -40,7 +41,7 @@ router.post('/writepost', (req, res) => {
 
 });
 
-router.get('/approvedpost', (req, res) => {
+router.get('/approvedpost', authWriter,(req, res) => {
     var id = hbscontent.currentuserid;
     postModel.findIdWriterAndStatus(id,'Đã duyệt')
     .then(rows => {
@@ -73,7 +74,7 @@ router.get('/approvedpost', (req, res) => {
     
 });
 
-router.get('/unapprovedpost', (req, res) => {
+router.get('/unapprovedpost',authWriter, (req, res) => {
     var id = hbscontent.currentuserid;
     postModel.findIdWriterAndStatus(id,'Chưa duyệt')
     .then(rows => {
@@ -105,7 +106,7 @@ router.get('/unapprovedpost', (req, res) => {
     }); 
 });
 
-router.get('/editpost/:id', (req,res) => {
+router.get('/editpost/:id', authWriter,(req,res) => {
     var id = req.params.id;
     postModel.single(id)
     .then(rows => {
@@ -122,7 +123,7 @@ router.get('/editpost/:id', (req,res) => {
     }); 
 })
 
-router.post('/editpost', (req,res) => {
+router.post('/editpost',authWriter, (req,res) => {
     var entity = req.body;
     entity['summary'] = '<p class="mb-2">' + entity.summary + '</p>';
     postModel.update(entity)
@@ -134,7 +135,7 @@ router.post('/editpost', (req,res) => {
         res.end('Error occured');
     });
 })
-router.get('/writer-editprofile',(req,res)=>{
+router.get('/writer-editprofile',authWriter,(req,res)=>{
     hbscontent.title = "Cập nhật thông tin";
     userModel.single(hbscontent.currentuserid).then(user=>{
         console.log(user);
@@ -169,7 +170,7 @@ router.get('/writer-editprofile',(req,res)=>{
     });
     
 });
-router.post('/writer-editprofile', (req, res) => {
+router.post('/writer-editprofile',authWriter, (req, res) => {
 
     var entity = req.body;
     if(entity.password.trim()=="")
@@ -198,7 +199,7 @@ router.post('/writer-editprofile', (req, res) => {
         res.end('Error occured');
     })
 });
-router.get('/rejectedpost', (req, res) => {
+router.get('/rejectedpost',authWriter, (req, res) => {
     var id = hbscontent.currentuserid;
     postModel.findIdWriterAndStatus(id,'Từ Chối')
     .then(rows => {
@@ -224,7 +225,7 @@ router.get('/rejectedpost', (req, res) => {
     }); 
 });
 
-router.get('/editprofile', (req, res) => {
+router.get('/editprofile',authWriter, (req, res) => {
 
     res.render('writer/writer-editprofile', hbscontent);
 });

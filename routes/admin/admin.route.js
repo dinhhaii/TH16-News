@@ -4,11 +4,11 @@ var tagModel = require('../../models/tag.model');
 var categoryModel = require('../../models/category.model');
 var hbscontent = require('../../app');
 var userModel = require('../../models/user.model');
-//post
+var authAdmin = require('../../middlewares/auth-admin');
 var postModel = require('../../models/post.model');
 
 
-router.get('/', (req, res) => {
+router.get('/', authAdmin, (req, res) => {
     hbscontent.title = 'Quản trị viên';
     hbscontent.isAdmin = true;
     hbscontent.isMainNavigationBar = false;
@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 
 
 //=================================== Quản lý chuyên mục ===================================
-router.get('/category', (req, res) => {
+router.get('/category',authAdmin, (req, res) => {
     
     categoryModel.allWithDetail()
     .then(rows => {
@@ -37,7 +37,7 @@ router.get('/category', (req, res) => {
 });
 
 //Add category
-router.get('/insertcategory', (req, res)=>{
+router.get('/insertcategory',authAdmin, (req, res)=>{
     res.render('admin/category/admin-insertcategory', hbscontent);
 });
 
@@ -57,7 +57,7 @@ router.post('/insertcategory', (req, res)=>{
 });
 
 //Sửa danh mục
-router.get('/editcategory/:id', (req, res) => {
+router.get('/editcategory/:id',authAdmin, (req, res) => {
     var id = req.params.id;
     categoryModel.single(id)
     .then(rows => {
@@ -76,7 +76,7 @@ router.get('/editcategory/:id', (req, res) => {
     
 });
 
-router.post('/editcategory', (req,res)=>{
+router.post('/editcategory',authAdmin, (req,res)=>{
     var entity = req.body;
 
     categoryModel.update(entity)
@@ -90,7 +90,7 @@ router.post('/editcategory', (req,res)=>{
     
 });
 
-router.post('/deletecategory', (req,res) => {
+router.post('/deletecategory',authAdmin, (req,res) => {
     categoryModel.delete(req.body.id)
     .then(() => {
         //console.log(req.body);
@@ -106,7 +106,7 @@ router.post('/deletecategory', (req,res) => {
 //=================================== Quản lý nhãn ===================================
 
 // select all table tag
-router.get('/tag', (req, res) => {
+router.get('/tag',authAdmin, (req, res) => {
     
     tagModel.all()
     .then(rows => {
@@ -125,7 +125,7 @@ router.get('/tag', (req, res) => {
 });
 
 //Thêm nhãn
-router.get('/inserttag', (req, res)=>{
+router.get('/inserttag',authAdmin, (req, res)=>{
     res.render('admin/tag/admin-inserttag', hbscontent);
 });
 
@@ -146,7 +146,7 @@ router.post('/inserttag', (req, res)=>{
 });
 
 //Sửa nhãn
-router.get('/edittag/:id', (req, res) => {
+router.get('/edittag/:id',authAdmin, (req, res) => {
     var id = req.params.id;
     tagModel.single(id)
     .then(rows => {
@@ -165,7 +165,7 @@ router.get('/edittag/:id', (req, res) => {
     
 });
 
-router.post('/edittag', (req,res)=>{
+router.post('/edittag',authAdmin, (req,res)=>{
     var entity = req.body;
 
     tagModel.update(entity)
@@ -179,7 +179,7 @@ router.post('/edittag', (req,res)=>{
     
 });
 
-router.post('/deletetag', (req,res) => {
+router.post('/deletetag',authAdmin, (req,res) => {
     tagModel.delete(req.body.id)
     .then(() => {
         //console.log(req.body);
@@ -194,7 +194,7 @@ router.post('/deletetag', (req,res) => {
 
 //=================================== Quản lý bài viết ===================================
 
-router.get('/', (req, res) => {
+router.get('/',authAdmin, (req, res) => {
     hbscontent.title = 'Quản trị viên';
     hbscontent.isAdmin = true;
     hbscontent.isMainNavigationBar = false;
@@ -202,7 +202,7 @@ router.get('/', (req, res) => {
     res.redirect('/admin/post');
 });
 
-router.get('/post', (req, res) => {
+router.get('/post',authAdmin, (req, res) => {
     
     postModel.all()
     .then(rows => {
@@ -235,7 +235,7 @@ router.get('/post', (req, res) => {
 
 
 
-router.post('/approvepost/:id', (req,res)=>{
+router.post('/approvepost/:id',authAdmin, (req,res)=>{
     var id = req.params.id;
     postModel.single(id)
     .then(rows=>{
@@ -256,7 +256,7 @@ router.post('/approvepost/:id', (req,res)=>{
 });
 //Edit post
 
-router.get('/editpost/:id', (req, res) => {
+router.get('/editpost/:id',authAdmin, (req, res) => {
     var id = req.params.id;
     tagModel.single(id)
     .then(rows => {
@@ -275,7 +275,7 @@ router.get('/editpost/:id', (req, res) => {
     
 });
 
-router.post('/editpost', (req,res)=>{
+router.post('/editpost',authAdmin, (req,res)=>{
     var entity = req.body;
 
     tagModel.update(entity)
@@ -289,7 +289,7 @@ router.post('/editpost', (req,res)=>{
     
 });
 
-router.post('/deletepost/:id', (req,res, next)=>{
+router.post('/deletepost/:id',authAdmin, (req,res, next)=>{
     var id = req.params.id;
     console.log(req.params);
     postModel.delete(id)
@@ -302,7 +302,7 @@ router.post('/deletepost/:id', (req,res, next)=>{
 
 //=================================== Quản lý người dùng ===================================
 
-router.get('/', (req, res) => {
+router.get('/', authAdmin,(req, res) => {
     hbscontent.title = 'Quản trị viên';
     hbscontent.isAdmin = true;
     hbscontent.isMainNavigationBar = false;
@@ -311,7 +311,7 @@ router.get('/', (req, res) => {
 });
 
 // select all table user
-router.get('/user', (req, res) => {
+router.get('/user',authAdmin, (req, res) => {
     
     userModel.all()
     .then(rows => {
@@ -330,7 +330,7 @@ router.get('/user', (req, res) => {
 });
 
 //Thêm người dùng
-router.get('/insertuser', (req, res)=>{
+router.get('/insertuser', authAdmin,(req, res)=>{
     res.render('admin/user/admin-insertuser', hbscontent);
 });
 
@@ -351,7 +351,7 @@ router.post('/insertuser', (req, res)=>{
 });
 
 //Sửa người dùng
-router.get('/edituser/:id', (req, res) => {
+router.get('/edituser/:id',authAdmin, (req, res) => {
     var id = req.params.id;
     userModel.single(id)
     .then(rows => {
@@ -383,7 +383,7 @@ router.get('/edituser/:id', (req, res) => {
     
 });
 
-router.post('/edituser', (req,res)=>{
+router.post('/edituser',authAdmin, (req,res)=>{
     var entity = req.body;
 
     userModel.update(entity)
@@ -397,7 +397,7 @@ router.post('/edituser', (req,res)=>{
     
 });
 
-router.post('/deleteuser', (req,res) => {
+router.post('/deleteuser',authAdmin, (req,res) => {
     userModel.delete(req.body.id)
     .then(() => {
         //console.log(req.body);

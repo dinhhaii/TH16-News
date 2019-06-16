@@ -2,9 +2,9 @@ var express = require('express');
 var router = express.Router();
 var hbscontent = require('../../app')
 var userModel = require('../..//models/user.model')
+var authSubcriber = require('../../middlewares/auth-subcriber');
 
-
-router.get('/subcriber-editprofile', (req, res) => {
+router.get('/subcriber-editprofile',authSubcriber, (req, res) => {
     hbscontent.title = "Cập nhật thông tin";
     userModel.single(hbscontent.currentuserid).then(user=>{
         console.log(user);
@@ -40,7 +40,7 @@ router.get('/subcriber-editprofile', (req, res) => {
     });
    
 });
-router.post('/subcriber-editprofile', (req, res) => {
+router.post('/subcriber-editprofile',authSubcriber, (req, res) => {
 
     var entity = req.body;
     if(entity.password.trim()=="")

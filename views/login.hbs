@@ -13,9 +13,14 @@
                             <div class="line"></div>
                         </div>
 
-                        {{#if isLoginError}}
+                        <!-- {{#if isLoginError}}
                             <div class="alert alert-danger" role="alert">
                             Tên tài khoản hoặc mật khẩu không chính xác. Vui lòng kiểm tra lại!
+                            </div>
+                        {{/if}} -->
+                        {{#if err_message}}
+                            <div class="alert alert-danger" role="alert">
+                            {{err_message}}
                             </div>
                         {{/if}}
 

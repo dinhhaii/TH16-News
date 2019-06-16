@@ -23,5 +23,8 @@ module.exports = {
 
     delete: (id) => {   
         return db.delete('user', 'id', id);
+    },
+    singleByUserName: username => {
+        return db.load(`select * from user where username = '${username}'`);
     }
 }
