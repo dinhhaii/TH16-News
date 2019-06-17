@@ -51,9 +51,35 @@
                 
                 {{#if isUnapproved}}
                 <td>
-                    <form action="/admin/approvepost/{{this.id}}" method="POST">
-                        <button type="submit" style="width: 100px;" class="btn btn-success">Duyệt</button>
-                    </form>
+                   <button  style="width: 100px;" class="btn btn-warning"
+                       data-toggle="modal" data-target="#myModal">Duyệt</button>
+                        <div class="modal conatiner" id="myModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                
+                                    <div class="container">
+                                        <h2>Duyệt</h2>
+                                        <form method="post" action="/admin/approvepost/{{this.id}}">                                        
+                                            
+                                            <div class="form-group">
+                                            <label for="pwd">Ngày xuất bản:</label>
+                                            <input type="date" class="form-control" style=" background: #F5F5DC;color:black;" id="pwd" placeholder="Enter approve date" name="publishdate">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary" style="width:45%;float:left;" >Duyệt</button>
+                                            <button type="button" class="btn btn-danger " style="float:right; width:45%;" data-dismiss="modal">Đóng</button>
+                                            </div>
+                                            
+                                            </form>
+                                        
+                                    </div>
+                                    
+                                    <!-- Modal footer -->
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div>
                 </td> 
                 {{else}}
                 <td></td>

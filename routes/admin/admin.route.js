@@ -235,12 +235,17 @@ router.get('/post',authAdmin, (req, res) => {
 
 
 
+
 router.post('/approvepost/:id',authAdmin, (req,res)=>{
     var id = req.params.id;
+    var entity = req.body;
+    console.log(entity);
     postModel.single(id)
     .then(rows=>{
         rows[0].status = "Đã duyệt";
+        rows[0].publishdate = entity.publishdate;
         postModel.update(rows[0]).then(()=>{
+            console.log(entity);
             res.redirect('/admin/post');
         }) 
         .catch(err => {
