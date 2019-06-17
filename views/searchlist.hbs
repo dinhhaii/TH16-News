@@ -1,22 +1,18 @@
-{{>breadcrumb}}
 
-<div class="vizew-bongda-list-posts-area mb-80">
+<div class="vizew-bongda-list-posts-area mb-80" style="margin-top: 60px;">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-8">
                 <!-- Archive Catagory & View Options -->
                 <div class="bongda-catagory-view mb-50 d-flex align-items-center justify-content-between">
-                    <!-- Catagory -->
-                    <div class="bongda-catagory">
-                        <a href="/category/{{idcategory}}/posts" class="post-cata cata-sm cata-success">{{title}}</a>
-                    </div>
+                    <h3>Tìm kiếm: "{{keyword}}"</h3>
                     <!-- View Options -->
                     <div class="view-options">
                         <a href="#" class="active"><i class="fa fa-list-ul" aria-hidden="true"></i></a>
                     </div>
                 </div>
 
-                {{#each posts}}
+                {{#each searchResults}}
                 <!-- Single Post Area -->
                 <div class="single-post-area style-2">
                     <div class="row align-items-center">

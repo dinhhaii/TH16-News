@@ -51,5 +51,12 @@ module.exports = {
     search: (content) => {
         return db.load(`SELECT *, MATCH (titlepost, content) AGAINST ('${content}' IN NATURAL LANGUAGE MODE) as score from post where 
         MATCH (titlepost, content) AGAINST ('${content}' IN NATURAL LANGUAGE MODE) > 0 ORDER BY score desc`);
+    },  
+    pagingSearch: (content, limit, offset) => {
+        return db.load(`SELECT *, MATCH (titlepost, content) AGAINST ('${content}' IN NATURAL LANGUAGE MODE) as score from post where 
+        MATCH (titlepost, content) AGAINST ('${content}' IN NATURAL LANGUAGE MODE) > 0 ORDER BY score desc limit ${limit} offset ${offset}`);
+    },    
+    countSearchResult: (content) => {
+        return db.load(`select count(*) as total from post where MATCH (titlepost, content) AGAINST ('${content}' IN NATURAL LANGUAGE MODE) > 0`);
     }
 }
