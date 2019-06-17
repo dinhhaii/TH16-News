@@ -37,6 +37,10 @@ module.exports = {
         return db.load(`select * from post as p1 where createddate = (select max(createddate) from post as p2 where p1.id = p2.id) order by createddate desc limit ${limit} offset 0`);
     },
 
+    latestpostIDCat: (limit, idcategory) => {
+        return db.load(`select * from post as p1 where idcategory = ${idcategory} and createddate = (select max(createddate) from post as p2 where p1.id = p2.id) order by createddate desc limit ${limit} offset 0`);
+    },
+
     descendingviews: (limit) => {
         return db.load(`SELECT * FROM post order by views desc limit ${limit} offset 0`);
     },

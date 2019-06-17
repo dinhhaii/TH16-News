@@ -23,6 +23,18 @@ router.get('/:id', (req, res, next) => {
             })
             .catch(next);
 
+            postModel.latestpostIDCat(5, idcat)
+            .then(postIDCat => {
+                postIDCat.forEach(element => {
+                    categoryModel.single(element.idcategory).then(catrows => {
+                        element['namecategory'] = catrows[0].name;
+                        var dt = new Date(Date(element.createddate));
+                        element['createddate'] = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
+                    }).catch(next);
+                hbscontent['latestposts'] = postIDCat;
+                })
+            }).catch(next);
+
             categoryModel.single(idcat).then(catrows => {
                 if (catrows.length > 0) {            
                     var namecat = catrows[0].name;
@@ -35,10 +47,8 @@ router.get('/:id', (req, res, next) => {
                 }
             }).catch(next);
         }
-    }).catch(next);
-
-    
-
+    })
+    .catch(next); 
 });
 
 module.exports = router;

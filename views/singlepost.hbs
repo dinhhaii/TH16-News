@@ -61,61 +61,20 @@
                                 <div class="line"></div>
                             </div>
 
-                            <div class="row">
-                                <!-- Single Blog Post -->
-                                <div class="col-12 col-md-6">
-                                    <div class="single-post-area mb-50">
-                                        <!-- Post Thumbnail -->
-                                        <div class="post-thumbnail">
-                                            <img src="img/bg-img/11.jpg" alt="">
-
-                                            <!-- Video Duration -->
-                                            <span class="video-duration">05.03</span>
-                                        </div>
-
-                                        <!-- Post Content -->
-                                        <div class="post-content">
-                                            <a href="category-list.html"
-                                                class="post-cata cata-sm cata-success">Sports</a>
-                                            <a href="single-post.html" class="post-title">Warner Bros. Developing
-                                                ‘The accountant’ Sequel</a>
-                                            <div class="post-meta d-flex">
-                                                <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>
-                                                    22</a>
-                                                <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 16</a>
-                                                <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-                                                    15</a>
-                                            </div>
+                            <div class="featured-post-slides owl-carousel mb-30">
+                                {{#each latestposts}}
+                                <div class="single-news-post news-post bg-img" style="background-image: url({{image}});">
+                                    <div class="post-content">
+                                        <a href="/category/{{idcategory}}/posts" class="post-cata">{{namecategory}}</a>
+                                        <a href="/post/{{id}}" class="post-title">
+                                            {{titlepost}}</a>   
+                                        <div class="post-meta d-flex">
+                                            <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 23</a>
+                                            <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 334</a>
                                         </div>
                                     </div>
                                 </div>
-
-                                <!-- Single Blog Post -->
-                                <div class="col-12 col-md-6">
-                                    <div class="single-post-area mb-50">
-                                        <!-- Post Thumbnail -->
-                                        <div class="post-thumbnail">
-                                            <img src="img/bg-img/12.jpg" alt="">
-
-                                            <!-- Video Duration -->
-                                            <span class="video-duration">05.03</span>
-                                        </div>
-
-                                        <!-- Post Content -->
-                                        <div class="post-content">
-                                            <a href="category-list.html" class="post-cata cata-sm cata-danger">Game</a>
-                                            <a href="single-post.html" class="post-title">Searching for the 'angel'
-                                                who held me on Westminste</a>
-                                            <div class="post-meta d-flex">
-                                                <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>
-                                                    28</a>
-                                                <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 17</a>
-                                                <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-                                                    22</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                {{/each}}
                             </div>
                         </div>
 
