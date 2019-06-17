@@ -13,7 +13,7 @@ module.exports = {
         return db.load(`select * from post where idcategory = ${catID} limit ${limit} offset ${offset}`);
     },
 
-    countByCat: catID => {
+    countByCat: (catID) => {
         return db.load(`select count(*) as total from post where ${catID} = idcategory`)
     },
   
