@@ -24,7 +24,7 @@
                             </div>
                         {{/if}}
 
-                        <form action="/login" method="post">
+                        <form action="/login" method="post" onsubmit="return checkform(this);">
                             <div class="form-group">
                                 <input type="text" class="form-control" name="username" placeholder="Tên tài khoản hoặc Email">
                             </div>
@@ -38,7 +38,18 @@
                                     <label class="custom-control-label" for="customControlAutosizing" style="color:gray">Nhớ tài khoản</label>
                                 </div>
                             </div>
-                            <button type="submit" class="btn vizew-btn w-100 mt-30">Đăng nhập</button>
+
+                            <div class="form-group" style="width: 200px">
+                                <div id="CaptchaDiv"></div>
+
+                                <div class="capbox-inner">
+                                    Nhập mã captcha:<br>
+                                    <input type="hidden" id="txtCaptcha" >
+                                    <input type="text" name="CaptchaInput" id="CaptchaInput" size="18">
+                                </div>
+                            </div>
+
+                            <button  type="submit" class="btn vizew-btn w-100 mt-30">Đăng nhập</button>
 
                             <div align="center">
                                 <br><span style="color:gray">Bạn chưa có tài khoản? </span><a href="/signup">Đăng kí</a>
@@ -50,4 +61,49 @@
             </div>
         </div>
     </div>
+
+<script type="text/javascript">
+function checkform(theform){
+        var why = "";
+
+        if(theform.CaptchaInput.value == ""){
+        why += "- Vui lòng nhập đúng captcha.\n";
+        }
+        if(theform.CaptchaInput.value != ""){
+        if(ValidCaptcha(theform.CaptchaInput.value) == false){
+        why += "- Mã captcha không khớp.\n";
+        }
+        }
+        if(why != ""){
+        alert(why);
+        return false;
+        }
+    }
+
+    var a = Math.ceil(Math.random() * 9)+ '';
+    var b = Math.ceil(Math.random() * 9)+ '';
+    var c = Math.ceil(Math.random() * 9)+ '';
+    var d = Math.ceil(Math.random() * 9)+ '';
+    var e = Math.ceil(Math.random() * 9)+ '';
+
+    var code = a + b + c + d + e;
+    document.getElementById("txtCaptcha").value = code;
+    document.getElementById("CaptchaDiv").innerHTML = code;
+
+    // Validate input against the generated number
+    function ValidCaptcha(){
+    var str1 = removeSpaces(document.getElementById('txtCaptcha').value);
+    var str2 = removeSpaces(document.getElementById('CaptchaInput').value);
+    if (str1 == str2){
+    return true;
+    }else{
+    return false;
+    }
+    }
+
+    // Remove the spaces from the entered and generated code
+    function removeSpaces(string){
+    return string.split(' ').join('');
+}
+</script>
     <!-- ##### Login Area End ##### -->

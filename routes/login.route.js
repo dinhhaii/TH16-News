@@ -22,7 +22,7 @@ router.post('/', (req, res, next) => {
             hbscontent['err_message'] = info.message;
             return res.render('login', hbscontent);
         }
-
+        
         console.log(req.query.retUrl);
         var retUrl = req.query.retUrl || '/';
         req.logIn(user , err => {
@@ -42,8 +42,7 @@ router.post('/', (req, res, next) => {
             return res.redirect(retUrl);
         });
     })(req, res, next);
-})
-
+});
 
 // var iserror = false;
 

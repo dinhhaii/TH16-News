@@ -39,6 +39,8 @@ router.get('/:id', (req, res, next) => {
                                 postIDCat.splice(i,1);
                             }
                         }
+                        postIDCat.splice(5,postIDCat.length - 1); // only 5 post
+                        
                         hbscontent['relatedpost'] = postIDCat;
                         categoryModel.single(idcat).then(catrows => {
                             var namecat = catrows[0].name;
