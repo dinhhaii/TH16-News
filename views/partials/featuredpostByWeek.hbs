@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-12">
+        <!-- ================= Những bài viết nổi bật trong tuần ================= -->
+        <div class="section-heading">
+            <h4>Bài viết nổi bật trong tuần</h4>
+            <div class="line"></div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    {{#each featuredposts}}
+    <div class="col-12 col-md-4">
+        <div class="single-post-area mb-80">
+            <!-- Post Thumbnail -->
+            <div class="post-thumbnail">
+                <img src="{{image}}" style="height: 220px;" alt="">
+            </div>
+
+            <!-- Post Content -->
+            <div class="post-content">
+                <a href="/category/{{idcategory}}/posts" class="post-cata cata-sm cata-success">{{namecategory}}</a>
+                <a href="/post/{{id}}" class="post-title">{{titlepost}}</a>
+                <div class="post-meta d-flex">
+                    <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 12</a>
+                    <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> {{views}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>

@@ -2,140 +2,34 @@
     <h4>Top chuyên mục</h4>
     <div class="line"></div>
 </div>
-<!-- Single Post Area -->
+
+{{#each latestpostByCat}}
 <div class="single-post-area mb-30">
     <div class="row align-items-center">
         <div class="col-12 col-lg-6">
             <!-- Post Thumbnail -->
             <div class="post-thumbnail">
-                <img src="/img/bg-img/7.jpg" alt="">
+                <img src="{{image}}" style="height: 250px" alt="">
 
             </div>
         </div>
         <div class="col-12 col-lg-6">
             <!-- Post Content -->
             <div class="post-content mt-0">
-                <a href="category-list.html" class="post-cata cata-sm cata-success">Bóng đá</a>
-                <a href="single-post.html" class="post-title mb-2">
-                    Siêu sao châu Á ghi bàn khủng tại Champions League là ai?
-                </a>
+                <a href="/category/{{idcategory}}/posts" class="post-cata cata-sm cata-danger">{{namecategory}}</a>
+                <a href="/post/{{id}}" class="post-title mb-2">{{titlepost}}</a>
                 <div class="post-meta d-flex align-items-center mb-2">
-                    <a href="#" class="post-author">By Hau</a>
+                    <a href="#" class="post-author"></a>
                     <i class="fa fa-circle" aria-hidden="true"></i>
-                    <a href="#" class="post-date">17/4/2019</a>
+                    <a href="#" class="post-date">{{createddate}}</a>
                 </div>
-                <p class="mb-2">Son Heung Min (Tottenham) trở thành cây săn bàn châu Á số 1 lịch
-                    sử cúp C1.</p>
+                <p class="mb-2">{{{summary}}}</p>
                 <div class="post-meta d-flex">
-                    <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 1000</a>
-                    <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1998</a>
-                    <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 1998</a>
+                    <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 12</a>
+                    <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> {{views}}</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<!-- Single Post Area -->
-<div class="single-post-area mb-30">
-    <div class="row align-items-center">
-        <div class="col-12 col-lg-6">
-            <!-- Post Thumbnail -->
-            <div class="post-thumbnail">
-                <img src="/img/bg-img/11.jpg" alt="">
-
-
-            </div>
-        </div>
-        <div class="col-12 col-lg-6">
-            <!-- Post Content -->
-            <div class="post-content mt-0">
-                <a href="category-list.html" class="post-cata cata-sm cata-danger">Bóng rổ</a>
-                <a href="single-post.html" class="post-title mb-2">“Khủng long” gây sốt Đông Nam Á:
-                    VĐV 2m21 -
-                    134kg có đôi tay ma thuật</a>
-                <div class="post-meta d-flex align-items-center mb-2">
-                    <a href="#" class="post-author">By Hau</a>
-                    <i class="fa fa-circle" aria-hidden="true"></i>
-                    <a href="#" class="post-date">18/4/2019</a>
-                </div>
-                <p class="mb-2">"Khủng long" càn quét các VĐV ở Đong Nam Á.</p>
-                <div class="post-meta d-flex">
-                    <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 55</a>
-                    <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1995</a>
-                    <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 1995</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Single Post Area -->
-<div class="single-post-area mb-30">
-    <div class="row align-items-center">
-        <div class="col-12 col-lg-6">
-            <!-- Post Thumbnail -->
-            <div class="post-thumbnail">
-                <img src="/img/bg-img/23.jpg" alt="">
-
-
-            </div>
-        </div>
-        <div class="col-12 col-lg-6">
-            <!-- Post Content -->
-            <div class="post-content mt-0">
-                <a href="category-list.html" class="post-cata cata-sm cata-primary">Bệnh ung thư</a>
-                <a href="single-post.html" class="post-title mb-2">Những thói quen giúp tăng khả
-                    năng "kháng"
-                    ung thư</a>
-                <div class="post-meta d-flex align-items-center mb-2">
-                    <a href="#" class="post-author">By Hau</a>
-                    <i class="fa fa-circle" aria-hidden="true"></i>
-                    <a href="#" class="post-date">17/4/2019</a>
-                </div>
-                <p class="mb-2">Xếp hình, ăn ngủ đúng giờ sẽ giúp nguy cơ ung thư giảm rõ rệt.
-                </p>
-                <div class="post-meta d-flex">
-                    <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 32</a>
-                    <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 42</a>
-                    <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 7</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Single Post Area -->
-<div class="single-post-area mb-30">
-    <div class="row align-items-center">
-        <div class="col-12 col-lg-6">
-            <!-- Post Thumbnail -->
-            <div class="post-thumbnail">
-                <img src="/img/bg-img/24.jpg" alt="">
-
-
-            </div>
-        </div>
-        <div class="col-12 col-lg-6">
-            <!-- Post Content -->
-            <div class="post-content mt-0">
-                <a href="category-list.html" class="post-cata cata-sm cata-danger">Sinh lý</a>
-                <a href="single-post.html" class="post-title mb-2">Chuyên gia kiến nghị cách để có 1
-                    sức khỏe
-                    sinh lý cao</a>
-                <div class="post-meta d-flex align-items-center mb-2">
-                    <a href="#" class="post-author">By hau</a>
-                    <i class="fa fa-circle" aria-hidden="true"></i>
-                    <a href="#" class="post-date">17/04/2019</a>
-                </div>
-                <p class="mb-2">Ăn dứa hay còn gọi là thơm liệu có thể tăng sức khỏe sinh lý?.
-                </p>
-                <div class="post-meta d-flex">
-                    <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 92</a>
-                    <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1992</a>
-                    <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 1992</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+{{/each}}

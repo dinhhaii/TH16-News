@@ -13,8 +13,10 @@ router.get('/', (req, res, next) => {
 
     Promise.all([
         postModel.latestpost(10),
-        postModel.descendingviews(10)
-    ]).then(([latestposts, trendingposts]) => {
+        postModel.descendingviews(10),
+        postModel.descendingviewsByWeek(3),
+        postModel.latestpostByCat()
+    ]).then(([latestposts, trendingposts, featuredpostsbyweek, latestpostByCat]) => {
         //Latest post
         latestposts.forEach(element => {
             categoryModel.single(element.idcategory).then(catrows => {
@@ -34,9 +36,29 @@ router.get('/', (req, res, next) => {
                 element['namecategory'] = catrows[0].name;                
             }).catch(next);
         });
-        
         trendingposts[0]['isfirsttrendingpost'] = true;
         hbscontent['trendingposts'] = trendingposts;
+
+        //3 Featured Post By Week
+        featuredpostsbyweek.forEach(element => {
+            categoryModel.single(element.idcategory).then(catrows => {
+                element['namecategory'] = catrows[0].name;
+                var dt = new Date(Date(element.createddate));
+                element['createddate'] = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
+            }).catch(next);
+        });
+        hbscontent['featuredposts'] = featuredpostsbyweek;
+
+        //Latest Post by Category
+        latestpostByCat.forEach(element => {
+            categoryModel.single(element.idcategory).then(catrows => {
+                element['namecategory'] = catrows[0].name;
+                var dt = new Date(Date(element.createddate));
+                element['createddate'] = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
+            }).catch(next);
+        });
+        hbscontent['latestpostByCat'] = latestpostByCat;
+        
         res.render('index', hbscontent);
 
     }).catch(next);

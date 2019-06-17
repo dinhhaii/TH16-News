@@ -40,11 +40,15 @@ module.exports = {
     latestpostIDCat: (limit, idcategory) => {
         return db.load(`select * from post as p1 where idcategory = ${idcategory} and createddate = (select max(createddate) from post as p2 where p1.id = p2.id) order by createddate desc limit ${limit} offset 0`);
     },
-
+    latestpostByCat: ()=>{
+        return db.load(`select *, max(createddate) as latestdate from post GROUP BY idcategory ORDER BY latestdate desc`);
+    },
     descendingviews: (limit) => {
         return db.load(`SELECT * FROM post order by views desc limit ${limit} offset 0`);
     },
-
+    descendingviewsByWeek: (limit) => {
+        return db.load(`select * , week(createddate) as week from post ORDER BY week desc, views DESC limit ${limit} offset 0`);
+    },
     findIdWriterAndStatus: (idwriter, status) => {
         return db.load(`SELECT * FROM post where idwriter = ${idwriter} and status = '${status}'`);
     },
