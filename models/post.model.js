@@ -47,5 +47,9 @@ module.exports = {
 
     findIdWriterAndStatus: (idwriter, status) => {
         return db.load(`SELECT * FROM post where idwriter = ${idwriter} and status = '${status}'`);
+    },
+    search: (content) => {
+        return db.load(`SELECT *, MATCH (titlepost, content) AGAINST ('${content}' IN NATURAL LANGUAGE MODE) as score from post where 
+        MATCH (titlepost, content) AGAINST ('${content}' IN NATURAL LANGUAGE MODE) > 0 ORDER BY score desc`);
     }
 }
