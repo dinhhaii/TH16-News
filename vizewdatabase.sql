@@ -11,7 +11,7 @@
  Target Server Version : 100138
  File Encoding         : 65001
 
- Date: 18/06/2019 00:29:50
+ Date: 18/06/2019 03:11:48
 */
 
 SET NAMES utf8mb4;
@@ -49,7 +49,7 @@ CREATE TABLE `comment`  (
   `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `createddate` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`idcomment`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of comment
@@ -63,6 +63,7 @@ INSERT INTO `comment` VALUES (9, 11, 'Dương', 'Bài viết hay quá', '2019-06
 INSERT INTO `comment` VALUES (10, 11, 'Dương', '113', '2019-06-17 18:51:06');
 INSERT INTO `comment` VALUES (11, 11, 'Phong', 'hay quá', '2019-06-17 18:51:33');
 INSERT INTO `comment` VALUES (12, 11, 'Mạnh', 'hay quá ae ơi ', '2019-06-17 18:53:59');
+INSERT INTO `comment` VALUES (13, 22, 'Lê', 'hay quá đi', '2019-06-18 00:32:30');
 
 -- ----------------------------
 -- Table structure for editor_category
@@ -306,7 +307,7 @@ CREATE TABLE `user`  (
   `position` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `createddate` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of user
@@ -317,6 +318,7 @@ INSERT INTO `user` VALUES (3, 'Trần Tường Duy', 'tuongduy', 'Nam', '$2a$10$
 INSERT INTO `user` VALUES (4, 'Lê Văn Đạt', 'levandat', 'Nữ', '$2a$10$EBhvzbLD/ImxDwwOLtipMu6fl1992siR6dsODquP/FuBGoipKFzAO', 'levandat@outlook.com', '0123454234', 'subcriber', '2019-06-16 23:41:57');
 INSERT INTO `user` VALUES (5, 'Trần Tường Lửa', 'trantuonglua', 'Nam', '$2a$10$EBhvzbLD/ImxDwwOLtipMu6fl1992siR6dsODquP/FuBGoipKFzAO', 'ttlua@student.hcmus.edu.vn', '0972332425', 'subcriber', '2019-06-16 23:41:59');
 INSERT INTO `user` VALUES (6, 'Nguyễn Duy Trì', 'nguyenduytri', 'Nữ', '$2a$10$EBhvzbLD/ImxDwwOLtipMu6fl1992siR6dsODquP/FuBGoipKFzAO', 'ndtri@yahoo.com', '01923392953', 'writer', '2019-06-16 23:42:00');
+INSERT INTO `user` VALUES (7, 'Nguyen Van B', 'nguyenvanb', 'Nữ', '$2a$10$oC8LWh1q9gfltG0xfseV0udQfhjlZhmaIAhHXloCR3xoB3F72/qLm', 'abc@yahoo.com', '0', 'subcriber', '2019-06-18 00:31:09');
 
 -- ----------------------------
 -- Table structure for vipsubcriber
