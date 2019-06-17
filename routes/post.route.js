@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+var commentModel = require('../models/comment.model')
 var postTagModel = require('../models/post-tag.model');
 var postModel = require('../models/post.model');
 var categoryModel = require('../models/category.model');
@@ -35,6 +35,14 @@ router.get('/:id', (req, res, next) => {
                 })
             }).catch(next);
 
+            // list comment
+            commentModel.single(id)
+            .then(lstcomment => {
+                console.log(lstcomment);
+                hbscontent['listcomment'] = lstcomment;
+            })
+            .catch(next);
+
             categoryModel.single(idcat).then(catrows => {
                 if (catrows.length > 0) {            
                     var namecat = catrows[0].name;
@@ -50,5 +58,19 @@ router.get('/:id', (req, res, next) => {
     })
     .catch(next); 
 });
+
+router.post('/:id', (req, res, next) => {
+    var entity = req.body;
+    var id = req.params.id;
+    entity['idproduct'] = id;
+    entity['createddate'] = new Date();
+    commentModel.add(entity)
+    .then(() => {
+        var url="/post/" + id;
+        res.redirect(url);
+    })
+    .catch(next);
+    
+})
 
 module.exports = router;

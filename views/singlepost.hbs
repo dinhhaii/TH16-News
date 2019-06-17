@@ -6,8 +6,8 @@
             <div class="col-12">
                 <div class="post-details-thumb mb-50">
                     <!--===================================================================-->
-                    <img src="{{post.image}}"
-                        style="display:block;margin-left: auto;margin-right:auto;width: 1000px;" alt="">
+                    <img src="{{post.image}}" style="display:block;margin-left: auto;margin-right:auto;width: 1000px;"
+                        alt="">
                 </div>
             </div>
         </div>
@@ -48,34 +48,9 @@
                         <div class="post-tags mt-30">
                             <ul>
                                 {{#each posttags}}
-                                    <li><a href="/tag/{{idtag}}/posts">{{name}}</a></li>
+                                <li><a href="/tag/{{idtag}}/posts">{{name}}</a></li>
                                 {{/each}}
                             </ul>
-                        </div>
-
-                        <!-- Related Post Area -->
-                        <div class="related-post-area mt-5">
-                            <!-- Section Title -->
-                            <div class="section-heading style-2">
-                                <h4>Bài viết liên quan</h4>
-                                <div class="line"></div>
-                            </div>
-
-                            <div class="featured-post-slides owl-carousel mb-30">
-                                {{#each latestposts}}
-                                <div class="single-news-post news-post bg-img" style="background-image: url({{image}});">
-                                    <div class="post-content">
-                                        <a href="/category/{{idcategory}}/posts" class="post-cata">{{namecategory}}</a>
-                                        <a href="/post/{{id}}" class="post-title">
-                                            {{titlepost}}</a>   
-                                        <div class="post-meta d-flex">
-                                            <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 23</a>
-                                            <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 334</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                {{/each}}
-                            </div>
                         </div>
 
                         <!-- Comment Area Start -->
@@ -86,7 +61,7 @@
                                 <h4>Bình luận</h4>
                                 <div class="line"></div>
                             </div>
-
+                            {{#each listcomment}}
                             <ul>
                                 <!-- Single Comment Area -->
                                 <li class="single_comment_area">
@@ -94,68 +69,18 @@
                                     <div class="comment-content d-flex">
                                         <!-- Comment Author -->
                                         <div class="comment-author">
-                                            <img src="img/bg-img/31.jpg" alt="author">
+                                            <img src="/img/bg-img/iconcomment.jpg" alt="author">
                                         </div>
                                         <!-- Comment Meta -->
                                         <div class="comment-meta">
-                                            <a href="#" class="comment-date">27 Aug 2019</a>
-                                            <h6>Tomas Mandy</h6>
-                                            <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,
-                                                consectetur, adipisci velit, sed quia non numquam eius</p>
-                                            <div class="d-flex align-items-center">
-                                                <a href="#" class="like">like</a>
-                                                <a href="#" class="reply">Reply</a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <ol class="children">
-                                        <li class="single_comment_area">
-                                            <!-- Comment Content -->
-                                            <div class="comment-content d-flex">
-                                                <!-- Comment Author -->
-                                                <div class="comment-author">
-                                                    <img src="img/bg-img/32.jpg" alt="author">
-                                                </div>
-                                                <!-- Comment Meta -->
-                                                <div class="comment-meta">
-                                                    <a href="#" class="comment-date">27 Aug 2019</a>
-                                                    <h6>Britney Millner</h6>
-                                                    <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit
-                                                        amet, consectetur, adipisci velit, sed quia non numquam eius
-                                                    </p>
-                                                    <div class="d-flex align-items-center">
-                                                        <a href="#" class="like">like</a>
-                                                        <a href="#" class="reply">Reply</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ol>
-                                </li>
-
-                                <!-- Single Comment Area -->
-                                <li class="single_comment_area">
-                                    <!-- Comment Content -->
-                                    <div class="comment-content d-flex">
-                                        <!-- Comment Author -->
-                                        <div class="comment-author">
-                                            <img src="img/bg-img/33.jpg" alt="author">
-                                        </div>
-                                        <!-- Comment Meta -->
-                                        <div class="comment-meta">
-                                            <a href="#" class="comment-date">27 Aug 2019</a>
-                                            <h6>Simon Downey</h6>
-                                            <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,
-                                                consectetur, adipisci velit, sed quia non numquam eius</p>
-                                            <div class="d-flex align-items-center">
-                                                <a href="#" class="like">like</a>
-                                                <a href="#" class="reply">Reply</a>
-                                            </div>
+                                            <a href="#" class="comment-date">{{createddate}}</a>
+                                            <h6>{{nameuser}}</h6>
+                                            <p>{{content}}</p>
                                         </div>
                                     </div>
                                 </li>
                             </ul>
+                            {{/each}}
                         </div>
 
                         <!-- Post A Comment Area -->
@@ -169,17 +94,14 @@
 
                             <!-- Reply Form -->
                             <div class="contact-form-area">
-                                <form action="#" method="post">
+                                <form method="post">
                                     <div class="row">
-                                        <div class="col-12 col-lg-6">
-                                            <input type="text" class="form-control" id="name"
+                                        <div class="col-12">
+                                            <input type="text" class="form-control" id="nameuser" name="nameuser"
                                                 placeholder="Tên của bạn*">
                                         </div>
-                                        <div class="col-12 col-lg-6">
-                                            <input type="email" class="form-control" id="email" placeholder="Email*">
-                                        </div>
                                         <div class="col-12">
-                                            <textarea name="message" class="form-control" id="message"
+                                            <textarea name="content" class="form-control" id="content"
                                                 placeholder="Nội dung*"></textarea>
                                         </div>
                                         <div class="col-12">
@@ -195,7 +117,7 @@
             </div>
 
             <!-- Sidebar Widget -->
-            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+            <div class="col-12 col-md-5 col-lg-4">
                 <div class="sidebar-area">
 
                     <!-- ***** Single Widget ***** -->
@@ -216,14 +138,32 @@
 
                         </div>
                     </div>
-                    <!-- ***** Single Widget ***** -->
-                    <div class="single-widget share-post-widget mb-50">
-                        <p>Share This Post</p>
-                        <a href="#" class="facebook"><i class="fa fa-facebook" aria-hidden="true"></i> Facebook</a>
-                        <a href="#" class="twitter"><i class="fa fa-twitter" aria-hidden="true"></i> Twitter</a>
-                        <a href="#" class="google"><i class="fa fa-google" aria-hidden="true"></i> Google+</a>
-                    </div>
-
+                    
+                    <section class="vizew-post-area mb-30">
+                        <div class="container">
+                            <div class="single-widget latest-video-widget mb-50">
+                                <div class="section-heading style-2 mb-30">
+                                    <h4>Bài viết liên quan</h4>
+                                    <div class="line"></div>
+                                </div>
+                                <!-- Single Blog Post -->
+                                {{#each latestposts}}
+                                <div class="single-blog-post d-flex">
+                                    <div class="post-thumbnail">
+                                        <img src="{{image}}" alt="">
+                                    </div>
+                                    <div class="post-content">
+                                        <a href="/post/{{id}}" class="post-title">{{titlepost}}</a>
+                                        <div class="post-meta justify-content-between">
+                                            <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 29</a>
+                                            <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 08</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </section>
                 </div>
             </div>
         </div>
