@@ -40,20 +40,21 @@ router.get('/:id', (req, res, next) => {
                             }
                         }
                         hbscontent['relatedpost'] = postIDCat;
+                        categoryModel.single(idcat).then(catrows => {
+                            var namecat = catrows[0].name;
+                            hbscontent.isMainNavigationBar = true;
+                            hbscontent.breadcrumbitemactive = namecat;
+                            hbscontent['idcat'] = idcat;
+                            hbscontent['namecat'] = namecat;
+                            res.render('singlepost', hbscontent);
+                        })
+                        .catch(next);
                     })
                     .catch(next);
                 })
                 .catch(next);
 
-                categoryModel.single(idcat).then(catrows => {
-                    var namecat = catrows[0].name;
-                    hbscontent.isMainNavigationBar = true;
-                    hbscontent.breadcrumbitemactive = namecat;
-                    hbscontent['idcat'] = idcat;
-                    hbscontent['namecat'] = namecat;
-                    res.render('singlepost', hbscontent);
-                })
-                .catch(next);
+                
             }
         })
         .catch(next);
