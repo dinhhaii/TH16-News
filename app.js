@@ -41,6 +41,7 @@ app.use('/admin', require('./routes/admin/admin.route'));
 app.use('/editor', require('./routes/editor/editor.route'));
 app.use('/writer', require('./routes/writer/writer.route'));
 app.use('/subcriber', require('./routes/subcriber/subcriber.route'));
+app.use('/search', require('./routes/search.route'));
 
 //Lỗi
 app.use((req, res, next) => { res.render('404', { layout: false }); })
