@@ -1,0 +1,61 @@
+<div class="tab-content container">
+    <div class="tab-pane fade show active" id="DangKiThanhVienVip" role="tabpanel" aria-labelledby="tab-css">
+        <!-- ##### Breadcrumb Area Start ##### -->
+        <div class="vizew-breadcrumb">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#"><i class="fa fa-home" aria-hidden="true"></i>
+                                        Trang
+                                        chủ</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Gia hạn thành viên VIP</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ##### Breadcrumb Area End ##### -->
+
+        <!-- ##### Login Area Start ##### -->
+        <div class="vizew-login-area section-padding-80">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-6">
+                        <div class="login-content">
+                            <!-- Section Title -->
+                            <div class="section-heading">
+                                <h4>Gia hạn thành viên VIP</h4>
+                                <div class="line"></div>
+                            </div>
+
+                            <form action="/subcriber/renewedvip" method="post">
+                                <div class="form-group">
+                                    <p><b>Họ và tên</b></p>
+                                    <input readonly type="text" value="{{subscriberName}}"  class="form-control" name="name" id="exampleInputEmail1">
+                                </div>
+                                <div class="form-group">
+                                    <p><b>Ngày gia hạn</b></p>
+                                    <input type="text" class="form-control" name="startdate" value="{{subscriberRegistration}}">
+                                </div>
+
+                                <div class="form-group">
+                                    <p><b>Ngày hết hạn</b></p>
+                                    <input type="text" class="form-control" name="enddate" value="{{subscriberExpiration}}">
+                                </div>
+
+                                <button type="submit" class="btn vizew-btn w-100 mt-30">Gia hạn</button>
+                                <br>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

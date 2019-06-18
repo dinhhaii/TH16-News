@@ -14,7 +14,7 @@ module.exports = {
     },
 
     update: (entity) => {
-        return db.update('vipsubcriber', 'id', entity);
+        return db.update('vipsubcriber', 'iduser', entity);
     },
 
     delete: (id) => {   

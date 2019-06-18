@@ -205,4 +205,69 @@ router.post('/registrationvip', authSubcriber, (req, res) => {
     })
 });
 
+router.get('/renewedvip', authSubcriber, (req, res) => {
+    hbscontent.title = "Gia hạn thành viên VIP";
+    hbscontent.isMainNavigationBar = false;
+    userModel.single(hbscontent.currentuserid)
+    .then(rows => {
+        hbscontent['subscriberName'] = rows[0].name;
+        var firstDate = new Date();
+        var finalDate = new Date();
+        var numberOfDaysToAdd = 7;    
+        finalDate.setDate(finalDate.getDate() + numberOfDaysToAdd);
+
+        var dd = firstDate.getDate();
+        var mm = firstDate.getMonth() + 1;
+        var y = firstDate.getFullYear();
+        var startDate = dd + '-'+ mm + '-'+ y; 
+
+        var dd = finalDate.getDate();   
+        var mm = finalDate.getMonth() + 1;
+        var y = finalDate.getFullYear();
+        var endDate = dd + '-'+ mm + '-'+ y; 
+
+        hbscontent['subscriberRegistration'] = startDate;
+        hbscontent['subscriberExpiration'] = endDate;
+
+        res.render('subcriber/subcriber-renewedvip', hbscontent)
+    })
+    .catch(err=>{
+        console.log(err);
+        res.end('Error occured');
+    })
+});
+
+router.post('/renewedvip', authSubcriber, (req, res) => {
+    var entity = req.body;
+
+    var firstDate = new Date();
+    var finalDate = new Date();
+    var numberOfDaysToAdd = 7;    
+    finalDate.setDate(finalDate.getDate() + numberOfDaysToAdd);
+
+    var dd = firstDate.getDate();
+    var mm = firstDate.getMonth() + 1;
+    var y = firstDate.getFullYear();
+    var startDate = dd + '-'+ mm + '-'+ y; 
+
+    var dd = finalDate.getDate();   
+    var mm = finalDate.getMonth() + 1;
+    var y = finalDate.getFullYear();
+    var endDate = dd + '-'+ mm + '-'+ y; 
+
+    entity.startdate = firstDate;
+    entity.enddate = finalDate;
+    entity['iduser'] = hbscontent.currentuserid;
+    delete entity['name'];
+    console.log(entity);
+    vipsubcriberModel.update(entity)
+    .then(() => {
+        res.redirect('/subcriber/profile');
+    })
+    .catch(err => {
+        console.log(err);
+        res.end('Error occured');
+    })
+});
+
 module.exports = router;
