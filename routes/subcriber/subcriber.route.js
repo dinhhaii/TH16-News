@@ -19,18 +19,49 @@ router.get('/profile', authSubcriber, (req,res, next) => {
     .then(user => {
         vipsubcriberModel.single(user[0].id)
         .then(userVIP => {
-            console.log(userVIP);
             if (userVIP[0] != null)
             {
                 hbscontent['isSubcriberVIP'] = true;
                 var rows = userVIP[0];
                 rows['subcribervip'] = "Thành viên VIP";
+                var firstDate = new Date(rows.startdate);
+                var finalDate = new Date(rows.enddate);
+                var secondsDate = new Date(user[0].createddate);
+
+                var numberOfDaysToAdd = 7;    
+                finalDate.setDate(firstDate.getDate() + numberOfDaysToAdd);
+
+                var dd = firstDate.getDate();
+                var mm = firstDate.getMonth() + 1;
+                var y = firstDate.getFullYear();
+                var startDate = dd + '-'+ mm + '-'+ y; 
+
+                var dd = finalDate.getDate();   
+                var mm = finalDate.getMonth() + 1;
+                var y = finalDate.getFullYear();
+                var endDate = dd + '-'+ mm + '-'+ y; 
+
+                var dd = secondsDate.getDate();   
+                var mm = secondsDate.getMonth() + 1;
+                var y = secondsDate.getFullYear();
+                var createdDate = dd + '-'+ mm + '-'+ y; 
+
+                rows['startdate'] = startDate;
+                rows['enddate'] = endDate;
+                user[0].createddate = createdDate;
                 hbscontent['subcriber'] = user[0];
                 hbscontent['subcriberVIP'] = rows;
                 res.render('subcriber/subcriber-profile', hbscontent);
             }
             else 
             {
+                var secondsDate = new Date(user[0].createddate);
+                var dd = secondsDate.getDate();   
+                var mm = secondsDate.getMonth() + 1;
+                var y = secondsDate.getFullYear();
+                var createdDate = dd + '-'+ mm + '-'+ y; 
+                user[0].createddate = createdDate;
+                
                 hbscontent['isSubcriberVIP'] = false;
                 hbscontent['subcriber'] = user[0];
                 res.render('subcriber/subcriber-profile', hbscontent);
