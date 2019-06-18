@@ -100,7 +100,7 @@ router.post('/editprofile',authSubcriber, (req, res) => {
     }
     entity['id'] = hbscontent.currentuserid;
     userModel.update(entity).then(()=>{
-        res.redirect('/subcriber/subcriber-profile')
+        res.redirect('/subcriber/profile')
     })
     .catch(err=>{
         console.log(err);
@@ -164,7 +164,7 @@ router.post('/registrationvip', authSubcriber, (req, res) => {
     console.log(entity);
     vipsubcriberModel.add(entity)
     .then(() => {
-        res.redirect('/');
+        res.redirect('/subcriber/profile');
     })
     .catch(err => {
         console.log(err);
