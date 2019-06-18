@@ -91,8 +91,8 @@ router.get('/subcriber-registrationvip', authSubcriber, (req, res) => {
         var y = finalDate.getFullYear();
         var endDate = dd + '-'+ mm + '-'+ y; 
 
-        hbscontent['subscriberRegistration'] = firstDate;
-        hbscontent['subscriberExpiration'] = finalDate;
+        hbscontent['subscriberRegistration'] = startDate;
+        hbscontent['subscriberExpiration'] = endDate;
 
         res.render('subcriber/subcriber-registrationvip', hbscontent)
     })
@@ -104,6 +104,24 @@ router.get('/subcriber-registrationvip', authSubcriber, (req, res) => {
 
 router.post('/subcriber-registrationvip', authSubcriber, (req, res) => {
     var entity = req.body;
+
+    var firstDate = new Date();
+    var finalDate = new Date();
+    var numberOfDaysToAdd = 7;    
+    finalDate.setDate(finalDate.getDate() + numberOfDaysToAdd);
+
+    var dd = firstDate.getDate();
+    var mm = firstDate.getMonth() + 1;
+    var y = firstDate.getFullYear();
+    var startDate = dd + '-'+ mm + '-'+ y; 
+
+    var dd = finalDate.getDate();   
+    var mm = finalDate.getMonth() + 1;
+    var y = finalDate.getFullYear();
+    var endDate = dd + '-'+ mm + '-'+ y; 
+
+    entity.startdate = firstDate;
+    entity.enddate = finalDate;
     entity['iduser'] = hbscontent.currentuserid;
     delete entity['name'];
     console.log(entity);
