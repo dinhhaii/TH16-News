@@ -19,21 +19,20 @@ router.get('/profile', authSubcriber, (req,res, next) => {
     .then(user => {
         vipsubcriberModel.single(user[0].id)
         .then(userVIP => {
-            if (userVIP == null)
+            console.log(userVIP);
+            if (userVIP[0] != null)
             {
-                hbscontent['isSubcriberVIP'] = false;
+                hbscontent['isSubcriberVIP'] = true;
+                var rows = userVIP[0];
+                rows['subcribervip'] = "Thành viên VIP";
                 hbscontent['subcriber'] = user[0];
+                hbscontent['subcriberVIP'] = rows;
                 res.render('subcriber/subcriber-profile', hbscontent);
             }
             else 
             {
-                hbscontent['isSubcriberVIP'] = true;
-                var rows = user[0];
-                rows['subcribervip'] = "Thành viên VIP";
-                rows['startdate'] = userVIP[0].startdate;
-                rows['enddate'] = userVIP[0].enddate;
-                console.log(rows);
-                hbscontent['subcriber'] = rows;
+                hbscontent['isSubcriberVIP'] = false;
+                hbscontent['subcriber'] = user[0];
                 res.render('subcriber/subcriber-profile', hbscontent);
             }
         })
