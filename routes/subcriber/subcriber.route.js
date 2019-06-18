@@ -1,20 +1,21 @@
 var express = require('express');
 var router = express.Router();
-var hbscontent = require('../../app')
-var userModel = require('../..//models/user.model')
+var hbscontent = require('../../app');
+var userModel = require('../..//models/user.model');
 var authSubcriber = require('../../middlewares/auth-subcriber');
 var vipsubcriberModel = require('../..//models/vipsubcriber.model');
 
 router.get('/', authSubcriber, (req, res) => {
     hbscontent.title = 'Đọc giả';
-    hbscontent.isSubcriber = true;
     hbscontent.isMainNavigationBar = false;
+    hbscontent.isSubcriber = true;
     hbscontent.currentPage = req.protocol + '://' + req.get('host') + req.originalUrl;
     res.redirect('/subcriber');
 });
 
 router.get('/profile', authSubcriber, (req,res, next) => {
     hbscontent.title = "Thông tin cá nhân";
+    hbscontent.isMainNavigationBar = false;
     userModel.single(hbscontent.currentuserid)
     .then(user => {
         vipsubcriberModel.single(user[0].id)
@@ -61,7 +62,7 @@ router.get('/profile', authSubcriber, (req,res, next) => {
                 var y = secondsDate.getFullYear();
                 var createdDate = dd + '-'+ mm + '-'+ y; 
                 user[0].createddate = createdDate;
-                
+
                 hbscontent['isSubcriberVIP'] = false;
                 hbscontent['subcriber'] = user[0];
                 res.render('subcriber/subcriber-profile', hbscontent);
@@ -74,6 +75,7 @@ router.get('/profile', authSubcriber, (req,res, next) => {
 
 router.get('/editprofile',authSubcriber, (req, res) => {
     hbscontent.title = "Cập nhật thông tin";
+    hbscontent.isMainNavigationBar = false;
     userModel.single(hbscontent.currentuserid).then(user=>{
         hbscontent['subscriberName'] = user[0].name;
         hbscontent['subscriberEmail'] = user[0].email;
@@ -140,6 +142,7 @@ router.post('/editprofile',authSubcriber, (req, res) => {
 
 router.get('/registrationvip', authSubcriber, (req, res) => {
     hbscontent.title = "Đăng kí thành viên VIP";
+    hbscontent.isMainNavigationBar = false;
     userModel.single(hbscontent.currentuserid)
     .then(rows => {
         hbscontent['subscriberName'] = rows[0].name;
