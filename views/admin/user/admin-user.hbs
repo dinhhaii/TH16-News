@@ -26,6 +26,7 @@
                 <th scope="col">Vị trí</th>
                 <th scope="col">Ngày khởi tạo</th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody class="table-light">
@@ -44,6 +45,47 @@
                         <i class="fa fa-pencil"></i>
                     </a>
                 </td>
+                {{#if isEditor}}
+                <td>
+                    <button  style="width: 100px;" class="btn btn-warning"
+                       data-toggle="modal" data-target="#myModal">Phân công</button>
+                        <div class="modal conatiner" id="myModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                
+                                    <div class="container">
+                                        <h2>Duyệt</h2>
+                                        <form method="post" action="/admin/editorcategory/{{this.id}}">                                        
+                                            
+                                            <div class="form-group">
+                                                <label for="select">Chuyên mục:</label>
+                                                <select style="background: #F5F5DC;color:black;" name="idcategory" value="" class="form-control">
+                                                    {{#each ../categories}}
+                                                    <option value="{{id}}" >{{name}}</option>
+                                                    {{/each}}
+                                                    
+                                                </select>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary" style="width:45%;float:left;" >Duyệt</button>
+                                            <button type="button" class="btn btn-danger " style="float:right; width:45%;" data-dismiss="modal">Đóng</button>
+                                            </div>
+                                            
+                                            </form>
+                                        
+                                    </div>
+                                    
+                                    <!-- Modal footer -->
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div>
+                </td>
+                
+                {{else}}
+                    <td></td>
+                {{/if}}
             </tr>
             {{/each}}
         </tbody>

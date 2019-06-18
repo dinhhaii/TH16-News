@@ -7,7 +7,7 @@ var categoryModel = require('../../models/category.model');
 var posttagModel = require('../../models/post-tag.model');
 var tagModel = require('../../models/tag.model');
 var userModel = require('../../models/user.model');
-
+var editorcategoryModel = require('../../models/editor-category.model');
 //=================================== Duyệt bài viết ===================================
 
 router.get('/', authEditor, (req, res) => {
@@ -18,12 +18,39 @@ router.get('/', authEditor, (req, res) => {
 });
 
 router.get('/approvepost', authEditor, (req, res) => {    
-    
-    postModel.all()
+    var listPostByEditor = [];
+    editorcategoryModel.findideditor(hbscontent.currentuserid)
     .then(rows => {
-        hbscontent['posts'] = rows;
+        rows.forEach(element=>{
+           
+           postModel.allByCat(element.idcategory).then(postByCats=>{
+            postByCats.forEach(d=>{
+                
+                
+                if(d.status=="Chưa duyệt")
+                {
+                    d['isUnapproved'] = true; 
+                }
+                else if(d.status=="Đã duyệt")
+                {
+                    d['isApproved'] = true; 
+                }
+                else if(d.status=="Từ chối")
+                {
+                    d['isRejected'] = true; 
+                }
+                listPostByEditor.push(d);
+            });
+            hbscontent['posts'] = listPostByEditor;
+            res.render('editor/editor-approvepost', hbscontent);
+           }).catch(err=>{
+            console.log(err);
+           });
+        });
+       
         categoryModel.all().then(cateRows=>{   
             hbscontent['categories'] = cateRows;
+            
             //Update totalpost in category table
         }).catch(err =>{
             console.log(err);
@@ -33,28 +60,13 @@ router.get('/approvepost', authEditor, (req, res) => {
         tagModel.all().then(tagRows=>{
             hbscontent['tags'] = tagRows;
             //Update totalpost in category table
-            res.render('editor/editor-approvepost', hbscontent);
+           
+            
         }).catch(err =>{
             console.log(err);
         });
         //Update totalpost in category table
-        rows.forEach(element => {
-            
-            postModel.update(element).then().catch(err => { console.log(err)});
-            
-            if(element.status=="Chưa duyệt")
-            {
-                element['isUnapproved'] = true; 
-            }
-            else if(element.status=="Đã duyệt")
-            {
-                element['isApproved'] = true; 
-            }
-            else if(element.status=="Từ chối")
-            {
-                element['isRejected'] = true; 
-            }
-        });
+      
      
     }).catch(err => {
         console.log(err);
@@ -152,38 +164,86 @@ router.post('/rejectedpost/:id',authEditor, (req, res) => {
 });
 
 router.get('/approvedpost', authEditor, (req,res) => {
-    var listApproved = [];
-    postModel.all().then(rows=>{
-        rows.forEach(post=>{
-            if(post.status=='Đã duyệt')
-            {
-                listApproved.push(post);
-            }
-        });
-        hbscontent['approvedposts'] = listApproved;
-        res.render('editor/editor-approvedpost',hbscontent);
-    }).catch(err=>{
+    
+    var listPostByEditor = [];
+    editorcategoryModel.findideditor(hbscontent.currentuserid)
+    .then(rows => {
+        rows.forEach(element=>{
+           
+           postModel.allByCat(element.idcategory).then(postByCats=>{
+            postByCats.forEach(d=>{
+                
+                
+                if(d.status=="Chưa duyệt")
+                {
+                    d['isUnapproved'] = true; 
+                }
+                else if(d.status=="Đã duyệt")
+                {
+                    d['isApproved'] = true; 
+                }
+                else if(d.status=="Từ chối")
+                {
+                    d['isRejected'] = true; 
+                }
+                if(d.status=='Đã duyệt')
+                {
+                    listPostByEditor.push(d);
+                }
+               
+            });
+            hbscontent['approvedposts'] = listPostByEditor;
+            res.render('editor/editor-approvedpost',hbscontent);
+           }).catch(err=>{
+            console.log(err);
+           });
+        });        
+        
+    }).catch(err => {
         console.log(err);
-        res.end('Error occured');
-    })
+    }); 
+    
     
 });
 
 router.get('/rejectedpost', authEditor, (req,res) => {
-    var listRejected = [];
-    postModel.all().then(rows=>{
-        rows.forEach(post=>{
-            if(post.status=='Từ chối')
-            {
-                listRejected.push(post);
-            }
-        });
-        hbscontent['rejectedposts'] = listRejected;
-        res.render('editor/editor-rejectedpost',hbscontent);
-    }).catch(err=>{
+    var listPostByEditor = [];
+    editorcategoryModel.findideditor(hbscontent.currentuserid)
+    .then(rows => {
+        rows.forEach(element=>{
+           
+           postModel.allByCat(element.idcategory).then(postByCats=>{
+            postByCats.forEach(d=>{
+                
+                
+                if(d.status=="Chưa duyệt")
+                {
+                    d['isUnapproved'] = true; 
+                }
+                else if(d.status=="Đã duyệt")
+                {
+                    d['isApproved'] = true; 
+                }
+                else if(d.status=="Từ chối")
+                {
+                    d['isRejected'] = true; 
+                }
+                if(d.status=='Từ chối')
+                {
+                    listPostByEditor.push(d);
+                }
+               
+            });
+            hbscontent['rejectedposts'] = listPostByEditor;
+            res.render('editor/editor-rejectedpost',hbscontent);
+           }).catch(err=>{
+            console.log(err);
+           });
+        });        
+        
+    }).catch(err => {
         console.log(err);
-        res.end('Error occured');
-    })
+    }); 
     
 });
 router.get('/editor-editprofile', authEditor, (req, res) => {
