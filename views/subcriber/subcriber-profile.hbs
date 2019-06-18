@@ -1,0 +1,97 @@
+<div class="tab-content container">
+    <div class="tab-pane fade show active" id="CapNhatThongTin" role="tabpanel" aria-labelledby="tab-css">
+        <!-- ##### Breadcrumb Area Start ##### -->
+        <div class="vizew-breadcrumb">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#"><i class="fa fa-home" aria-hidden="true"></i>
+                                        Trang
+                                        chủ</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Thông tin cá nhân</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ##### Breadcrumb Area End ##### -->
+
+        <!-- ##### Login Area Start ##### -->
+        <div class="vizew-login-area section-padding-80">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-6">
+                        <div class="login-content">
+                            <!-- Section Title -->
+                            <div class="section-heading">
+                                <h4>Thông tin cá nhân</h4>
+                                <div class="line"></div>
+                            </div>
+
+                            <form action="/subcriber/profile" method="post">
+                                <div class="form-group">
+                                    <p><b>Họ và tên</b></p>
+                                    <input type="text" value="{{subcriber.name}}" class="form-control" name="name" id="exampleInputEmail1"
+                                        >
+                                </div>
+                                <div class="form-group">
+                                    <p><b>Tài khoản người dùng</b></p>
+                                    <input type="text" class="form-control" name="username" value="{{subcriber.username}}">
+                                </div>
+
+                                <div class="form-group">
+                                    <p><b>Mật khẩu người dùng</b></p>
+                                    <input type="password" class="form-control" name="password"  value="{{subcriber.password}}">
+                                </div>
+                                <div class="form-group">
+                                    <p><b>Giới tính</b></p>
+                                    <input type="text" class="form-control" name="gender" value={{subcriber.gender}}></input>
+                                </div>
+                                <div class="form-group">
+                                    <p><b>Email</b></p>
+                                    <input type="email" class="form-control" name="email" value="{{subcriber.email}}" id="exampleInputEmail1"
+                                       >
+                                </div>
+                                <div class="form-group">
+                                    <p><b>Số điện thoại</b></p>
+                                    <input type="text" name="phone" value="{{subcriber.phone}}" class="form-control" id="exampleInputEmail1"
+                                       >
+                                </div>
+                                <div class="form-group">
+                                    <p><b>Ngày đăng kí tài khoản</b></p>
+                                    <input type="text" name="createddate" value="{{subcriber.createddate}}" class="form-control" id="exampleInputEmail1"
+                                       >
+                                </div>
+                                {{#if isSubcriberVIP}}
+                                <div class="form-group">
+                                    <p><b>Thành viên VIP</b></p>
+                                    <input type="text" name="subcribervip" value="{{subcriber.subcribervip}}" class="form-control" id="exampleInputEmail1"
+                                        >
+                                </div>
+                                <div class="form-group">
+                                    <p><b>Ngày đăng kí</b></p>
+                                    <input type="text" name="startdate" value="{{subcriber.startdate}}" class="form-control" id="exampleInputEmail1"
+                                        >
+                                </div>
+                                <div class="form-group">
+                                    <p><b>Ngày hết hạn</b></p>
+                                    <input type="text" name="enddate" value="{{subcriber.enddate}}" class="form-control" id="exampleInputEmail1"
+                                       >
+                                </div>
+                                {{else}}
+                                <a href="/subcriber/registrationvip"<button class="btn vizew-btn w-100 mt-30">Đăng kí thành viên VIP</button></a>
+                                {{/if}}
+                                <br>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

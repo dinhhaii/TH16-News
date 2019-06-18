@@ -60,6 +60,16 @@
         <li><a href="/writer/rejectedpost">Bài viết bị từ chối</a></li>
     </ul>
 </div>
+{{else}}
+{{#if isSubcriber}}
+<div class="classynav">
+    <ul class="nav nav-tabs">
+        <li><a href="/subcriber/profile">Thông tin cá nhân</a></li>
+        <li><a href="/writer/editprofile">Sửa thông tin cá nhân</a></li>
+        <li><a href="/writer/registrationvip">Đăng kí thành viên VIP</a></li>
+    </ul>
+</div>
+{{/if}}
 {{/if}}
 {{/if}}
 {{/if}}

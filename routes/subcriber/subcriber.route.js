@@ -5,7 +5,44 @@ var userModel = require('../..//models/user.model')
 var authSubcriber = require('../../middlewares/auth-subcriber');
 var vipsubcriberModel = require('../..//models/vipsubcriber.model');
 
-router.get('/subcriber-editprofile',authSubcriber, (req, res) => {
+router.get('/', authSubcriber, (req, res) => {
+    hbscontent.title = 'Đọc giả';
+    hbscontent.isSubcriber = true;
+    hbscontent.isMainNavigationBar = false;
+    hbscontent.currentPage = req.protocol + '://' + req.get('host') + req.originalUrl;
+    res.redirect('/subcriber');
+});
+
+router.get('/profile', authSubcriber, (req,res, next) => {
+    hbscontent.title = "Thông tin cá nhân";
+    userModel.single(hbscontent.currentuserid)
+    .then(user => {
+        vipsubcriberModel.single(user[0].id)
+        .then(userVIP => {
+            if (userVIP == null)
+            {
+                hbscontent['isSubcriberVIP'] = false;
+                hbscontent['subcriber'] = user[0];
+                res.render('subcriber/subcriber-profile', hbscontent);
+            }
+            else 
+            {
+                hbscontent['isSubcriberVIP'] = true;
+                var rows = user[0];
+                rows['subcribervip'] = "Thành viên VIP";
+                rows['startdate'] = userVIP[0].startdate;
+                rows['enddate'] = userVIP[0].enddate;
+                console.log(rows);
+                hbscontent['subcriber'] = rows;
+                res.render('subcriber/subcriber-profile', hbscontent);
+            }
+        })
+        .catch(next);
+    })
+    .catch(next);
+});
+
+router.get('/editprofile',authSubcriber, (req, res) => {
     hbscontent.title = "Cập nhật thông tin";
     userModel.single(hbscontent.currentuserid).then(user=>{
         hbscontent['subscriberName'] = user[0].name;
@@ -41,7 +78,7 @@ router.get('/subcriber-editprofile',authSubcriber, (req, res) => {
    
 });
 
-router.post('/subcriber-editprofile',authSubcriber, (req, res) => {
+router.post('/editprofile',authSubcriber, (req, res) => {
 
     var entity = req.body;
     if(entity.password.trim()=="")
@@ -63,7 +100,7 @@ router.post('/subcriber-editprofile',authSubcriber, (req, res) => {
     }
     entity['id'] = hbscontent.currentuserid;
     userModel.update(entity).then(()=>{
-        res.redirect('/subcriber/subcriber-editprofile')
+        res.redirect('/subcriber/subcriber-profile')
     })
     .catch(err=>{
         console.log(err);
@@ -71,7 +108,7 @@ router.post('/subcriber-editprofile',authSubcriber, (req, res) => {
     })
 });
 
-router.get('/subcriber-registrationvip', authSubcriber, (req, res) => {
+router.get('/registrationvip', authSubcriber, (req, res) => {
     hbscontent.title = "Đăng kí thành viên VIP";
     userModel.single(hbscontent.currentuserid)
     .then(rows => {
@@ -102,7 +139,7 @@ router.get('/subcriber-registrationvip', authSubcriber, (req, res) => {
     })
 });
 
-router.post('/subcriber-registrationvip', authSubcriber, (req, res) => {
+router.post('/registrationvip', authSubcriber, (req, res) => {
     var entity = req.body;
 
     var firstDate = new Date();
