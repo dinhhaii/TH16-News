@@ -32,11 +32,13 @@
                                     <i class="fa fa-circle" aria-hidden="true"></i>
                                     <a href="#" class="post-date">{{createddate}}</a>
                                 </div>
+                                {{#if ispremium}}
+                                <span class="badge badge-warning">Premium</span>
+                                {{/if}}
                                 {{{summary}}}
                                 <div class="post-meta d-flex">
                                     <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 32</a>
-                                    <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 42</a>
-                                    <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 7</a>
+                                    <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> {{views}}</a>
                                 </div>
                             </div>
                         </div>

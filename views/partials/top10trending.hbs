@@ -21,7 +21,11 @@
                 <div class="single-news-post news-post bg-img" style="background-image: url({{image}});">
                     <div class="post-content">
                         <a href="/category/{{idcategory}}/posts" class="post-cata">{{namecategory}}</a>
-                        <a href="/post/{{id}}" class="post-title">{{titlepost}}</a>
+                        <a href="/post/{{id}}" class="post-title">{{titlepost}}
+                            {{#if ispremium}}
+                            <span class="badge badge-warning" style="display: inline">Premium</span><br>
+                            {{/if}}</a>
+                        
                         <div class="post-meta d-flex">
                             <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 30</a>
                             <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> {{views}}</a>
@@ -56,6 +60,9 @@
                         </div>
                         <div class="post-content">
                             <h6 class="post-title">{{titlepost}}</h6>
+                            {{#if ispremium}}
+                <span class="badge badge-warning" style="display: inline">Premium</span>
+                {{/if}}
                             <div class="post-meta d-flex justify-content-between">
                                 <span><i class="fa fa-comments-o" aria-hidden="true"></i> 30</span>
                                 <span><i class="fa fa-eye" aria-hidden="true"></i> {{views}}</span>

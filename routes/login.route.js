@@ -8,7 +8,9 @@ router.get('/', (req, res) => {
     hbscontent.title = 'Đăng nhập',
     hbscontent.breadcrumbitemactive = 'Đăng nhập';
     hbscontent.isMainNavigationBar = true;
-
+    if(hbscontent['isLoginError'] == true){
+        hbscontent['isLoginError'] = false;
+    }
     res.render('login', hbscontent);
 });
 
@@ -17,13 +19,13 @@ router.post('/', (req, res, next) => {
         if(err) {
             return next(err);
         }
+        hbscontent['isLoginError'] = false;
         if(!user){            
-            // Object.assign(hbscontent, {err_message: info.message});
+            hbscontent['isLoginError'] = true;
             hbscontent['err_message'] = info.message;
             return res.render('login', hbscontent);
         }
         
-        console.log(req.query.retUrl);
         var retUrl = req.query.retUrl || '/';
         req.logIn(user , err => {
             if(err){

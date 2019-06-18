@@ -17,9 +17,12 @@
             <!-- Post Content -->
             <div class="post-content mt-0">
                 <a href="/category/{{idcategory}}/posts" class="post-cata cata-sm cata-danger">{{namecategory}}</a>
-                <a href="/post/{{id}}" class="post-title mb-2">{{titlepost}}</a>
+                <a href="/post/{{id}}" class="post-title mb-2">{{titlepost}} 
+                    {{#if ispremium}}
+                    <span class="badge badge-warning" style="display: inline">Premium</span><br>
+                    {{/if}}</a>
                 <div class="post-meta d-flex align-items-center mb-2">
-                    <a href="#" class="post-author"></a>
+                    <a href="#" class="post-author">{{namewriter}}</a>
                     <i class="fa fa-circle" aria-hidden="true"></i>
                     <a href="#" class="post-date">{{createddate}}</a>
                 </div>

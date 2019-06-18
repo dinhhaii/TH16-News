@@ -94,7 +94,7 @@
 
                             <!-- Reply Form -->
                             <div class="contact-form-area">
-                                <form method="post" onsubmit="checkisuser(this)">
+                                <form method="post">
                                     <div class="row">
                                         <div class="col-12">
                                             <textarea name="content" class="form-control" id="content"
@@ -150,6 +150,9 @@
                                     </div>
                                     <div class="post-content">
                                         <a href="/post/{{id}}" class="post-title">{{titlepost}}</a>
+                                        {{#if ispremium}}
+                                        <span class="badge badge-warning" style="display: inline">Premium</span><br>
+                                        {{/if}}
                                         <div class="post-meta justify-content-between">
                                             <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 29</a>
                                             <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 08</a>
@@ -166,9 +169,4 @@
     </div>
 </section>
 
-<script type="text/javascript">
-function checkisuser(IsUser){
-    alert("Bạn vui lòng đăng nhập để bình luận tại đây");
-}
-</script>
 <!-- ##### Post Details Area End ##### -->

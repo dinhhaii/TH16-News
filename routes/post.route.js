@@ -6,6 +6,7 @@ var postModel = require('../models/post.model');
 var categoryModel = require('../models/category.model');
 var userModel = require('../models/user.model')
 var hbscontent = require('../app');
+var auth = require('../middlewares/auth');
 
 router.get('/:id', (req, res, next) => {
     var id = req.params.id; //id post
@@ -66,7 +67,7 @@ router.get('/:id', (req, res, next) => {
         .catch(next);
 });
 
-router.post('/:id', (req, res, next) => {
+router.post('/:id', auth, (req, res, next) => {
         var entity = req.body;
         var id = req.params.id;
         entity['idproduct'] = id;

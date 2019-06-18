@@ -4,6 +4,7 @@ var hbscontent = require('../../app');
 var userModel = require('../..//models/user.model');
 var authSubcriber = require('../../middlewares/auth-subcriber');
 var vipsubcriberModel = require('../..//models/vipsubcriber.model');
+var bcrypt = require('bcryptjs');
 
 router.get('/', authSubcriber, (req, res) => {
     hbscontent.title = 'Đọc giả';
@@ -123,6 +124,8 @@ router.post('/editprofile',authSubcriber, (req, res) => {
         if(entity.password==entity.passwordconfirm)
         {
             delete entity['passwordconfirm'];
+            var saltRounds = 10;
+            entity['password'] = bcrypt.hashSync(entity.password, saltRounds);
         }
         else
         {

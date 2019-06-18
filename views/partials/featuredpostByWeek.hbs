@@ -19,7 +19,9 @@
             <!-- Post Content -->
             <div class="post-content">
                 <a href="/category/{{idcategory}}/posts" class="post-cata cata-sm cata-success">{{namecategory}}</a>
-                <a href="/post/{{id}}" class="post-title">{{titlepost}}</a>
+                <a href="/post/{{id}}" class="post-title">{{titlepost}} {{#if ispremium}}
+                    <span class="badge badge-warning" style="display: inline">Premium</span><br>
+                    {{/if}}</a>
                 <div class="post-meta d-flex">
                     <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 12</a>
                     <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> {{views}}</a>
