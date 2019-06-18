@@ -328,7 +328,43 @@ router.get('/user',authAdmin, (req, res) => {
             userModel.update(element).then().catch(err => { console.log(err)});
             if(element.position=='editor')
             {
+                ideditor = element.id;
                 element.isEditor = true;
+                categoryModel.all().then(catRows=>{
+                   
+                        categorypostModel.findideditor(ideditor).then(editorcategory=>{
+                           
+                                if(editorcategory.length>0)
+                                {
+                                   
+                                    catRows.forEach(child=>{
+                                        if(child.id==editorcategory[0].idcategory)
+                                        {
+                                            child['isSelected'] ='selected';
+                                            console.log(child.id);
+                                            hbscontent['user'] = rows;
+                                            hbscontent['editorcategories'] = catRows
+                                                    
+                                            res.render('admin/user/admin-user', hbscontent);
+                                        }
+                                        else{
+                                            child['isSelected'] ='';
+                                        }
+                                    });
+                                    
+                                }
+                                
+                              
+                        }).catch(err=>{
+                            console.log(err);
+                        });
+                        
+                    
+                                   
+                    
+                }).catch(err=>{
+                    console.log(err);
+                });
             }
             else
             {
@@ -336,8 +372,7 @@ router.get('/user',authAdmin, (req, res) => {
             }
         });
         console.log(rows);
-        hbscontent['user'] = rows;
-        res.render('admin/user/admin-user', hbscontent);
+       
     }).catch(err => {
         console.log(err);
     });

@@ -60,8 +60,8 @@
                                             <div class="form-group">
                                                 <label for="select">Chuyên mục:</label>
                                                 <select style="background: #F5F5DC;color:black;" name="idcategory" value="" class="form-control">
-                                                    {{#each ../categories}}
-                                                    <option value="{{id}}" >{{name}}</option>
+                                                    {{#each ../editorcategories}}
+                                                    <option value="{{id}}" {{isSelected}} >{{name}}</option>
                                                     {{/each}}
                                                     
                                                 </select>
