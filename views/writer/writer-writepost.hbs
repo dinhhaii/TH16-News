@@ -15,6 +15,11 @@
         uploadAsync: false
 
     });
+    $('#filename').hide();
+    $('#fuMain').on('change', function () {
+        var filename = $(this).val().split('\\').pop();
+        $('#filename').val(filename);
+    });
 </script>
 {{/section}}
 
@@ -49,8 +54,9 @@
 
                         <div>  
                             <p><b>Hình ảnh:</b></p>
+                            <input id="filename" name="filename" type="text" multiple>
                             <div class="file-loading">
-                                <input id="fuMain" name="fuMain" type="file" multiple>
+                                <input id="fuMain" name="fuMain" type="file" multiple>                                
                             </div>
                         </div>
 

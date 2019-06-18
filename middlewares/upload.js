@@ -12,10 +12,6 @@ var storage = multer.diskStorage({
 var upload = multer({ storage });
 
 module.exports = function (app) {  
-    app.get('/upload', (req, res, next) => {
-    
-    });
-    
     app.post('/upload', (req, res, next) => {
         upload.array('fuMain')(req, res, err => {
             if (err) {

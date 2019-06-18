@@ -25,7 +25,7 @@ router.get('/writepost',authWriter, (req, res, next) => {
 router.post('/writepost', authWriter,(req, res) => {
     var entity = req.body;
     console.log(entity);
-    var urlImage = "/img/bg-img/" + entity.fuMain;
+    var urlImage = "/img/bg-img/" + entity.filename;
     entity['image'] = urlImage;
     entity['views'] = 0;
     entity['status'] = "Chưa duyệt";
@@ -33,6 +33,7 @@ router.post('/writepost', authWriter,(req, res) => {
     entity['createddate'] = new Date();
     entity['idwriter'] = hbscontent.currentuserid;
     delete entity['fuMain'];
+    delete entity['filename'];
     postModel.add(entity)
     .then(() => {
         res.redirect('/writer/unapprovedpost');
