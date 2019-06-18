@@ -88,24 +88,20 @@
 
                             <!-- Section Title -->
                             <div class="section-heading style-2">
-                                <h4>Để lại phản hồi:</h4>
+                                <h4>Để lại bình luận:</h4>
                                 <div class="line"></div>
                             </div>
 
                             <!-- Reply Form -->
                             <div class="contact-form-area">
-                                <form method="post">
+                                <form method="post" onsubmit="checkisuser(this)">
                                     <div class="row">
-                                        <div class="col-12">
-                                            <input type="text" class="form-control" id="nameuser" name="nameuser"
-                                                placeholder="Tên của bạn*">
-                                        </div>
                                         <div class="col-12">
                                             <textarea name="content" class="form-control" id="content"
                                                 placeholder="Nội dung*"></textarea>
                                         </div>
                                         <div class="col-12">
-                                            <button class="btn vizew-btn mt-30" type="submit">Gửi</button>
+                                            <button class="btn vizew-btn mt-30" type="submit" >Gửi</button>
                                         </div>
                                     </div>
                                 </form>
@@ -169,4 +165,10 @@
         </div>
     </div>
 </section>
+
+<script type="text/javascript">
+function checkisuser(IsUser){
+    alert("Bạn vui lòng đăng nhập để bình luận tại đây");
+}
+</script>
 <!-- ##### Post Details Area End ##### -->

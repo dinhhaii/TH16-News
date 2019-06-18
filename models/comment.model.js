@@ -19,5 +19,9 @@ module.exports = {
 
     delete: (id) => {   
         return db.delete('comment', 'id', id);
+    },
+
+    descComment: (idproduct)  => {
+        return db.load(`select * from comment where idproduct = ${idproduct} order by idcomment desc`);
     }
 }

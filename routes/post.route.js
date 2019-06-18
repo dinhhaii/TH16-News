@@ -4,6 +4,7 @@ var commentModel = require('../models/comment.model')
 var postTagModel = require('../models/post-tag.model');
 var postModel = require('../models/post.model');
 var categoryModel = require('../models/category.model');
+var userModel = require('../models/user.model')
 var hbscontent = require('../app');
 
 router.get('/:id', (req, res, next) => {
@@ -13,7 +14,7 @@ router.get('/:id', (req, res, next) => {
             if (rows.length > 0) {
                 var idcat = rows[0].idcategory;
                 hbscontent['post'] = rows[0];
-                hbscontent['title'] = rows[0].titlepost;
+                hbscontent['title'] = rows[0].titlepost; 
 
                 postTagModel.allTagByPost(rows[0].id)
                 .then(posttagrows => {
@@ -22,9 +23,12 @@ router.get('/:id', (req, res, next) => {
                 .catch(next);
 
                 // list comment
-                commentModel.single(id)
+                commentModel.descComment(id)
                 .then(lstcomment => {
-                    console.log(lstcomment);
+                    lstcomment.forEach(element => {
+                        var dt = element.createddate;
+                        element['createddate'] = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
+                    })
                     hbscontent['listcomment'] = lstcomment;
                 })
                 .catch(next);
@@ -63,17 +67,24 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.post('/:id', (req, res, next) => {
-    var entity = req.body;
-    var id = req.params.id;
-    entity['idproduct'] = id;
-    entity['createddate'] = new Date();
-    commentModel.add(entity)
-        .then(() => {
-            var url = "/post/" + id;
-            res.redirect(url);
+        var entity = req.body;
+        var id = req.params.id;
+        entity['idproduct'] = id;
+        entity['createddate'] = new Date();
+        console.log(hbscontent.currentuserid);
+        userModel.single(hbscontent.currentuserid)
+        .then(rows => {
+            var user = rows[0];
+            entity['nameuser'] = user.name;
+                commentModel.add(entity)
+                .then(() => {
+                    var url = "/post/" + id;
+                    res.redirect(url);
+                })
+                .catch(next);
         })
         .catch(next);
-
+    
 })
 
 module.exports = router;
