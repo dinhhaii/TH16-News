@@ -24,7 +24,9 @@ router.get('/writepost',authWriter, (req, res, next) => {
 
 router.post('/writepost', authWriter,(req, res) => {
     var entity = req.body;
-    entity['image'] = "/img/bg-img/" + entity.fuMain;
+    console.log(entity);
+    var urlImage = "/img/bg-img/" + entity.fuMain;
+    entity['image'] = urlImage;
     entity['views'] = 0;
     entity['status'] = "Chưa duyệt";
     entity['submittime'] = new Date();
@@ -34,7 +36,6 @@ router.post('/writepost', authWriter,(req, res) => {
     postModel.add(entity)
     .then(() => {
         res.redirect('/writer/unapprovedpost');
-
     })
     .catch(err => {
         console.log(err);

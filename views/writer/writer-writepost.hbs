@@ -5,16 +5,16 @@
 {{#section 'js'}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/js/fileinput.min.js" ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/themes/fa/theme.min.js" ></script>
+
 <script>
-    $(function () {
-        $('#fuMain').fileinput({
-            theme: 'fa',
-            dropZoneEnabled: false,
-            allowedFileExtensions: ['png', 'jpg', 'gif'],
-            uploadUrl: '/upload',
-            uploadAsync: false,
-        });
-    })
+    $('#fuMain').fileinput({
+        theme: 'fa',
+        dropZoneEnabled: false,
+        allowedFileExtensions: ['png','jpg','gif'],
+        uploadUrl: '/upload',
+        uploadAsync: false
+
+    });
 </script>
 {{/section}}
 

@@ -25,6 +25,7 @@ var hbsContent = {
 require('./middlewares/view-engine')(app);
 require('./middlewares/session')(app);
 require('./middlewares/passport')(app);
+require('./middlewares/upload')(app);
 
 app.use(require('./middlewares/locals.mdw'));
 app.use('/', express.static(publicPath));
