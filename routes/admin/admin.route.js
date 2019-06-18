@@ -6,7 +6,7 @@ var hbscontent = require('../../app');
 var userModel = require('../../models/user.model');
 var authAdmin = require('../../middlewares/auth-admin');
 var postModel = require('../../models/post.model');
-
+var categorypostModel = require('../../models/editor-category.model');
 
 router.get('/', authAdmin, (req, res) => {
     hbscontent.title = 'Quản trị viên';
@@ -322,18 +322,40 @@ router.get('/user',authAdmin, (req, res) => {
     .then(rows => {
         console.log(rows);
 
-        hbscontent['user'] = rows;
+       
         //Update totalpost in tag table
         rows.forEach(element => {
             userModel.update(element).then().catch(err => { console.log(err)});
+            if(element.position=='editor')
+            {
+                element.isEditor = true;
+            }
+            else
+            {
+                element.isEditor = false;
+            }
         });
         console.log(rows);
+        hbscontent['user'] = rows;
         res.render('admin/user/admin-user', hbscontent);
     }).catch(err => {
         console.log(err);
     });
 });
-
+// phân công chuyên mục cho editor
+router.post('/editorcategory/:id',authAdmin, (req, res)=>{
+    var entity = req.body;
+    var idcat = entity.idcategory;
+    var id = req.params.id;
+    var categoryeditor ={
+        idcategory : idcat,
+        ideditor : id,
+    }
+    categorypostModel.delete(id).then().catch(err=>{console.log(err)});
+    categorypostModel.add(categoryeditor).catch(err=>{console.log(err)});
+    res.redirect('/admin/user');
+    
+});
 //Thêm người dùng
 router.get('/insertuser', authAdmin,(req, res)=>{
     res.render('admin/user/admin-insertuser', hbscontent);
