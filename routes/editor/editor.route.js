@@ -8,6 +8,7 @@ var posttagModel = require('../../models/post-tag.model');
 var tagModel = require('../../models/tag.model');
 var userModel = require('../../models/user.model');
 var editorcategoryModel = require('../../models/editor-category.model');
+var bcrypt = require('bcryptjs');
 //=================================== Duyệt bài viết ===================================
 
 router.get('/', authEditor, (req, res) => {
@@ -285,7 +286,7 @@ router.get('/editor-editprofile', authEditor, (req, res) => {
     
 });
 router.post('/editor-editprofile', authEditor, (req, res) => {
-
+    
     var entity = req.body;
     if(entity.password.trim()=="")
     {
@@ -296,6 +297,9 @@ router.post('/editor-editprofile', authEditor, (req, res) => {
     {
         if(entity.password==entity.passwordconfirm)
         {
+            var saltRounds = 10;
+            var hash = bcrypt.hashSync(req.body.password, saltRounds);
+            entity['password'] = hash;
             delete entity['passwordconfirm'];
         }
         else

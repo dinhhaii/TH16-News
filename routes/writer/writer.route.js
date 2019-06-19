@@ -5,7 +5,7 @@ var categoryModel = require('../..//models/category.model')
 var postModel = require('../..//models/post.model')
 var userModel = require('../..//models/user.model')
 var authWriter = require('../../middlewares/auth-writer');
-
+var bcrypt = require('bcryptjs');
 router.get('/',authWriter, (req, res) => {
     hbscontent.title = 'Writer';
     hbscontent.isMainNavigationBar = false;
@@ -186,6 +186,9 @@ router.post('/writer-editprofile',authWriter, (req, res) => {
     {
         if(entity.password==entity.passwordconfirm)
         {
+            var saltRounds = 10;
+            var hash = bcrypt.hashSync(req.body.password, saltRounds);
+            entity['password'] = hash;
             delete entity['passwordconfirm'];
         }
         else
