@@ -53,21 +53,21 @@
                 <a class="nav-link" id="post-{{id}}-tab" data-toggle="pill" href="#post-{{id}}" role="tab" aria-controls="post-2"
                     aria-selected="false">
             {{/if}}
-                    <div class="single-blog-post style-2 d-flex align-items-center">
+                    <div class="single-blog-post d-flex">
                         <div class="post-thumbnail">
                             <img src="{{image}}" alt="">
                         </div>
                         <div class="post-content">
                             <h6 class="post-title">{{titlepost}}</h6>
                             {{#if ispremium}}
-                <span class="badge badge-warning" style="display: inline">Premium</span>
-                {{/if}}
+                            <span class="badge badge-warning" style="display: inline">Premium</span>
+                            {{/if}}
                             <div >
-                                <span><i class="fa fa-comments-o" aria-hidden="true"></i> 30</span>
+                                <span><i class="fa fa-comments-o" aria-hidden="true"></i> 33</span>
                                 <span><i class="fa fa-eye" aria-hidden="true"></i> {{views}}</span>
                             </div>
                         </div>
-                        <span class="news-duration">{{createddate}}</span>
+                    
                     </div>
                 </a>
             </li>
