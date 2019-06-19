@@ -59,6 +59,7 @@ router.get('/:id', (req, res, next) => {
                                     hbscontent.breadcrumbitemactive = namecat;
                                     hbscontent['idcat'] = idcat;
                                     hbscontent['namecat'] = namecat;
+                                    hbscontent['CheckIsPremium'] = true;
                                     res.render('singlepost', hbscontent);
                                 })
                                 .catch(next);
@@ -115,6 +116,7 @@ router.get('/:id', (req, res, next) => {
                                 hbscontent.breadcrumbitemactive = namecat;
                                 hbscontent['idcat'] = idcat;
                                 hbscontent['namecat'] = namecat;
+                                hbscontent['CheckIsPremium'] = false;
                                 res.render('singlepost', hbscontent);
                             })
                             .catch(next);
