@@ -13,7 +13,7 @@ router.get('/:id', (req, res, next) => {
     var id = req.params.id; //id post
     postModel.single(id)
     .then(rows => {
-        if (rows.length > 0) {
+        if (hbscontent.isLogin == true) {
             vipsubcriberModel.single(hbscontent.currentuserid)
             .then(user => {
                 if (rows[0].ispremium == 1) {
@@ -128,8 +128,70 @@ router.get('/:id', (req, res, next) => {
             })
             .catch(next);
         }
+        else
+        {
+            if (rows[0].ispremium == 1)
+            {
+                res.redirect('/login');
+            }
+            else
+            {
+                var idcat = rows[0].idcategory;
+                hbscontent['post'] = rows[0];
+                hbscontent['title'] = rows[0].titlepost;
+
+                postTagModel.allTagByPost(rows[0].id)
+                .then(posttagrows => {
+                    hbscontent['posttags'] = posttagrows;
+                })
+                .catch(next);
+
+                // list comment
+                commentModel.descComment(id)
+                .then(lstcomment => {
+                    lstcomment.forEach(element => {
+                        var dt = element.createddate;
+                        element['createddate'] = (("0" + dt.getDate()).slice(-2)) + "/" + (("0" + (dt.getMonth() + 1)).slice(-2)) + "/" + (dt.getFullYear()) + " " + (("0" + dt.getHours()).slice(-2)) + ":" + (("0" + dt.getMinutes()).slice(-2));
+                    })
+                    hbscontent['listcomment'] = lstcomment;
+                })
+                .catch(next);
+
+                postModel.countByCat(idcat)
+                .then(count => {
+                    var limit = count[0].total;
+                    postModel.latestpostIDCat(limit, idcat)
+                    .then(postIDCat => {
+                        for (var i = 0; i < postIDCat.length; i++) {
+                            if (postIDCat[i].id == id) {
+                                postIDCat.splice(i, 1);
+                            }
+                        }
+                        postIDCat.splice(5, postIDCat.length - 1); // only 5 post
+
+                        hbscontent['relatedpost'] = postIDCat;
+                        categoryModel.single(idcat)
+                        .then(catrows => {
+                            var namecat = catrows[0].name;
+                            hbscontent.isMainNavigationBar = true;
+                            hbscontent.breadcrumbitemactive = namecat;
+                            hbscontent['idcat'] = idcat;
+                            hbscontent['namecat'] = namecat;
+                            hbscontent['CheckIsPremium'] = false;
+                            res.render('singlepost', hbscontent);
+                        })
+                        .catch(next);
+                    })
+                    .catch(next);
+                })
+                .catch(next);
+            }
+        }
     })
-    .catch(next);
+    .catch(err => {
+        console.log(err);
+        res.end('Error occured1');
+    })
 });
 
 router.post('/:id', auth, (req, res, next) => {
