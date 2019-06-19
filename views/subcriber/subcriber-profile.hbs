@@ -34,52 +34,45 @@
                             <form action="/subcriber/profile" method="post">
                                 <div class="form-group">
                                     <p><b>Họ và tên</b></p>
-                                    <input type="text" value="{{subcriber.name}}" class="form-control" name="name" id="exampleInputEmail1"
-                                        >
+                                    <label type="text" class="form-control" name="name" id="exampleInputEmail1">{{subcriber.name}}</label>
                                 </div>
                                 <div class="form-group">
                                     <p><b>Tài khoản người dùng</b></p>
-                                    <input type="text" class="form-control" name="username" value="{{subcriber.username}}">
+                                    <label type="text" class="form-control" name="username">{{subcriber.username}}</label>
                                 </div>
 
                                 <div class="form-group">
-                                    <p><b>Mật khẩu người dùng</b></p>
-                                    <input type="password" class="form-control" name="password"  value="{{subcriber.password}}">
-                                </div>
-                                <div class="form-group">
                                     <p><b>Giới tính</b></p>
-                                    <input type="text" class="form-control" name="gender" value={{subcriber.gender}}></input>
+                                    <label type="text" class="form-control" name="gender">{{subcriber.gender}}</label>
                                 </div>
                                 <div class="form-group">
                                     <p><b>Email</b></p>
-                                    <input type="email" class="form-control" name="email" value="{{subcriber.email}}" id="exampleInputEmail1"
-                                       >
+                                    <label type="email" class="form-control" name="email" id="exampleInputEmail1">{{subcriber.email}}</label>
+                                       
                                 </div>
                                 <div class="form-group">
                                     <p><b>Số điện thoại</b></p>
-                                    <input type="text" name="phone" value="{{subcriber.phone}}" class="form-control" id="exampleInputEmail1"
-                                       >
+                                    <label type="text" name="phone" class="form-control" id="exampleInputEmail1">{{subcriber.phone}}</label>
                                 </div>
                                 <div class="form-group">
                                     <p><b>Ngày đăng kí tài khoản</b></p>
-                                    <input type="text" name="createddate" value="{{subcriber.createddate}}" class="form-control" id="exampleInputEmail1"
-                                       >
+                                    <label type="text" name="createddate" class="form-control" id="exampleInputEmail1">{{subcriber.createddate}}</label>
+                                       
                                 </div>
                                 {{#if isSubcriberVIP}}
                                 <div class="form-group">
                                     <p><b>Thành viên VIP</b></p>
-                                    <input type="text" name="subcribervip" value="{{subcriberVIP.subcribervip}}" class="form-control" id="exampleInputEmail1"
-                                        >
+                                    <label type="text" name="subcribervip"  class="form-control" id="exampleInputEmail1">{{subcriberVIP.subcribervip}}</label>
+                                        
                                 </div>
                                 <div class="form-group">
                                     <p><b>Ngày đăng kí thành viên VIP</b></p>
-                                    <input type="text" name="startdate" value="{{subcriberVIP.startdate}}" class="form-control" id="exampleInputEmail1"
-                                        >
+                                    <label type="text" name="startdate"  class="form-control" id="exampleInputEmail1">{{subcriberVIP.startdate}}</label>
+                                        
                                 </div>
                                 <div class="form-group">
                                     <p><b>Ngày hết hạn</b></p>
-                                    <input type="text" name="enddate" value="{{subcriberVIP.enddate}}" class="form-control" id="exampleInputEmail1"
-                                       >
+                                    <label type="text" name="enddate"  class="form-control" id="exampleInputEmail1">{{subcriberVIP.enddate}}</label>
                                 </div>
                                 {{else}}
                                 <a href="/subcriber/registrationvip"<button class="btn vizew-btn w-100 mt-30">Đăng kí thành viên VIP</button></a>

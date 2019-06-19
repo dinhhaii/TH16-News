@@ -42,18 +42,6 @@
                                     <input type="text" class="form-control" name="username" value="{{subscriberusername}}">
                                 </div>
 
-                                <div class="form-group">
-                                    <p><b>Mật khẩu người dùng</b></p>
-                                    <input type="password" class="form-control"  value="{{subscriberpassword}}">
-                                </div>
-                                <div class="form-group">
-                                <p><b>Mật khẩu mới</b></p>
-                                <input type="password" class="form-control" name="password" id="exampleInputPassword1">
-                                </div>
-                                <div class="form-group">
-                                    <p><b>Nhập lại mật khẩu mới</b></p>
-                                    <input type="password" class="form-control"  name="passwordconfirm" id="exampleInputPassword1">
-                                </div>
                                 {{#if isMale}}
                                 <div class="form-group">
                                     <p><b>Giới tính</b></p>
@@ -81,12 +69,8 @@
                                     <input type="radio" name="gender"  value="Nữ" id="radiobtnNu"></input>
                                     <label for="radiobtnNu" style="color:gray">Nữ </label>
                                 </div>
-                                 {{/if}}
-                                  {{/if}}
-                                {{!-- <div class="form-group">
-                                    <p><b>Ngày sinh</b></p>
-                                    <input type="date" name="" class="form-control">
-                                </div> --}}
+                                {{/if}}
+                                {{/if}}
                                 <div class="form-group">
                                     <p><b>Email</b></p>
                                     <input type="email" class="form-control" name="email" value="{{subscriberEmail}}" id="exampleInputEmail1"

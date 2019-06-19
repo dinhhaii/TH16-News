@@ -82,8 +82,6 @@ router.get('/editprofile',authSubcriber, (req, res) => {
         hbscontent['subscriberEmail'] = user[0].email;
         hbscontent['subscriberPhone'] = user[0].phone;
         hbscontent['subscriberusername'] = user[0].username;
-        hbscontent['subscriberpassword'] = user[0].password;
-        console.log(hbscontent);
         if(user[0].gender=='Nam')
         {
             hbscontent['isMale'] =  true;
@@ -112,27 +110,7 @@ router.get('/editprofile',authSubcriber, (req, res) => {
 });
 
 router.post('/editprofile',authSubcriber, (req, res) => {
-
     var entity = req.body;
-    if(entity.password.trim()=="")
-    {
-        delete entity['password'];
-        delete entity['passwordconfirm'];
-    }
-    else
-    {
-        if(entity.password==entity.passwordconfirm)
-        {
-            delete entity['passwordconfirm'];
-            var saltRounds = 10;
-            entity['password'] = bcrypt.hashSync(entity.password, saltRounds);
-        }
-        else
-        {
-            delete entity['password'];
-            delete entity['passwordconfirm'];
-        }
-    }
     entity['id'] = hbscontent.currentuserid;
     userModel.update(entity).then(()=>{
         res.redirect('/subcriber/profile')
@@ -197,7 +175,6 @@ router.post('/registrationvip', authSubcriber, (req, res) => {
     entity.enddate = finalDate;
     entity['iduser'] = hbscontent.currentuserid;
     delete entity['name'];
-    console.log(entity);
     vipsubcriberModel.add(entity)
     .then(() => {
         res.redirect('/subcriber/profile');
@@ -262,7 +239,6 @@ router.post('/renewedvip', authSubcriber, (req, res) => {
     entity.enddate = finalDate;
     entity['iduser'] = hbscontent.currentuserid;
     delete entity['name'];
-    console.log(entity);
     vipsubcriberModel.update(entity)
     .then(() => {
         res.redirect('/subcriber/profile');
@@ -273,4 +249,59 @@ router.post('/renewedvip', authSubcriber, (req, res) => {
     })
 });
 
+router.get('/replacedpassword', authSubcriber, (req, res) => {
+    hbscontent['isErrorFinish'] = false;
+    hbscontent['isErrorConfirmpassword'] = false;
+    res.render('subcriber/subcriber-replacedpassword', hbscontent);
+   
+});
+
+router.post('/replacedpassword', authSubcriber, (req, res) => {
+    var entity = req.body;
+    if (entity.password == "")
+    {
+        hbscontent['isErrorFinish'] = true;
+        hbscontent['isErrorConfirmpassword'] = false;
+        res.render('subcriber/subcriber-replacedpassword', hbscontent);
+    }
+    if (entity.confirmpassword == "")
+    {
+        hbscontent['isErrorFinish'] = true;
+        hbscontent['isErrorConfirmpassword'] = false;
+        res.render('subcriber/subcriber-replacedpassword', hbscontent);
+    }
+    else 
+    {
+        if (entity.replacedpassword != entity.confirmpassword)
+        {
+            hbscontent['isErrorFinish'] = false;
+            hbscontent['isErrorConfirmpassword'] = true;
+            res.render('subcriber/subcriber-replacedpassword', hbscontent);
+        }
+        else 
+        {
+            var saltRounds = 10;
+            userModel.single(hbscontent.currentuserid)
+            .then(rows => {
+                user = rows[0];
+                user.password = bcrypt.hashSync(entity.replacedpassword, saltRounds);
+                userModel.update(user)
+                .then(() => {
+                res.redirect('/');
+                })
+                .catch(err => {
+                    console.log(err);
+                    res.end('Error occured1');
+                })
+            })
+            .catch(err => {
+                console.log(err);
+                res.end('Error occured2');
+            })
+        }
+    }
+    
+});
+
+    
 module.exports = router;
