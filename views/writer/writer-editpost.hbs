@@ -6,15 +6,20 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/js/fileinput.min.js" ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/themes/fa/theme.min.js" ></script>
 <script>
-    $(function () {
-        $('#fuMain').fileinput({
-            theme: 'fa' ,
-            dropZoneEnabled: false,
-            allowedFileExtensions: ['png', 'jpg', 'gif'],
-            uploadUrl: '/upload',
-            uploadAsync: false,
-        });
-    })
+    $('#fuMain').fileinput({
+        theme: 'fa' ,
+        dropZoneEnabled: false,
+        allowedFileExtensions: ['png', 'jpg', 'gif'],
+        uploadUrl: '/upload',
+        uploadAsync: false,
+    });
+
+    $('#filename').hide();
+    $('#fuMain').on('change', function () {
+        var filename = $(this).val().split('\\').pop();
+        $('#filename').val(filename);
+    });
+    
 </script>
 {{/section}}
 
@@ -54,8 +59,9 @@
 
                         <div class="form-group">
                             <p><b>Hình ảnh:</b></p>
+                            <input id="filename" name="filename" type="text" multiple>
                             <div class="file-loading">
-                                <input id="fuMain" name="fuMain" type="file" multiple>
+                                <input id="fuMain" name="fuMain" type="file" multiple> <br>
                             </div>
                         </div>
 

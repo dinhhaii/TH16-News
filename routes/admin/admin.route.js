@@ -233,9 +233,6 @@ router.get('/post',authAdmin, (req, res) => {
     });
 });
 
-
-
-
 router.post('/approvepost/:id',authAdmin, (req,res)=>{
     var id = req.params.id;
     var entity = req.body;
@@ -263,7 +260,7 @@ router.post('/approvepost/:id',authAdmin, (req,res)=>{
 
 router.get('/editpost/:id',authAdmin, (req, res) => {
     var id = req.params.id;
-    tagModel.single(id)
+    postModel.single(id)
     .then(rows => {
         if(rows.length > 0){
             hbscontent['error'] = false;
@@ -280,10 +277,13 @@ router.get('/editpost/:id',authAdmin, (req, res) => {
     
 });
 
-router.post('/editpost',authAdmin, (req,res)=>{
+router.post('/editpost', authAdmin, (req,res)=>{
     var entity = req.body;
-
-    tagModel.update(entity)
+    entity['summary'] = '<p class="mb-2">' + entity.summary + '</p>';
+    entity['image'] = "/img/bg-img/" + entity.filename;
+    delete entity['fuMain'];
+    delete entity['filename'];
+    postModel.update(entity)
     .then(() => {
         res.redirect('/admin/post');
     })

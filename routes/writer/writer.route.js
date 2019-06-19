@@ -128,8 +128,9 @@ router.get('/editpost/:id', authWriter,(req,res) => {
 router.post('/editpost',authWriter, (req,res) => {
     var entity = req.body;
     entity['summary'] = '<p class="mb-2">' + entity.summary + '</p>';
-    entity['image'] = "/img/bg-img/" + entity.fuMain;
+    entity['image'] = "/img/bg-img/" + entity.filename;
     delete entity['fuMain'];
+    delete entity['filename'];
     postModel.update(entity)
     .then(() => {
         res.redirect('/writer/unapprovedpost');
