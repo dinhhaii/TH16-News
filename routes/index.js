@@ -16,8 +16,10 @@ router.get('/', (req, res, next) => {
         postModel.descendingviews(10),
         postModel.descendingviewsByWeek(3),
         postModel.latestpostByCat(),
-        commentModel.amountComment()
-    ]).then(([latestposts, trendingposts, featuredpostsbyweek, latestpostByCat, listviewscomment]) => {
+        commentModel.amountComment(),
+        postModel.latestpost(1),
+        postModel.latestpost(5)
+    ]).then(([latestposts, trendingposts, featuredpostsbyweek, latestpostByCat, listviewscomment, newpost, postsidebar]) => {
         //Latest post
         latestposts.forEach(element => {
             categoryModel.single(element.idcategory)
@@ -93,6 +95,35 @@ router.get('/', (req, res, next) => {
             .catch(next);
         });
         hbscontent['featuredposts'] = featuredpostsbyweek;
+
+        //New Post
+        var entity = newpost[0];
+        categoryModel.single(entity.idcategory)
+        .then(catrows => {
+            entity['viewscomment'] = 0;
+            listviewscomment.forEach(findIdProduct => {
+                if (findIdProduct.idproduct == entity.id)
+                {
+                    entity['viewscomment'] = findIdProduct.amount;
+                }
+                entity['namecategory'] = catrows[0].name;
+            })    
+        })
+        .catch(next);
+        hbscontent['newpost'] = entity;
+
+        //Post Side Bar
+        postsidebar.splice(0, 1);
+        postsidebar.forEach(element => {
+            element['viewscomment'] = 0;
+            listviewscomment.forEach(findIdProduct => {
+                if (findIdProduct.idproduct == element.id)
+                {
+                    element['viewscomment'] = findIdProduct.amount;
+                }  
+            })
+        })
+        hbscontent['postsidebar'] = postsidebar;
 
         //Latest Post by Category
         latestpostByCat.forEach(element => {

@@ -20,92 +20,62 @@
             </div>
 
             <!-- Single Blog Post -->
+
             <div class="single-post-area mb-30">
                 <!-- Post Thumbnail -->
                 <div class="post-thumbnail">
-                    <img src="/img/bg-img/13.jpg" alt="">
-
-
+                    <img src="{{newpost.image}}" alt="">
                 </div>
 
                 <!-- Post Content -->
                 <div class="post-content">
-                    <a href="category-list.html" class="post-cata cata-sm cata-success">Thị trường</a>
-                    <a href="single-post.html" class="post-title">Giá cà phê tiếp tục giảm mạnh</a>
-                    <div class="post-meta d-flex">
-                        <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 14</a>
-                        <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 38</a>
-                        <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 22</a>
+                    <a href="/category/{{newpost.idcategory}}/posts" class="post-cata cata-sm cata-success">{{newpost.namecategory}}</a>
+                    <a href="/post/{{newpost.id}}" class="post-title">{{newpost.titlepost}}
+                    {{#if newpost.ispremium}}
+                    <span class="badge badge-warning" style="display: inline">Premium</span><br>
+                    {{/if}}</a>
+                    <div>
+                        <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> {{newpost.viewscomment}} </a>
+                        <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> {{newpost.views}} </a>
                     </div>
                 </div>
             </div>
-
+            
+            {{#each postsidebar}}
             <!-- Single Blog Post -->
             <div class="single-blog-post d-flex">
                 <div class="post-thumbnail">
-                    <img src="/img/bg-img/11.jpg" alt="">
+                    <img src="{{image}}" alt="">
                 </div>
                 <div class="post-content">
-                    <a href="single-post.html" class="post-title">Chuyên gia hiến kế thảo dược để trở nên
-                        đẹp trai</a>
-                    <div class="post-meta d-flex justify-content-between">
-                        <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 29</a>
-                        <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 08</a>
-                        <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 23</a>
+                    <a href="/post/{{id}}" class="post-title">{{titlepost}} 
+                    {{#if ispremium}}
+                    <span class="badge badge-warning" style="display: inline">Premium</span><br>
+                    {{/if}}</a>
+                    <div>
+                        <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> {{viewscomment}} </a>
+                        <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> {{views}} </a>
                     </div>
                 </div>
             </div>
+            {{/each}}
 
-            <!-- Single Blog Post -->
-            <div class="single-blog-post d-flex">
-                <div class="post-thumbnail">
-                    <img src="/img/bg-img/12.jpg" alt="">
+            <!-- ***** Single Widget ***** -->
+            <div class="single-widget newsletter-widget mb-50">
+                <!-- Section Heading -->
+                <div class="section-heading style-2 mb-30">
+                    <h4>Newsletter</h4>
+                    <div class="line"></div>
                 </div>
-                <div class="post-content">
-                    <a href="single-post.html" class="post-title">Chuyên gia hiến kế thảo dược để trở nên
-                        đẹp trai</a>
-                    <div class="post-meta d-flex justify-content-between">
-                        <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 17</a>
-                        <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 33</a>
-                        <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 26</a>
-                    </div>
+                <p>Nhấn Subscribe để ủng hộ chúng tôi và nhận tin tức bổ ích mới nhất!!</p>
+                <!-- Newsletter Form -->
+                <div class="newsletter-form">
+                    <form action="#" method="post">
+                        <input type="email" name="nl-email" class="form-control mb-15" id="emailnl"
+                            placeholder="Enter your email">
+                        <button type="submit" class="btn vizew-btn w-100">Subscribe</button>
+                    </form>
                 </div>
-            </div>
-
-            <!-- Single Blog Post -->
-            <div class="single-blog-post d-flex">
-                <div class="post-thumbnail">
-                    <img src="/img/bg-img/13.jpg" alt="">
-                </div>
-                <div class="post-content">
-                    <a href="single-post.html" class="post-title">Chuyên gia hiến kế thảo dược để trở nên
-                        đẹp trai</a>
-                    <div class="post-meta d-flex justify-content-between">
-                        <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 11</a>
-                        <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 42</a>
-                        <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 21</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-        <!-- ***** Single Widget ***** -->
-        <div class="single-widget newsletter-widget mb-50">
-            <!-- Section Heading -->
-            <div class="section-heading style-2 mb-30">
-                <h4>Cập nhật tin</h4>
-                <div class="line"></div>
-            </div>
-            <p>Để lại email để nhận những thông tin mới nhất từ VIZEW</p>
-            <!-- Newsletter Form -->
-            <div class="newsletter-form">
-                <form action="#" method="post">
-                    <input type="email" name="nl-email" class="form-control mb-15" id="emailnl"
-                        placeholder="Nhập email">
-                    <button type="submit" class="btn vizew-btn w-100">Theo dõi</button>
-                </form>
             </div>
         </div>
     </div>
