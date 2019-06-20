@@ -11,8 +11,28 @@ var auth = require('../middlewares/auth');
 
 router.get('/:id', (req, res, next) => {
     var id = req.params.id; //id post
-    postModel.single(id)
-    .then(rows => {
+    Promise.all([
+        postModel.single(id),
+        commentModel.amountComment()
+    ]).then(([rows, listviewscomment]) => {
+        userModel.single(rows[0].idwriter)
+        .then(writer => {
+            hbscontent['writername'] = writer[0].name;
+        })
+        .catch(next);
+
+        var dd = rows[0].publishdate.getDate();
+        var mm = rows[0].publishdate.getMonth() + 1;
+        var y = rows[0].publishdate.getFullYear();
+        var startDate = dd + '-'+ mm + '-'+ y;
+        hbscontent['publishdate'] = startDate;
+        hbscontent['viewscomment'] = 0;
+        listviewscomment.forEach(element => {
+            if (element.idproduct == rows[0].id)
+                hbscontent['viewscomment'] = element.amount;                
+        });
+        hbscontent['views'] = rows[0].views;
+
         if (hbscontent.isLogin == true) {
             vipsubcriberModel.single(hbscontent.currentuserid)
             .then(user => {
@@ -50,7 +70,13 @@ router.get('/:id', (req, res, next) => {
                                     }
                                 }
                                 postIDCat.splice(5, postIDCat.length - 1); // only 5 post
-
+                                postIDCat.forEach(postID => {
+                                    postID['viewscommentrelatedpost'] = 0;
+                                    listviewscomment.forEach(element => {
+                                        if (element.idproduct == postID.id)
+                                            postID['viewscommentrelatedpost'] = element.amount;
+                                    })
+                                })
                                 hbscontent['relatedpost'] = postIDCat;
                                 categoryModel.single(idcat)
                                 .then(catrows => {
@@ -107,7 +133,13 @@ router.get('/:id', (req, res, next) => {
                                 }
                             }
                             postIDCat.splice(5, postIDCat.length - 1); // only 5 post
-
+                            postIDCat.forEach(postID => {
+                                postID['viewscommentrelatedpost'] = 0;
+                                listviewscomment.forEach(element => {
+                                    if (element.idproduct == postID.id)
+                                        postID['viewscommentrelatedpost'] = element.amount;
+                                })
+                            })
                             hbscontent['relatedpost'] = postIDCat;
                             categoryModel.single(idcat)
                             .then(catrows => {
@@ -169,6 +201,13 @@ router.get('/:id', (req, res, next) => {
                         }
                         postIDCat.splice(5, postIDCat.length - 1); // only 5 post
 
+                        postIDCat.forEach(postID => {
+                            postID['viewscommentrelatedpost'] = 0;
+                            listviewscomment.forEach(element => {
+                                if (element.idproduct == postID.id)
+                                    postID['viewscommentrelatedpost'] = element.amount;
+                            })
+                        })
                         hbscontent['relatedpost'] = postIDCat;
                         categoryModel.single(idcat)
                         .then(catrows => {

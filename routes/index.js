@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var hbscontent = require('../app');
-
+var commentModel = require('../models/comment.model');
 var postModel = require('../models/post.model');
 var categoryModel = require('../models/category.model');
 var tagModel = require('../models/tag.model');
@@ -15,47 +15,83 @@ router.get('/', (req, res, next) => {
         postModel.latestpost(10),
         postModel.descendingviews(10),
         postModel.descendingviewsByWeek(3),
-        postModel.latestpostByCat()
-    ]).then(([latestposts, trendingposts, featuredpostsbyweek, latestpostByCat]) => {
+        postModel.latestpostByCat(),
+        commentModel.amountComment()
+    ]).then(([latestposts, trendingposts, featuredpostsbyweek, latestpostByCat, listviewscomment]) => {
         //Latest post
         latestposts.forEach(element => {
-            categoryModel.single(element.idcategory).then(catrows => {
-                element['namecategory'] = catrows[0].name;
-                var dt = new Date(Date(element.createddate));
-                element['createddate'] = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
-            }).catch(next);
+            categoryModel.single(element.idcategory)
+            .then(catrows => {
+                element['viewscomment'] = 0;
+                listviewscomment.forEach(findIdProduct => {
+                    if (findIdProduct.idproduct == element.id)
+                    {
+                        element['namecategory'] = catrows[0].name;
+                        var dt = new Date(Date(element.createddate));
+                        element['createddate'] = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
+                        element.viewscomment = findIdProduct.amount;
+                    }
+                })    
+            })
+            .catch(next);
         })
         hbscontent['latestposts'] = latestposts;
 
         //10 Trending post
         trendingposts.forEach(element => {
-            element['isfirsttrendingpost'] = false;
-            categoryModel.single(element.idcategory).then(catrows => {
-                var dt = new Date(Date(element.createddate));
-                element['createddate'] = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
-                element['namecategory'] = catrows[0].name;                
-            }).catch(next);
+            categoryModel.single(element.idcategory)
+            .then(catrows => {
+                element['viewscomment'] = 0;
+                listviewscomment.forEach(findIdProduct => {
+                    if (findIdProduct.idproduct == element.id)
+                    {
+                        element['namecategory'] = catrows[0].name;
+                        var dt = new Date(Date(element.createddate));
+                        element['createddate'] = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
+                        element.viewscomment = findIdProduct.amount;
+                    }
+                })    
+            })
+            .catch(next);
         });
         trendingposts[0]['isfirsttrendingpost'] = true;
         hbscontent['trendingposts'] = trendingposts;
 
         //3 Featured Post By Week
         featuredpostsbyweek.forEach(element => {
-            categoryModel.single(element.idcategory).then(catrows => {
-                element['namecategory'] = catrows[0].name;
-                var dt = new Date(Date(element.createddate));
-                element['createddate'] = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
-            }).catch(next);
+            categoryModel.single(element.idcategory)
+            .then(catrows => {
+                element['viewscomment'] = 0;
+                listviewscomment.forEach(findIdProduct => {
+                    if (findIdProduct.idproduct == element.id)
+                    {
+                        element['namecategory'] = catrows[0].name;
+                        var dt = new Date(Date(element.createddate));
+                        element['createddate'] = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
+                        element.viewscomment = findIdProduct.amount;
+                    }
+                })    
+            })
+            .catch(next);
         });
         hbscontent['featuredposts'] = featuredpostsbyweek;
 
         //Latest Post by Category
         latestpostByCat.forEach(element => {
-            categoryModel.single(element.idcategory).then(catrows => {
-                element['namecategory'] = catrows[0].name;
-                var dt = new Date(Date(element.createddate));
-                element['createddate'] = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
-            }).catch(next);
+            categoryModel.single(element.idcategory)
+            .then(catrows => {
+                element['viewscomment'] = 0;
+                listviewscomment.forEach(findIdProduct => {
+                    if (findIdProduct.idproduct == element.id)
+                    {
+                        element['namecategory'] = catrows[0].name;
+                        var dt = new Date(Date(element.createddate));
+                        element['createddate'] = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
+                        element.viewscomment = findIdProduct.amount;
+                    }
+                })    
+            })
+            .catch(next);
         });
         hbscontent['latestpostByCat'] = latestpostByCat;
         

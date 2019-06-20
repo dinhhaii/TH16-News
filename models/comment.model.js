@@ -23,5 +23,13 @@ module.exports = {
 
     descComment: (idproduct)  => {
         return db.load(`select * from comment where idproduct = ${idproduct} order by idcomment desc`);
+    },
+
+    amountComment: () => {
+        return db.load('select idproduct, count(*) as amount from comment group by idproduct');
+    },
+
+    amountCommentWidthId: (idproduct) => {
+        return db.load(`select count(*) as amount from comment where idproduct = ${idproduct} group by idproduct`);
     }
 }
