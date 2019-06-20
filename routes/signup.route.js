@@ -26,6 +26,7 @@ router.post('/', (req, res, next) => {
     entity['createddate'] = new Date();
     entity['position'] = 'subcriber';
     delete entity['confirm'];
+    delete entity['CaptchaInput'];
     console.log(entity);
 
     userModel.add(entity)
