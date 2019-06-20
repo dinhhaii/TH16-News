@@ -3,6 +3,7 @@ var router = express.Router();
 var hbscontent = require('../app');
 var postModel = require('../models/post.model');
 var userModel = require('../models/user.model');
+var commentModel = require('../models/comment.model');
 
 router.get('/', (req, res, next) =>{    
     var content = hbscontent['keyword'];
@@ -13,16 +14,24 @@ router.get('/', (req, res, next) =>{
 
     Promise.all([
         postModel.pagingSearch(content, limit, offset),
-        postModel.countSearchResult(content)
-    ]).then(([searchResults,count_searchResults])  => {
+        postModel.countSearchResult(content),
+        commentModel.amountComment()
+    ]).then(([searchResults,count_searchResults, listviewscomment])  => {
         console.log(searchResults);
+        
         searchResults.forEach(element => {
+            element['viewscomment'] = 0;
+            listviewscomment.forEach(findIdProduct => {
+                if (findIdProduct.idproduct == element.id)
+                element['viewscomment'] = findIdProduct.amount;
+            })
             userModel.single(element.idwriter).then(userrows => {
                 element['namewriter'] = userrows[0].name;
                 var dt = new Date(Date(userrows[0].createddate));
                 element['createddate'] = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
 
-            })    
+            })   
+        
         });
 
         var total = count_searchResults[0].total;

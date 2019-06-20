@@ -31,6 +31,12 @@ router.get('/', (req, res, next) => {
                         element['createddate'] = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
                         element.viewscomment = findIdProduct.amount;
                     }
+                    else
+                    {
+                        element['namecategory'] = catrows[0].name;
+                        var dt = new Date(Date(element.createddate));
+                        element['createddate'] = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
+                    }
                 })    
             })
             .catch(next);
@@ -49,6 +55,12 @@ router.get('/', (req, res, next) => {
                         var dt = new Date(Date(element.createddate));
                         element['createddate'] = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
                         element.viewscomment = findIdProduct.amount;
+                    }
+                    else
+                    {
+                        element['namecategory'] = catrows[0].name;
+                        var dt = new Date(Date(element.createddate));
+                        element['createddate'] = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
                     }
                 })    
             })
@@ -70,6 +82,12 @@ router.get('/', (req, res, next) => {
                         element['createddate'] = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
                         element.viewscomment = findIdProduct.amount;
                     }
+                    else
+                    {
+                        element['namecategory'] = catrows[0].name;
+                        var dt = new Date(Date(element.createddate));
+                        element['createddate'] = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
+                    }
                 })    
             })
             .catch(next);
@@ -89,7 +107,13 @@ router.get('/', (req, res, next) => {
                         element['createddate'] = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
                         element.viewscomment = findIdProduct.amount;
                     }
-                })    
+                    else
+                    {
+                        element['namecategory'] = catrows[0].name;
+                        var dt = new Date(Date(element.createddate));
+                        element['createddate'] = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
+                    }
+                });    
             })
             .catch(next);
         });

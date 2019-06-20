@@ -21,11 +21,8 @@ router.get('/:id', (req, res, next) => {
         })
         .catch(next);
 
-        var dd = rows[0].publishdate.getDate();
-        var mm = rows[0].publishdate.getMonth() + 1;
-        var y = rows[0].publishdate.getFullYear();
-        var startDate = dd + '-'+ mm + '-'+ y;
-        hbscontent['publishdate'] = startDate;
+        var startDate = new Date(rows[0].publishdate);
+        hbscontent['publishdate'] = (("0" + startDate.getDate()).slice(-2)) + "/" + (("0" + (startDate.getMonth() + 1)).slice(-2)) + "/" + (startDate.getFullYear()) + " " + (("0" + startDate.getHours()).slice(-2)) + ":" + (("0" + startDate.getMinutes()).slice(-2));
         hbscontent['viewscomment'] = 0;
         listviewscomment.forEach(element => {
             if (element.idproduct == rows[0].id)
@@ -34,7 +31,7 @@ router.get('/:id', (req, res, next) => {
         rows[0].views = rows[0].views + 1;
         hbscontent['views'] = rows[0].views;
         postModel.update(rows[0]).then().catch(next);
-        
+
         if (hbscontent.isLogin == true) {
             vipsubcriberModel.single(hbscontent.currentuserid)
             .then(user => {
