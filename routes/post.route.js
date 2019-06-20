@@ -31,8 +31,10 @@ router.get('/:id', (req, res, next) => {
             if (element.idproduct == rows[0].id)
                 hbscontent['viewscomment'] = element.amount;                
         });
+        rows[0].views = rows[0].views + 1;
         hbscontent['views'] = rows[0].views;
-
+        postModel.update(rows[0]).then().catch(next);
+        
         if (hbscontent.isLogin == true) {
             vipsubcriberModel.single(hbscontent.currentuserid)
             .then(user => {
