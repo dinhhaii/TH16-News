@@ -5,6 +5,7 @@ var commentModel = require('../models/comment.model');
 var postModel = require('../models/post.model');
 var categoryModel = require('../models/category.model');
 var tagModel = require('../models/tag.model');
+var userModel = require('../models/user.model');
 //Trang chủ
 router.get('/', (req, res, next) => {
     hbscontent.title = 'VIZEW | Trang chủ';
@@ -25,20 +26,13 @@ router.get('/', (req, res, next) => {
             categoryModel.single(element.idcategory)
             .then(catrows => {
                 element['viewscomment'] = 0;
+                element['namecategory'] = catrows[0].name; 
                 listviewscomment.forEach(findIdProduct => {
                     if (findIdProduct.idproduct == element.id)
                     {
-                        element['namecategory'] = catrows[0].name;
-                        var dt = new Date(Date(element.createddate));
-                        element['createddate'] = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
                         element.viewscomment = findIdProduct.amount;
                     }
-                    else
-                    {
-                        element['namecategory'] = catrows[0].name;
-                        var dt = new Date(Date(element.createddate));
-                        element['createddate'] = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
-                    }
+                                
                 })    
             })
             .catch(next);
@@ -50,20 +44,15 @@ router.get('/', (req, res, next) => {
             categoryModel.single(element.idcategory)
             .then(catrows => {
                 element['viewscomment'] = 0;
+                element['namecategory'] = catrows[0].name;
                 listviewscomment.forEach(findIdProduct => {
                     if (findIdProduct.idproduct == element.id)
                     {
-                        element['namecategory'] = catrows[0].name;
-                        var dt = new Date(Date(element.createddate));
-                        element['createddate'] = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
                         element.viewscomment = findIdProduct.amount;
                     }
-                    else
-                    {
-                        element['namecategory'] = catrows[0].name;
-                        var dt = new Date(Date(element.createddate));
-                        element['createddate'] = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
-                    }
+                    
+                    var startDate = new Date(element.publishdate);
+                    element.publishdate = (("0" + startDate.getDate()).slice(-2)) + "/" + (("0" + (startDate.getMonth() + 1)).slice(-2)) + "/" + (startDate.getFullYear()) + " " + (("0" + startDate.getHours()).slice(-2)) + ":" + (("0" + startDate.getMinutes()).slice(-2));
                 })    
             })
             .catch(next);
@@ -76,20 +65,13 @@ router.get('/', (req, res, next) => {
             categoryModel.single(element.idcategory)
             .then(catrows => {
                 element['viewscomment'] = 0;
+                element['namecategory'] = catrows[0].name;
                 listviewscomment.forEach(findIdProduct => {
                     if (findIdProduct.idproduct == element.id)
                     {
-                        element['namecategory'] = catrows[0].name;
-                        var dt = new Date(Date(element.createddate));
-                        element['createddate'] = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
                         element.viewscomment = findIdProduct.amount;
                     }
-                    else
-                    {
-                        element['namecategory'] = catrows[0].name;
-                        var dt = new Date(Date(element.createddate));
-                        element['createddate'] = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
-                    }
+                    
                 })    
             })
             .catch(next);
@@ -101,12 +83,13 @@ router.get('/', (req, res, next) => {
         categoryModel.single(entity.idcategory)
         .then(catrows => {
             entity['viewscomment'] = 0;
+            entity['namecategory'] = catrows[0].name;
             listviewscomment.forEach(findIdProduct => {
                 if (findIdProduct.idproduct == entity.id)
                 {
                     entity['viewscomment'] = findIdProduct.amount;
                 }
-                entity['namecategory'] = catrows[0].name;
+                
             })    
         })
         .catch(next);
@@ -127,27 +110,28 @@ router.get('/', (req, res, next) => {
 
         //Latest Post by Category
         latestpostByCat.forEach(element => {
+            userModel.single(element.idwriter)
+            .then(user => {
+                element['namewriter'] = user[0].name;
+            })
+            .catch(next);
             categoryModel.single(element.idcategory)
             .then(catrows => {
                 element['viewscomment'] = 0;
+                element['namecategory'] = catrows[0].name;
+                var startDate = new Date(element.publishdate);
+                element.publishdate = (("0" + startDate.getDate()).slice(-2)) + "/" + (("0" + (startDate.getMonth() + 1)).slice(-2)) + "/" + (startDate.getFullYear()) + " " + (("0" + startDate.getHours()).slice(-2)) + ":" + (("0" + startDate.getMinutes()).slice(-2));
                 listviewscomment.forEach(findIdProduct => {
                     if (findIdProduct.idproduct == element.id)
                     {
-                        element['namecategory'] = catrows[0].name;
-                        var dt = new Date(Date(element.createddate));
-                        element['createddate'] = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
                         element.viewscomment = findIdProduct.amount;
                     }
-                    else
-                    {
-                        element['namecategory'] = catrows[0].name;
-                        var dt = new Date(Date(element.createddate));
-                        element['createddate'] = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
-                    }
-                });    
+                })
+                
             })
             .catch(next);
-        });
+            
+        })
         hbscontent['latestpostByCat'] = latestpostByCat;
         
         res.render('index', hbscontent);

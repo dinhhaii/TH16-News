@@ -13,8 +13,8 @@ module.exports = {
         return db.load(`select * from post_tag where ${id} = idtag`);
     },
 
-    pagePostByTag: (tagID, limit, offset) => {
-        return db.load(`select * from post_tag as pt, post as p where pt.idtag = ${tagID} and pt.idpost = p.id limit ${limit} offset ${offset}`);
+    pagePostByTag: (tagID, limit, offset, status) => {
+        return db.load(`select * from post_tag as pt, post as p where status = '${status}' and pt.idtag = ${tagID} and pt.idpost = p.id limit ${limit} offset ${offset}`);
     },
 
     countPostByTag: tagID => {

@@ -37,12 +37,12 @@
                                 <div class="post-meta d-flex align-items-center mb-2">
                                     <a href="#" class="post-author">Bởi {{namewriter}}</a>
                                     <i class="fa fa-circle" aria-hidden="true"></i>
-                                    <a href="#" class="post-date">{{createddate}}</a>
+                                    <a href="#" class="post-date">{{publishdate}}</a>
                                 </div>
                                 {{{summary}}}
                                 <div>
-                                    <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 32 </a>
-                                    <a href="#"><i class="fa fa-eye" aria-hidden="true"></i>{{view}}</a>
+                                    <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> {{viewscomment}} </a>
+                                    <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> {{views}}</a>
                                 </div>
                             </div>
                         </div>
@@ -65,121 +65,8 @@
                     </ul>
                 </nav>
             </div>
-
-
-
-
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="sidebar-area">
-
-                    <!-- ***** Single Widget ***** -->
-                    <div class="single-widget followers-widget mb-50">
-                        <a href="#" class="facebook"><i class="fa fa-facebook" aria-hidden="true"></i><span
-                                class="counter">198</span><span>Fan</span></a>
-                        <a href="#" class="twitter"><i class="fa fa-twitter" aria-hidden="true"></i><span
-                                class="counter">220</span><span>Followers</span></a>
-                        <a href="#" class="google"><i class="fa fa-google" aria-hidden="true"></i><span
-                                class="counter">140</span><span>Subscribe</span></a>
-                    </div>
-
-                    <!-- ***** Single Widget ***** -->
-                    <div class="single-widget latest-video-widget mb-50">
-                        <!-- Section Heading -->
-                        <div class="section-heading style-2 mb-30">
-                            <h4>Tin mới</h4>
-                            <div class="line"></div>
-                        </div>
-
-                        <!-- Single Blog Post -->
-                        <div class="single-post-area mb-30">
-                            <!-- Post Thumbnail -->
-                            <div class="post-thumbnail">
-                                <img src="/img/bg-img/13.jpg" alt="">
-
-
-                            </div>
-
-                            <!-- Post Content -->
-                            <div class="post-content">
-                                <a href="/category/{{idcategory}}/posts" class="post-cata cata-sm cata-success">Thị trường</a>
-                                <a href="#" class="post-title">Giá cà phê tiếp tục giảm mạnh</a>
-                                <div class="post-meta d-flex">
-                                    <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 14</a>
-                                    <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 38</a>
-                                    <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 22</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Single Blog Post -->
-                        <div class="single-blog-post d-flex">
-                            <div class="post-thumbnail">
-                                <img src="/img/bg-img/12.jpg" alt="">
-                            </div>
-                            <div class="post-content">
-                                <a href="#" class="post-title">Chuyên gia hiến kế thảo dược để trở nên đẹp trai</a>
-                                <div class="post-meta d-flex justify-content-between">
-                                    <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 29</a>
-                                    <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 08</a>
-                                    <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 23</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Single Blog Post -->
-                        <div class="single-blog-post d-flex">
-                            <div class="post-thumbnail">
-                                <img src="/img/bg-img/12.jpg" alt="">
-                            </div>
-                            <div class="post-content">
-                                <a href="#" class="post-title">Chuyên gia hiến kế thảo dược để trở nên đẹp trai</a>
-                                <div class="post-meta d-flex justify-content-between">
-                                    <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 17</a>
-                                    <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 33</a>
-                                    <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 26</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Single Blog Post -->
-                        <div class="single-blog-post d-flex">
-                            <div class="post-thumbnail">
-                                <img src="/img/bg-img/12.jpg" alt="">
-                            </div>
-                            <div class="post-content">
-                                <a href="#" class="post-title">Chuyên gia hiến kế thảo dược để trở nên đẹp trai</a>
-                                <div class="post-meta d-flex justify-content-between">
-                                    <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 11</a>
-                                    <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 42</a>
-                                    <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 21</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-
-
-                    <!-- ***** Single Widget ***** -->
-                    <div class="single-widget newsletter-widget mb-50">
-                        <!-- Section Heading -->
-                        <div class="section-heading style-2 mb-30">
-                            <h4>Newsletter</h4>
-                            <div class="line"></div>
-                        </div>
-                        <p>Nhấn Subscribe để ủng hộ chúng tôi và nhận tin tức bổ ích mới nhất!!</p>
-                        <!-- Newsletter Form -->
-                        <div class="newsletter-form">
-                            <form action="#" method="post">
-                                <input type="email" name="nl-email" class="form-control mb-15" id="emailnl"
-                                    placeholder="Enter your email">
-                                <button type="submit" class="btn vizew-btn w-100">Subscribe</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
+            {{>sidebar}}
         </div>
     </div>
 </div>

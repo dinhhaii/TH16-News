@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var commentModel = require('../models/comment.model');
 
 var userModel = require('../models/user.model');
 var postModel = require('../models/post.model');
@@ -23,18 +24,18 @@ router.get('/:id/posts', (req, res, next) => {
     var offset = (page - 1) * limit;
     
     Promise.all([
-        postModel.pageByCat(id, limit, offset),
-        postModel.countByCat(id)
-    ]).then(([rows, count_rows]) => {   
+        postModel.pageByCat(id, limit, offset, "Đã duyệt"),
+        postModel.countByCat(id),
+        commentModel.amountComment()
+    ]).then(([rows, count_rows, listviewscomment]) => {   
         
         //Lấy tên writer và ngày khởi tạo bài viết
         rows.forEach(element => {
-            userModel.single(element.idwriter).then(userrows => {
+            userModel.single(element.idwriter).then(userrows => {   
                 element['namewriter'] = userrows[0].name;
-                var dt = new Date(Date(userrows[0].createddate));
-                element['createddate'] = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
-
             })    
+            var startDate = new Date(element.publishdate);
+            element.publishdate = (("0" + startDate.getDate()).slice(-2)) + "/" + (("0" + (startDate.getMonth() + 1)).slice(-2)) + "/" + (startDate.getFullYear()) + " " + (("0" + startDate.getHours()).slice(-2)) + ":" + (("0" + startDate.getMinutes()).slice(-2));
         });
 
         var total = count_rows[0].total;
@@ -47,6 +48,15 @@ router.get('/:id/posts', (req, res, next) => {
             pages.push(obj);
         }
 
+        rows.forEach(element => {
+            element['viewscomment'] = 0;
+            listviewscomment.forEach(findIdProduct => {
+                if (findIdProduct.idproduct == element.id)
+                    element['viewscomment'] = findIdProduct.amount;
+            })
+        })
+
+        
         hbscontent['posts'] = rows;
         hbscontent['idcategory'] = id;
         hbscontent.isMainNavigationBar = true;

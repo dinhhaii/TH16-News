@@ -9,8 +9,8 @@ module.exports = {
         return db.load(`select * from post where ${id} = idcategory`);
     },
 
-    pageByCat: (catID, limit, offset) => {
-        return db.load(`select * from post where idcategory = ${catID} limit ${limit} offset ${offset}`);
+    pageByCat: (catID, limit, offset, status) => {
+        return db.load(`select * from post where status = '${status}' and idcategory = ${catID} limit ${limit} offset ${offset}`);
     },
 
     countByCat: (catID) => {
