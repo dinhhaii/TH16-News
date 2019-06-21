@@ -24,7 +24,7 @@ router.get('/:id/posts', (req, res, next) => {
     var offset = (page - 1) * limit;
     
     Promise.all([
-        postModel.pageByCat(id, limit, offset, "Đã duyệt"),
+        postModel.pageByCat(id, limit, offset),
         postModel.countByCat(id),
         commentModel.amountComment()
     ]).then(([rows, count_rows, listviewscomment]) => {   
@@ -40,7 +40,8 @@ router.get('/:id/posts', (req, res, next) => {
 
         var total = count_rows[0].total;
         var npages = Math.floor(total / limit);
-        if(total % limit > 0) npages++;
+
+        if((total % limit > 0) && (total > limit)) npages++;
 
         var pages = [];
         for(i = 1; i <= npages; i++){

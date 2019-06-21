@@ -22,7 +22,7 @@ router.get('/:id/posts', (req, res, next) => {
     var offset = (page - 1) * limit;
     
     Promise.all([
-        postTagModel.pagePostByTag(id, limit, offset, "Đã duyệt"),
+        postTagModel.pagePostByTag(id, limit, offset),
         postTagModel.countPostByTag(id),
         commentModel.amountComment()
     ]).then(([rows, count_rows, listviewscomment]) => {   

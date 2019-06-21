@@ -9,12 +9,12 @@ module.exports = {
         return db.load(`select * from post where ${id} = idcategory`);
     },
 
-    pageByCat: (catID, limit, offset, status) => {
-        return db.load(`select * from post where status = '${status}' and idcategory = ${catID} limit ${limit} offset ${offset}`);
+    pageByCat: (catID, limit, offset) => {
+        return db.load(`select * from post where status='Đã duyệt' and idcategory = ${catID} ORDER BY ispremium desc limit ${limit} offset ${offset}`);
     },
 
     countByCat: (catID) => {
-        return db.load(`select count(*) as total from post where ${catID} = idcategory`)
+        return db.load(`select count(*) as total from post where status='Đã duyệt' and ${catID} = idcategory`)
     },
   
     add: (entity) => {
