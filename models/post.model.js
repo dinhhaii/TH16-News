@@ -34,20 +34,20 @@ module.exports = {
     },
 
     latestpost: (limit) => {
-        return db.load(`select * from post as p1 where createddate = (select max(createddate) from post as p2 where p1.id = p2.id) order by createddate desc limit ${limit} offset 0`);
+        return db.load(`select * from post as p1 where status = 'Đã duyệt' and createddate = (select max(createddate) from post as p2 where p1.id = p2.id) order by createddate desc limit ${limit} offset 0`);
     },
 
     latestpostIDCat: (limit, idcategory) => {
         return db.load(`select * from post as p1 where idcategory = ${idcategory} and createddate = (select max(createddate) from post as p2 where p1.id = p2.id) order by createddate desc limit ${limit} offset 0`);
     },
     latestpostByCat: ()=>{
-        return db.load(`select p.* from (select max(createddate) as maxdate, idcategory from post group by idcategory) as t, post as p where t.idcategory = p.idcategory and t.maxdate = p.createddate`);
+        return db.load(`select p.* from (select max(createddate) as maxdate, idcategory from post group by idcategory) as t, post as p where p.status = 'Đã duyệt' and t.idcategory = p.idcategory and t.maxdate = p.createddate`);
     },
     descendingviews: (limit) => {
-        return db.load(`SELECT * FROM post order by views desc limit ${limit} offset 0`);
+        return db.load(`SELECT * FROM post where status = 'Đã duyệt' order by views desc limit ${limit} offset 0`);
     },
     descendingviewsByWeek: (limit) => {
-        return db.load(`select * , week(createddate) as week from post ORDER BY week desc, views DESC limit ${limit} offset 0`);
+        return db.load(`select * , week(createddate) as week from post where status = 'Đã duyệt' ORDER BY week desc, views DESC limit ${limit} offset 0`);
     },
     findIdWriterAndStatus: (idwriter, status) => {
         return db.load(`SELECT * FROM post where idwriter = ${idwriter} and status = '${status}'`);
