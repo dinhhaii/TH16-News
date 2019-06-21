@@ -36,7 +36,7 @@ router.get('/:id', (req, res, next) => {
             vipsubcriberModel.single(hbscontent.currentuserid)
             .then(user => {
                 if (rows[0].ispremium == 1) {
-                    if (user[0] != null) {
+                    if (user[0] != null || hbscontent.isAdmin == true || hbscontent.isEditor == true || hbscontent.isWriter == true) {
                         var idcat = rows[0].idcategory;
                         hbscontent['post'] = rows[0];
                         hbscontent['title'] = rows[0].titlepost;
