@@ -52,14 +52,17 @@
                                 <div class="modal-content">
                                 
                                     <div class="container">
-                                        <h2>Duyệt</h2>
+                                        <h2>Duyệt </h2>
                                         <form method="post" action="/admin/editorcategory/{{this.id}}">                                        
-                                            
+                                            {{!-- <div class="form-group">
+                                                <label for="select">Chuyên mục đã được phân công: </label>
+                                                <input style=" background: #F5F5DC;color:black;" type="text" value="{{this.categoryofeditor}}" class="form-control" id="pwd" readonly >
+                                            </div> --}}
                                             <div class="form-group">
-                                                <label for="select">Chuyên mục:</label>
+                                                <label for="select">Chuyên mục: </label>
                                                 <select style="background: #F5F5DC;color:black;" name="idcategory" value="" class="form-control">
                                                     {{#each ../editorcategories}}
-                                                    <option value="{{id}}" {{isSelected}} >{{name}}</option>
+                                                    <option  value="{{id}}" {{isSelected}} >{{name}}</option>
                                                     {{/each}}
                                                     
                                                 </select>

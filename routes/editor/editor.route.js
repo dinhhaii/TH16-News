@@ -91,42 +91,10 @@ router.post('/approvedpost/:id', authEditor, (req, res) => {
     postModel.single(id)
     .then(rows=>{
         rows[0].status = "Đã duyệt";
-        rows[0].idcategory = entity.idcategory;
+        
         rows[0].publishdate = entity.publishdate;
         postModel.update(rows[0]).then(()=>{
-            posttagModel.findidtag(idtag).then(tagRows=>{
-                
-                var check = false;
-                tagRows.forEach(tagChild=>{
-                    if(tagChild.idpost==id)
-                    {
-                        check =true;
-                    }
-                });
-                if(check==false)
-                {
-                        var ef={
-                            idpost:id,
-                            idtag:entity.idtag,
-                        }
-                        posttagModel.add(ef).then(()=>{
-                        res.redirect('/editor/approvepost');
-                    })
-                    .catch(err => {
-                        console.log(err);
-                        res.end('Error occured');
-                    });
-                }  
-                else
-                {
-                    res.redirect('/editor/approvepost');
-                } 
-                
-            }).catch(err=>{
-                console.log(err);
-                res.end('Error occured');
-            })
-           
+            
         }) 
         .catch(err => {
             console.log(err);

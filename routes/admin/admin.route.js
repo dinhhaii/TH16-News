@@ -316,31 +316,78 @@ router.get('/', authAdmin,(req, res) => {
 });
 
 // select all table user
+
 router.get('/user',authAdmin, (req, res) => {
-    
+    var  str ={name: ""}
     userModel.all()
     .then(rows => {
         console.log(rows);
-
        
+        var strarr = [];
         //Update totalpost in tag table
         rows.forEach(element => {
-            userModel.update(element).then().catch(err => { console.log(err)});
+            //element['editorcategories'] = [];
+           
+            
             if(element.position=='editor')
-            {
+            { 
+                
                 element.isEditor = true;
+                categorypostModel.findideditor(element.id).then(categoryeditor=>{
+                    if(categoryeditor.length>0)
+                    {
+                        categoryModel.getNameCategoryByEditor(categoryeditor[0].idcategory).then(namecate=>{
+                           
+                            strarr.push(namecate[0].name);
+                            
+                           
+                        }).catch(err=>{
+                            console.log(err);
+                        });
+                        
+                    }
+                    else
+                    {
+                        element.categoryofeditor = '';
+                        element.categoryofeditor = "";
+                    }
+                    
+                }).catch(err=>{
+                    console.log(err);
+                });
+
+                
+                console.log(element.categoryofeditor);
             }
             else
             {
                 element.isEditor = false;
+                element.categoryofeditor = "";
             }
+            
+            
+            
+            
+            
+            
         });
-        console.log(rows);
-        hbscontent['user'] = rows;
-        res.render('admin/user/admin-user', hbscontent);
+        
+        categoryModel.all().then(catRows=>{    
+                   
+            hbscontent['user'] = rows; 
+            hbscontent['editorcategories'] = catRows;
+            res.render('admin/user/admin-user', hbscontent);  
+        }).catch(err=>{
+            console.log(err);
+        });
+        
+         
     }).catch(err => {
         console.log(err);
+       
     });
+                                          
+        
 });
 // phân công chuyên mục cho editor
 router.post('/editorcategory/:id',authAdmin, (req, res)=>{
@@ -412,7 +459,8 @@ router.get('/edituser/:id',authAdmin, (req, res) => {
 
 router.post('/edituser',authAdmin, (req,res)=>{
     var entity = req.body;
-
+    var saltRounds = 10;
+    entity.password = bcrypt.hashSync(req.body.password, saltRounds);
     userModel.update(entity)
     .then(() => {
         res.redirect('/admin/user');

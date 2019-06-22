@@ -31,5 +31,8 @@ module.exports = {
 
     getNameCategory: (id) => {
         return db.load(`select name from category where id =${id}`)
+    },
+    getNameCategoryByEditor: (id) => {
+        return db.load(`select category.name from category, editor_category where category.id =${id} and category.id=editor_category.idcategory`)
     }
 }
