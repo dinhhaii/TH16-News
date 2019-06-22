@@ -339,7 +339,7 @@ router.get('/user',authAdmin, (req, res) => {
                         categoryModel.getNameCategoryByEditor(categoryeditor[0].idcategory).then(namecate=>{
                            
                             strarr.push(namecate[0].name);
-                            
+                            console.log(strarr);
                            
                         }).catch(err=>{
                             console.log(err);
@@ -357,7 +357,7 @@ router.get('/user',authAdmin, (req, res) => {
                 });
 
                 
-                console.log(element.categoryofeditor);
+               // console.log(strarr);
             }
             else
             {

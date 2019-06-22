@@ -44,7 +44,25 @@
                                     <div class="container">
                                         <h2>Duyệt</h2>
                                         <form method="post" action="/editor/approvedpost/{{this.id}}">
+                                                                                        <div class="form-group">
+                                            <label for="select">Chuyên mục:</label>
+                                            <select style="background: #F5F5DC;color:black;" name="idcategory" value="" class="form-control">
+                                                {{#each ../categories}}
+                                                <option value="{{id}}" >{{name}}</option>
+                                                {{/each}}
+                                                
+                                            </select>
                                             
+                                            </div>
+                                            <div class="form-group">
+                                            <label for="select">Tags:</label>
+                                            <select style=" background: #F5F5DC;color:black;" name="idtag" class="form-control">
+                                                {{#each ../tags}}
+                                                <option value="{{id}}" >{{name}}</option>
+                                                {{/each}}
+                                                
+                                            </select>
+                                            </div>
                                             <div class="form-group">
                                             <label for="pwd">Ngày xuất bản:</label>
                                             <input type="date" class="form-control" style=" background: #F5F5DC;color:black;" id="pwd" placeholder="Enter approve date" name="publishdate">
